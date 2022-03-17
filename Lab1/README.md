@@ -1,7 +1,7 @@
-#CyberPhysicalSystemsLabs
-##ADVANCED ALGORITHMS 2021-2022 - Labs exercise - UNIPD 2022
+# CyberPhysicalSystemsLabs
+## ADVANCED ALGORITHMS 2021-2022 - Labs exercise - UNIPD 2022
 
-###Assignment 1 - Minimum Spanning Trees
+### Assignment 1 - Minimum Spanning Trees
 
 Algorithms
 In the first assigment you will compare three algorithms for the Minimum Spanning Tree problem:
@@ -20,11 +20,11 @@ The dataset contains 68 example graphs, ranging in size from 10 to 100,000 verti
 
 For example, a row "2 3 -8874" indicates that there is an edge connecting vertex 2 to vertex 3 with weight -8874. Weights should NOT be assumed to be positive nor distinct.
 
-•	###Question 1
+### •	Question 1
 
 Run the three algorithms you have implemented (Prim, Kruskal naive and Kruskal efficient) on the graphs of the dataset. Measure the execution times of the three algorithms and create a graph showing the increase of execution times as the number of vertices in the graph increases. Compare the measured times with the asymptotic complexity of the algorithms. For each problem instance, report the weight of the minimum spanning tree obtained by your code.
 
-•	###Question 2
+### •	Question 2
 
 Comment on the results you have obtained: how do the algorithms behave with respect to the various instances? There is an algorithm that is always better than the others? Which of the three algorithms you have implemented is more efficient? 
 
