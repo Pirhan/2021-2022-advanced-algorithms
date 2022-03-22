@@ -22,22 +22,7 @@ class load_graph_AL:
                 nodes.add(v2)
         self.edges = edges
         self.nodes = nodes
-    #################
-        def test_graph(graph, lines, nodes):
-            """
-            This is only a test function on the load_graphs() correctness
-            """
-            discovered = set()
-            for (n1, n2) in graph:
-                if n1 != n2:
-                    discovered.add(n1)
-                    discovered.add(n2)
-            if len(nodes) != len(discovered) or len(lines)-1 != len(graph):
-                return "Failed"   
-            return "Passed"
-    ###################
 
-        assert(test_graph(edges, lines, nodes) == "Passed")             # Makes sure that everything is ok
         return "OK"   
     
     def get_nodes(self):
