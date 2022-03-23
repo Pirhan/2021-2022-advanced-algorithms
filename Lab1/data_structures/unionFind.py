@@ -1,7 +1,7 @@
 class UnionFind:
 
     parent = {}
-    size = {}      # stores the depth of trees using memory O(|V|)
+    size = {}      # stores the depth of trees using memory n
 
     def Initialize(self, nodes):
         # create `n` disjoint sets (one for each node)
@@ -31,4 +31,8 @@ class UnionFind:
             self.size[i] += self.size[j]
         else:
             self.parent[i] = j
-            self.size[j] = self.size[j] + self.size[i]
+            self.size[j] += + self.size[i]
+
+
+
+        
