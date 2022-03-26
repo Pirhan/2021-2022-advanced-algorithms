@@ -33,13 +33,13 @@ def Kruskal(G: Graph):
     edges = G.get_edges()
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 
-    print(sort_edges)
+    print(sort_edges.keys())
 
     for edge in list(sort_edges_keys):
         A.addEdge(edge, edges.get(edge))
-        if A.detCycles() == True:
+        if A.isCycle() == True:
             A.removeEdge(edge)  
-   
+    
     A.nonDiscendingOrderGraph_Keys()
     A.PrintGraph("Kruscal", G)
     return A

@@ -1,23 +1,13 @@
-from lib2to3.pytree import Node
-import string
-from xmlrpc.client import Boolean
+from re import U
 
 
 class Graph:
-    # [[]], dict in order to support an unordered set of keys
-    Adj_list = {}
-
-    # dict containing the edges with a tuple of nodes as key and the weight as value 
-    edges = {}
-
-    # set containing the nodes discovered
-    nodes = set()
-
-    # Auxiliary data stucture for cycle detection  
-    visited = []
-
+    
     def __init__(self) -> None:
-        pass
+        self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
+        self.nodes = set()          # set containing the nodes discovered
+        self.edges = {}             # dict containing the edges with a tuple of nodes as key and the weight as value                      
+        
 
     def addEdge(self, edge: tuple, weight: int):
         (v, u) = edge 
@@ -26,39 +16,43 @@ class Graph:
         edges = list(self.edges.keys())
         if edge not in edges:
             self.edges[edge] = weight
-        
+                                                                        # TODO Check why the appends doesnt't work anymore 
+        if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []  # Not sure why the statements below doesn't work without
+        if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []  # Not sure why the statements below doesn't work without
         (self.Adj_list[v]).append(edge)
         (self.Adj_list[u]).append(edge)
 
     def removeEdge(self, edge: tuple):
         (u, w) = edge 
-        print("Ora ", edge)
-        print(self.edges.pop((edge)))
-        print("Dopo ", list(self.edges.items()))
+        self.edges.pop((edge))
         (self.Adj_list[u]).remove(edge)
         (self.Adj_list[w]).remove(edge)
-        if len((self.Adj_list[u]))==1:
-            self.nodes.remove(u)
-        if len((self.Adj_list[u]))==1:
-            self.nodes.remove(u)
     
-    def getAdiacentNodes(self, node : int) -> list:
-        nodes = []
-        #print(node, " => ",(self.get_AL()).get(node))
+    def get_nodes(self):
+        return self.nodes.copy()    # FIXME
+
+    def get_edges(self):
+        return self.edges.copy()    # FIXME
+    
+    def get_AL(self):
+        return self.Adj_list.copy()       # FIXME
+
+    # Returns all the nodes incident to node
+    def getAdjacentNodes(self, node : int) -> list:
+        nodes = set()
         if node in self.nodes:
             for (u, v) in list((self.get_AL())[node]):
-                #print((u,v))
-                if node == u: nodes.append(v)
-                else: nodes.append(u)                   # if node == v
-        return nodes
+                if node == u: nodes.add(v)
+                else: nodes.add(u)                   # if node == v
+        return list(nodes)
     
-    def getAdiacentEdges(self, node: int) -> list:
-        edges = []
-        if node in self.nodes:
-            for edges in list((self.get_AL())[node]):
-                for (u, v) in edges:
-                    edges.append((u, v))
-        return edges
+    # Returns all the edges with node 
+    def getAdjacentEdges(self, node: int) -> list:
+        edges = set()
+        for list_edges in list(self.get_AL()[node]):
+            edges.add(list_edges)
+        return list(edges)
+
 
     # Orders the graph in non discending order of keys
     def nonDiscendingOrderGraph_Keys(self):
@@ -69,60 +63,47 @@ class Graph:
     def nonDiscendingOrderGraph_Values(self):
         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
         return self
-        
 
-    """ def DetectCycle (A, node : int):
+    # Construct the Adjacency list in the version [node] = [adjacent] 
+    # TODO try to use this kind of rappresentation from the beginning 
+    def getAL_list(self):
+        nodes = []
+        adj = {}
+        for edge in list(self.get_edges().keys()):
+            (u, v) = edge
+            if u not in nodes:
+                adj[u] = []
+                nodes.append(u)
+            if v not in adj[u]:
+                (adj[u]).append(v)
+            if v not in nodes:
+                adj[v] = []
+                nodes.append(v)
+            if u not in adj[v]:
+                (adj[v]).append(u)
+        return adj
 
-        self.visited[src] = True
+    def isCycle(self):
 
-        for adj_node in self.adjlist[src]:
-            if self.visited[adj_node] == False:
-                self.parent[adj_node] = src
-                self.DetectCycle (adj_node)
-            elif self.parent[src] != adj_node:
-                self.cycle_present = True
-                return """
-    
-    def detCycles(self) -> Boolean:
-        self.visited = [False] * (len(self.get_nodes()))
-        self.parent = [None] * (len(self.get_nodes()))
-        
-        """ def DetectCycle (self:Graph, node : int) -> False:
+        def find_cycle(graph, start):
 
-            self.visited[node-1] = True
-
-            for adj_node in self.getAdiacentNodes(node):
-                if self.visited[adj_node-1] == False:
-                    self.parent[adj_node-1] = node
-                    DetectCycle (self, adj_node)
-                elif self.parent[node-1] != adj_node:
-                    return True 
-            return False """
-
-        def DFS_Traversal(self, v, visited, parent_node=-1):
- 
-            # assign current node as
-            visited[v] = True
- 
-            # loop for every edge (v, u)
-            for u in self.getAdiacentNodes(v):
- 
-                # if `u` is not visited
-                if not visited[u]:
-                    if DFS_Traversal(self, u, visited, v):
+            colors = { node : True for node in graph }      # Buolding the set, setting all the nodes to 'Visited'
+            colors[start] = False
+            stack = [(None, start)] # store edge, but at this point we have not visited one
+            while stack:
+                (prev, node) = stack.pop()  # get stored edge
+                for neighbor in graph[node]:
+                    if neighbor == prev:
+                        pass # don't travel back along the same edge we came from
+                    elif colors[neighbor] == False:
                         return True
- 
-                # if `u` is visited, and `u` is not a parent_node
-                elif u != parent_node:
-                    # found a back-edge 
-                    return True
- 
-                # No back-edges were found 
-                return False
-        (u, w) = list(self.get_edges().keys())[0]
-        return  DFS_Traversal(self, u, self.visited)
+                    else: # can't be anything else than WHITE...
+                        colors[neighbor] = False
+                        stack.append((node, neighbor)) # push edge on stack
+            return False
 
-
+        Adj_List = self.getAL_list()
+        return find_cycle(Adj_List, list(Adj_List.keys())[0])
 
     """
     load the graph from the txt file and computes the adjacency lists
@@ -162,24 +143,14 @@ class Graph:
             first_line = lines[0].split()
             assert(len(nodes) == int(first_line[0]))
             assert(len(edges) == int(first_line[1]))
-            #################################
+            ##################################
 
 
         self.edges = edges
         self.nodes = nodes
         
-    
-    def get_nodes(self):
-        return self.nodes.copy()    # FIXME
 
-    def get_edges(self):
-        return self.edges.copy()    # FIXME
-    
-    def get_AL(self):
-        return self.Adj_list.copy()       # FIXME
-
-    
-    def PrintGraph(self, FunctionName: string,  OriginalGraph = None):
+    def PrintGraph(self, FunctionName,  OriginalGraph = None):
         total_weight = 0
         for weight in list(self.get_edges().values()):
             total_weight += weight
