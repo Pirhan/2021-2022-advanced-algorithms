@@ -1,6 +1,3 @@
-from re import U
-
-
 class Graph:
     
     def __init__(self) -> None:
@@ -16,9 +13,10 @@ class Graph:
         edges = list(self.edges.keys())
         if edge not in edges:
             self.edges[edge] = weight
-                                                                        # TODO Check why the appends doesnt't work anymore 
-        if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []  # Not sure why the statements below doesn't work without
-        if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []  # Not sure why the statements below doesn't work without
+        else: return
+                                                                         
+        if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []  
+        if u not in list(self.get_AL().keys()) : self.Adj_list[u] = [] 
         (self.Adj_list[v]).append(edge)
         (self.Adj_list[u]).append(edge)
 
@@ -37,6 +35,9 @@ class Graph:
     def get_AL(self):
         return self.Adj_list.copy()       # FIXME
 
+    def total_Weight(self):
+        return sum(self.edges.values())
+
     # Returns all the nodes incident to node
     def getAdjacentNodes(self, node : int) -> list:
         nodes = set()
@@ -53,7 +54,6 @@ class Graph:
             edges.add(list_edges)
         return list(edges)
 
-
     # Orders the graph in non discending order of keys
     def nonDiscendingOrderGraph_Keys(self):
         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
@@ -64,90 +64,67 @@ class Graph:
         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
         return self
 
-    # Construct the Adjacency list in the version [node] = [adjacent] 
-    # TODO try to use this kind of rappresentation from the beginning 
-    def getAL_list(self):
-        nodes = []
-        adj = {}
-        for edge in list(self.get_edges().keys()):
-            (u, v) = edge
-            if u not in nodes:
-                adj[u] = []
-                nodes.append(u)
-            if v not in adj[u]:
-                (adj[u]).append(v)
-            if v not in nodes:
-                adj[v] = []
-                nodes.append(v)
-            if u not in adj[v]:
-                (adj[v]).append(u)
-        return adj
-
     def isCycle(self):
 
-        def find_cycle(graph, start):
-
-            colors = { node : True for node in graph }      # Buolding the set, setting all the nodes to 'Visited'
-            colors[start] = False
-            stack = [(None, start)] # store edge, but at this point we have not visited one
-            while stack:
-                (prev, node) = stack.pop()  # get stored edge
-                for neighbor in graph[node]:
-                    if neighbor == prev:
-                        pass # don't travel back along the same edge we came from
-                    elif colors[neighbor] == False:
-                        return True
-                    else: # can't be anything else than WHITE...
-                        colors[neighbor] = False
-                        stack.append((node, neighbor)) # push edge on stack
+        def find_cycle(Graph):
+            """
+            Based on Breadth-first search (BFS) to explore every vertex which is reachable from v. 
+            The overall complexity is O(m+n), with m and n being the number of edges and vertices respectively.
+            """
+            Visited = []
+            V = Graph.keys()
+        
+            # initially all vertices are unexplored
+            L = { v: -1 for v in V }
+        
+            for v in V:
+        
+                # v has already been explored; move on
+                if L[v] != -1:
+                    continue
+        
+                # take v as a starting vertex
+                L[v] = 0                # start by selecting some unexplored vertex v of G
+                Visited.append(v)
+        
+                # as long as Q is not empty
+                while len(Visited) > 0:
+        
+                    # get the next vertex u of Q that must be looked at
+                    u = Visited.pop(0)
+        
+                    Adjacents = Graph[u]
+        
+                    for adj in Adjacents:
+                        # if z is being found for the first time
+                        if L[adj] == -1:
+                            L[adj] = L[u] + 1
+                            Visited.append(adj)
+                        elif L[adj] >= L[u]:
+                            return True
+        
             return False
 
-        Adj_List = self.getAL_list()
-        return find_cycle(Adj_List, list(Adj_List.keys())[0])
+        Adj_List = {node:self.getAdjacentNodes(node) for node in self.get_nodes()}
+        return find_cycle(Adj_List)   # Passing the first node in the order of dict 
 
-    """
-    load the graph from the txt file and computes the adjacency lists
-    """
+    
     def inizialize(self, filename):
         """ Builds the adiacency lists from the txt file"""
-        # dict containing the edges with a tuple of nodes as key and the weight as value 
-        edges = {}
-
-        # set containing the nodes discovered
-        nodes = set()
-
+        
         with open(filename) as f:
             lines = f.readlines()
             for line in lines[1:]:
                 v1 = int(line.split()[0])   # First node 
                 v2 = int(line.split()[1])   # Second node 
-                c = int(line.split()[2])    # Weight
-                edges[(v1, v2)] = c  
-                nodes.add(v1)
-                nodes.add(v2)
+                w = int(line.split()[2])    # Weight
                 
-                keys = self.Adj_list.keys()       # keys are [1,3,2,...] an unordered set
-                
-                # In order to create the adiacency list we need to store all the pairs forming the keys of the tuples
-                # linked with the two nodes
-                if v1 not in  keys:
-                    self.Adj_list[v1] = []        # For each node in AL we instantiate an empty array
-                if v2 not in keys:
-                    self.Adj_list[v2] = []
-                
-                # Adding the tuple to the adiacency list
-                (self.Adj_list[v1]).append((v1,v2))   
-                (self.Adj_list[v2]).append((v1,v2))
+                self.addEdge((v1,v2), w)
 
-            ############# Testing ############
-            first_line = lines[0].split()
-            assert(len(nodes) == int(first_line[0]))
-            assert(len(edges) == int(first_line[1]))
-            ##################################
-
-
-        self.edges = edges
-        self.nodes = nodes
+        ############# Testing ############
+        first_line = lines[0].split()
+        assert(len(self.nodes) == int(first_line[0]))
+        assert(len(self.edges) == int(first_line[1])) 
         
 
     def PrintGraph(self, FunctionName,  OriginalGraph = None):
@@ -161,7 +138,9 @@ class Graph:
                 print(FunctionName)
                 print(self.get_edges())
                 print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)
-            else: print(FunctionName + " => Failed")
+            else: 
+                print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))
+                print(self.get_edges())
         else: print(self.get_edges())
 
 

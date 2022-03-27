@@ -1,7 +1,7 @@
 import graphlib
 from data_structures.graph import Graph
 from data_structures.unionFind import UnionFind
-import heapq
+from heapq import *
 
 def Efficient_Kruskal(G: Graph):
 
@@ -22,8 +22,8 @@ def Efficient_Kruskal(G: Graph):
             U.Union(v, w)
 
     A.nonDiscendingOrderGraph_Keys()
-    A.PrintGraph("Efficient_Kruscal", G)
-    return A
+    #A.PrintGraph("Efficient_Kruscal", G)
+    return A.total_Weight()
 
 
 
@@ -33,69 +33,47 @@ def Kruskal(G: Graph):
     edges = G.get_edges()
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 
-    print(sort_edges.keys())
+
 
     for edge in list(sort_edges_keys):
         A.addEdge(edge, edges.get(edge))
-        if A.isCycle() == True:
-            A.removeEdge(edge)  
+        if A.isCycle() == True:             # Checking if the added node creates a cycle in the graph                   
+            A.removeEdge(edge)              # If so, remove it 
     
     A.nonDiscendingOrderGraph_Keys()
-    A.PrintGraph("Kruscal", G)
-    return A
+    #A.PrintGraph("Kruscal", G)
+    return A.total_Weight()
 
 
 def Prim_Heap(G: Graph):
-        
-        V = G.get_nodes() 
 
-        # key values used to pick minimum weight edge in cut
-        key = []  
-         
-        # List to store constructed MST
-        parent = []
- 
-        # minHeap represents set E, this is Q
-        minHeap = []
-
-        # The final MST will be stored here
-        A = Graph()
-
-        # Initialize min heap with all vertices. 
-        # Key values of al vertices (except the 0th vertex) is initially infinite
-        for node in V:
-            key.append(1e7)
-            parent.append(None)
-            heapq.heappush(minHeap, node)   # Adding all nodes not in the tree (Q <- V)
-        heapq.heapify(minHeap)              # Creating the heap (minHeap[0] => shortest distance)
-
-        # Make key value of 0th vertex as 0 so
-        # that it is extracted first. 
-        key[0] = 0
- 
-        # Initially size of min heap is equal to V
- 
-        # In the following loop, min heap contains all nodes
-        # not yet added in the MST.
-        while len(minHeap) != 0:
- 
-            # Extract the vertex with minimum distance value
-            u = minHeap[0] 
-            heapq.heappop(minHeap)
-
-            # Traverse through all adjacent vertices of u
-            # (the extracted vertex) and update their
-            # distance values
-            
-            for (node_u, adiacent_n) in list(G.Adj_list.get(u)):
-                #weight = G.edges.get((adiacent_n, node_u)) 
-                weight = G.edges.get((node_u, adiacent_n))             # Taking the weight of the node
-                if adiacent_n in minHeap and weight < key[adiacent_n-1]:
-                    key[adiacent_n-1] = weight
-                    parent[adiacent_n-1] = u
-      
-                    A.addEdge((node_u, adiacent_n), weight)      # Building the final MST
-        
-        A.PrintGraph("Prim_Heap", G)
-        return A
+    A = Graph()         # Final MST
+    Q = []              # This is the list uset to build the heap  
     
+    visited = []        # Contains all the visited nodes
+    heappush(Q,[0,1])   # [0,1] indicates a first weight of 0 and node 1 as starting node
+                        # In this way we don't need to use key and Phi as data structures
+    
+    while len(Q)!=0:
+        weight,node = heappop(Q)    # Extract the minimum edge incident [weignt, node], it pops the elements too 
+                                    # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
+
+        if node in visited:         # node already visited
+            continue
+
+        visited.append(node)        # Node non visited. Adding it to the final MST
+
+        for key, value in G.get_edges().items():      #   
+            if value == weight :                      #   Retrieve the adjacent node that identify the edge in order to obtain the weight   
+                A.addEdge(key, weight)                #
+                break
+
+        for v in G.getAdjacentNodes(node):                      # for each v adiacent to node
+            weight = G.edges.get((node, v))                     # Taking the weight of the node
+            if weight == None: weight = G.edges.get((v, node))  
+            if v not in visited:
+                heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet
+
+    A.nonDiscendingOrderGraph_Keys()
+    #A.PrintGraph("Prim_H", G)
+    return A.total_Weight()
