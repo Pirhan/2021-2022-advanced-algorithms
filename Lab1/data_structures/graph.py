@@ -71,6 +71,7 @@ class Graph:
         Based on Breadth-first search (BFS) to explore every vertex which is reachable from v. 
         The overall complexity is O(m+n), with m and n being the number of edges and vertices respectively.
         """
+        
         Visited = []
         V = self.get_nodes()
     
@@ -102,7 +103,6 @@ class Graph:
                         Visited.append(adj)
                     elif L[adj] >= L[u]:
                         return True
-    
         return False
 
     def inizialize(self, filename):

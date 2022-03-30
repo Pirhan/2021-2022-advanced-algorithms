@@ -27,19 +27,29 @@ def Efficient_Kruskal(G: Graph):
 
 
 
-def Kruskal(G: Graph):
-    
+def Kruskal(G: Graph):    
+
     A=Graph()
     edges = G.get_edges()
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 
 
-
+    #print(list(sort_edges_keys),"\n")
     for edge in list(sort_edges_keys):
+        (u,v) = edge
+        nodes = A.get_nodes()
+        if edge in A.get_edges().keys():
+            continue
         A.addEdge(edge, edges.get(edge))
-        if A.isCycle() == True:             # Checking if the added node creates a cycle in the graph                   
-            A.removeEdge(edge)              # If so, remove it 
-    
+        if u not in nodes:
+            continue
+        if v not in nodes:
+            continue
+        A.addEdge(edge, edges.get(edge))
+        if A.isCycle():
+            A.removeEdge(edge)
+
+    #print(list(A.get_edges().keys()),"\n")
     A.nonDiscendingOrderGraph_Keys()
     #A.PrintGraph("Kruscal", G)
     return A.total_Weight()
