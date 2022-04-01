@@ -98,13 +98,13 @@ def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Ef
         Kruskal_process_2 = Process(target=measureTime, args=(Graphs[40:53], algorithms.Kruskal, MSTs_Weights_Kruskal_2, run_times_Kruskal_2))
         Kruskal_process_3 = Process(target=measureTime, args=(Graphs[53:63], algorithms.Kruskal, MSTs_Weights_Kruskal_3, run_times_Kruskal_3))
         Kruskal_process_4 = Process(target=measureTime, args=(Graphs[63:], algorithms.Kruskal, MSTs_Weights_Kruskal_4, run_times_Kruskal_4))
-        Kruskal_Efficient_process = processing.process(target=measureTime, args=(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient))
-        processs = [Prim_process, Kruskal_process_1, Kruskal_process_2, Kruskal_process_3, Kruskal_process_4, Kruskal_Efficient_process]
-        for process in processs:
-            process.start()
+        Kruskal_Efficient_process = Process(target=measureTime, args=(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient))
+        process = [Prim_process, Kruskal_process_1, Kruskal_process_2, Kruskal_process_3, Kruskal_process_4, Kruskal_Efficient_process]
+        for proc in process:
+            proc.start()
         
-        for process in processs:
-            process.join() 
+        for proc in process:
+            proc.join() 
 
         run_times_Kruskal.append(run_times_Kruskal_1 + run_times_Kruskal_2 + run_times_Kruskal_3 + run_times_Kruskal_4)
         MSTs_Weights_Kruskal.append(MSTs_Weights_Kruskal_1 + MSTs_Weights_Kruskal_2 + MSTs_Weights_Kruskal_3 + MSTs_Weights_Kruskal_4)
