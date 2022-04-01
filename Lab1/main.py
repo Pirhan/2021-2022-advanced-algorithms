@@ -7,7 +7,7 @@ import gc
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import threading
+from multiprocessing import Process
 
 
 def measureTime(Graphs: list, Function, MSTs, Time):
@@ -51,7 +51,7 @@ def main():
     run_times_Kruskal = []
     
     # Run the algorithms and computes all the measurements
-    # param Multithread = True/False 
+    # param Multiprocess = True/False 
     run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, False)
 
     
@@ -75,15 +75,15 @@ def main():
 
 
 
-def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, Multithread = True):
-    if Multithread == False:
-        ############## No Threads ##############
+def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, Multiprocess = True):
+    if Multiprocess == False:
+        ############## No processs ##############
         measureTime(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim)
         measureTime(Graphs, algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal)
         measureTime(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient)
         ########################################
     else:
-        ############## Threads ##############
+        ############## processs ##############
         MSTs_Weights_Kruskal_1 = []
         MSTs_Weights_Kruskal_2 = []
         MSTs_Weights_Kruskal_3 = []
@@ -93,18 +93,18 @@ def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Ef
         run_times_Kruskal_3 = [] # Kruskal on 53-62 graphs
         run_times_Kruskal_4 = [] # Kruskal on 63-68 graphs
        
-        Prim_thread = threading.Thread(target=measureTime, args=(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim))
-        Kruskal_thread_1 = threading.Thread(target=measureTime, args=(Graphs[:40], algorithms.Kruskal, MSTs_Weights_Kruskal_1, run_times_Kruskal_1))
-        Kruskal_thread_2 = threading.Thread(target=measureTime, args=(Graphs[40:53], algorithms.Kruskal, MSTs_Weights_Kruskal_2, run_times_Kruskal_2))
-        Kruskal_thread_3 = threading.Thread(target=measureTime, args=(Graphs[53:63], algorithms.Kruskal, MSTs_Weights_Kruskal_3, run_times_Kruskal_3))
-        Kruskal_thread_4 = threading.Thread(target=measureTime, args=(Graphs[63:], algorithms.Kruskal, MSTs_Weights_Kruskal_4, run_times_Kruskal_4))
-        Kruskal_Efficient_thread = threading.Thread(target=measureTime, args=(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient))
-        threads = [Prim_thread, Kruskal_thread_1, Kruskal_thread_2, Kruskal_thread_3, Kruskal_thread_4, Kruskal_Efficient_thread]
-        for thread in threads:
-            thread.start()
+        Prim_process = Process(target=measureTime, args=(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim))
+        Kruskal_process_1 = Process(target=measureTime, args=(Graphs[:40], algorithms.Kruskal, MSTs_Weights_Kruskal_1, run_times_Kruskal_1))
+        Kruskal_process_2 = Process(target=measureTime, args=(Graphs[40:53], algorithms.Kruskal, MSTs_Weights_Kruskal_2, run_times_Kruskal_2))
+        Kruskal_process_3 = Process(target=measureTime, args=(Graphs[53:63], algorithms.Kruskal, MSTs_Weights_Kruskal_3, run_times_Kruskal_3))
+        Kruskal_process_4 = Process(target=measureTime, args=(Graphs[63:], algorithms.Kruskal, MSTs_Weights_Kruskal_4, run_times_Kruskal_4))
+        Kruskal_Efficient_process = processing.process(target=measureTime, args=(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient))
+        processs = [Prim_process, Kruskal_process_1, Kruskal_process_2, Kruskal_process_3, Kruskal_process_4, Kruskal_Efficient_process]
+        for process in processs:
+            process.start()
         
-        for thread in threads:
-            thread.join() 
+        for process in processs:
+            process.join() 
 
         run_times_Kruskal.append(run_times_Kruskal_1 + run_times_Kruskal_2 + run_times_Kruskal_3 + run_times_Kruskal_4)
         MSTs_Weights_Kruskal.append(MSTs_Weights_Kruskal_1 + MSTs_Weights_Kruskal_2 + MSTs_Weights_Kruskal_3 + MSTs_Weights_Kruskal_4)
@@ -129,7 +129,7 @@ def pyplot_Complete(graphs_sizes, run_times_Prim, run_times_Kruskal, run_times_K
     plt.plot(graphs_sizes, run_times_Prim)
     plt.plot(graphs_sizes, run_times_Kruskal)
     plt.plot(graphs_sizes, run_times_Kruskal_Efficient)
-    plt.title("N = " + str(graphs_sizes[-1]) + "    Single thread")
+    plt.title("N = " + str(graphs_sizes[-1]) + "    Single process")
     plt.legend(["Prim","Kruscal", "Kruskal_Efficient"])
     plt.ylabel('run time (ns)')
     plt.xlabel('size')
