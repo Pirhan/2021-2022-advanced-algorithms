@@ -16,7 +16,7 @@ def Efficient_Kruskal(G: Graph):
     
     for edge in sort_edges_keys:
         (v,w) = edge
-
+        if v == w: continue
         if U.Find(v) != U.Find(w): # No path v-w in A
             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later
             U.Union(v, w)
@@ -41,9 +41,7 @@ def Kruskal(G: Graph):
         if edge in A.get_edges().keys():
             continue
         A.addEdge(edge, edges.get(edge))
-        if u not in nodes:
-            continue
-        if v not in nodes:
+        if u not in nodes or v not in nodes:
             continue
         A.addEdge(edge, edges.get(edge))
         if A.isCycle():

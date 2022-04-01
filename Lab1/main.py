@@ -1,3 +1,4 @@
+from operator import index
 import os, math
 from data_structures.graph import Graph
 import algorithms
@@ -9,14 +10,13 @@ import numpy as np
 import threading
 
 
-
 def measureTime(Graphs: list, Function, MSTs, Time):
-    #print(Function)
     temp_time = 0
     for Graph in Graphs:
+        print(Function, "\t=>\t", Graphs.index(Graph) + 1)
         gc.disable()
         start_time = perf_counter_ns()
-
+        
         temp_time = Function(Graph)        # Function call
 
         end_time = perf_counter_ns()
@@ -33,12 +33,13 @@ def main():
     foldername = "mst_dataset"
     count = 0
     for filename in os.listdir(foldername):
-        if count == 30: break 
-        count += 1
+        #if count == 40: break 
+        #count += 1
         graph = Graph()
         graph.inizialize(foldername + "//" + filename)
         Graphs.append(graph)
         Graphs_names.append(filename)
+        print(filename, "\t=>\tOK")
 
     graphs_sizes = [len(graph.get_nodes()) for graph in Graphs]
 
@@ -46,10 +47,11 @@ def main():
     MSTs_Weights_Kruskal = []
     MSTs_Weights_Kruscal_Efficient = []
     run_times_Prim = []
-    run_times_Kruskal = []
     run_times_Kruskal_Efficient = []
+    run_times_Kruskal = []
     
     # Run the algorithms and computes all the measurements
+    # param Multithread = True/False 
     run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, False)
 
     
@@ -59,6 +61,7 @@ def main():
         n_edges = len(list(graph.get_edges().keys()))
         graph_data.append((n_nodes, n_edges))
 
+       
     pyplot_Kruskal(graphs_sizes, run_times_Kruskal, graph_data)
 
     pyplot_Kruskal_Efficient(graphs_sizes, run_times_Kruskal_Efficient, graph_data)
@@ -72,9 +75,7 @@ def main():
 
 
 
-
-
-def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, Multithread = False):
+def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Prim, run_times_Kruskal, run_times_Kruskal_Efficient, Multithread = True):
     if Multithread == False:
         ############## No Threads ##############
         measureTime(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim)
@@ -83,17 +84,32 @@ def run(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Ef
         ########################################
     else:
         ############## Threads ##############
+        MSTs_Weights_Kruskal_1 = []
+        MSTs_Weights_Kruskal_2 = []
+        MSTs_Weights_Kruskal_3 = []
+        MSTs_Weights_Kruskal_4 = []
+        run_times_Kruskal_1 = [] # Kruskal on 1-39  graphs
+        run_times_Kruskal_2 = [] # Kruskal on 40-52 graphs
+        run_times_Kruskal_3 = [] # Kruskal on 53-62 graphs
+        run_times_Kruskal_4 = [] # Kruskal on 63-68 graphs
+       
         Prim_thread = threading.Thread(target=measureTime, args=(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim))
-        Kruskal_thread = threading.Thread(target=measureTime, args=(Graphs, algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal))
+        Kruskal_thread_1 = threading.Thread(target=measureTime, args=(Graphs[:40], algorithms.Kruskal, MSTs_Weights_Kruskal_1, run_times_Kruskal_1))
+        Kruskal_thread_2 = threading.Thread(target=measureTime, args=(Graphs[40:53], algorithms.Kruskal, MSTs_Weights_Kruskal_2, run_times_Kruskal_2))
+        Kruskal_thread_3 = threading.Thread(target=measureTime, args=(Graphs[53:63], algorithms.Kruskal, MSTs_Weights_Kruskal_3, run_times_Kruskal_3))
+        Kruskal_thread_4 = threading.Thread(target=measureTime, args=(Graphs[63:], algorithms.Kruskal, MSTs_Weights_Kruskal_4, run_times_Kruskal_4))
         Kruskal_Efficient_thread = threading.Thread(target=measureTime, args=(Graphs, algorithms.Efficient_Kruskal, MSTs_Weights_Kruscal_Efficient, run_times_Kruskal_Efficient))
-        threads = [Prim_thread, Kruskal_thread, Kruskal_Efficient_thread]
+        threads = [Prim_thread, Kruskal_thread_1, Kruskal_thread_2, Kruskal_thread_3, Kruskal_thread_4, Kruskal_Efficient_thread]
         for thread in threads:
             thread.start()
         
         for thread in threads:
             thread.join() 
-        #####################################
 
+        run_times_Kruskal.append(run_times_Kruskal_1 + run_times_Kruskal_2 + run_times_Kruskal_3 + run_times_Kruskal_4)
+        MSTs_Weights_Kruskal.append(MSTs_Weights_Kruskal_1 + MSTs_Weights_Kruskal_2 + MSTs_Weights_Kruskal_3 + MSTs_Weights_Kruskal_4)
+
+        #####################################
 
 def data_to_file(Graphs, Graphs_names, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient):
     """ Extracts all the weights computed by the algorithms, writing them in a .csv file """
@@ -123,7 +139,7 @@ def pyplot_Complete(graphs_sizes, run_times_Prim, run_times_Kruskal, run_times_K
 
 def pyplot_Prim(graphs_sizes, run_times_Prim, graph_data):
     ############# pyplot Prim ##############
-    reference = [n_e * math.log(n_n) * 10**4 for (n_n, n_e) in graph_data]
+    reference = [n_e * math.log(n_n) * 10**6 for (n_n, n_e) in graph_data]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, run_times_Prim)
     plt.title("Prim => O(m*log(n))")
@@ -137,7 +153,7 @@ def pyplot_Prim(graphs_sizes, run_times_Prim, graph_data):
 def pyplot_Kruskal_Efficient(graphs_sizes, run_times_Kruskal_Efficient, graph_data):
     ############# pyplot Efficient Kruskal ##############
 
-    reference = [n_e * math.log(n_n) * 8**4 for (n_n, n_e) in graph_data]
+    reference = [n_e * math.log(n_n) * 10**6 for (n_n, n_e) in graph_data]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, run_times_Kruskal_Efficient)
     plt.title("Kruscal Efficient => O(m*log(n))")
@@ -152,7 +168,7 @@ def pyplot_Kruskal_Efficient(graphs_sizes, run_times_Kruskal_Efficient, graph_da
 def pyplot_Kruskal(graphs_sizes, run_times_Kruskal, graph_data):
     ################## pyplot Kruskal ##################
 
-    reference = [n_n * n_e * 7**4 for (n_n, n_e) in graph_data]
+    reference = [n_n * n_e * 10**6 for (n_n, n_e) in graph_data]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, run_times_Kruskal)
     plt.title("Kruscal => O(n*m)")
