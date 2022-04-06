@@ -34,7 +34,9 @@ def main():
     Graphs = []
     Graphs_names = []
     foldername = "mst_dataset"
-    for filename in sorted(os.listdir(foldername)):
+    for filename in sorted(
+        os.listdir(foldername)
+    ):  # now generation of graph from file is in order(ouput from print more clear, sorted)
         graph = Graph()
         graph.inizialize(foldername + "//" + filename)
         Graphs.append(graph)
