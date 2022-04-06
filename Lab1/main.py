@@ -43,8 +43,6 @@ def main():
         Graphs_names.append(filename)
         print(filename, "\t=>\tOK")
 
-    # graphs_sizes = [len(graph.get_nodes()) for graph in Graphs]
-
     MSTs_Weights_Prim = []
     MSTs_Weights_Kruskal = []
     MSTs_Weights_Kruscal_Efficient = []
