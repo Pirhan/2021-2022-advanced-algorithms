@@ -1,5 +1,3 @@
-import graphlib
-
 # from data_structures.graph import Graph
 # from data_structures.unionFind import UnionFind
 # start chytonized version
@@ -45,13 +43,13 @@ def Kruskal(G: Graph):
     edges = G.get_edges()
     sort_edges = dict(
         sorted(edges.items(), key=lambda item: item[1])
-    )  # In nondecrising order of weight
+    )  # In nondecreasing order of weight
     sort_edges_keys = sort_edges.keys()  # Getting the keys
 
     for edge in list(sort_edges_keys):
         A.addEdge(edge, edges.get(edge))
         if (
-            A.isCycle() == True
+            A.isCycle() is True
         ):  # Checking if the added node creates a cycle in the graph
             A.removeEdge(edge)  # If so, remove it
 
@@ -91,7 +89,7 @@ def Prim_Heap(G: Graph):
 
         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
             weight = G.edges.get((node, v))  # Taking the weight of the node
-            if weight == None:
+            if weight is None:
                 weight = G.edges.get((v, node))
             if v not in visited:
                 heappush(
