@@ -1489,7 +1489,6 @@ static const char __pyx_k_int[] = "int";
 static const char __pyx_k_key[] = "key";
 static const char __pyx_k_pop[] = "pop";
 static const char __pyx_k_sum[] = "sum";
-static const char __pyx_k_copy[] = "copy";
 static const char __pyx_k_edge[] = "edge";
 static const char __pyx_k_exit[] = "__exit__";
 static const char __pyx_k_file[] = "file";
@@ -1601,7 +1600,6 @@ static PyObject *__pyx_n_s_addEdge;
 static PyObject *__pyx_n_s_adj;
 static PyObject *__pyx_n_s_append;
 static PyObject *__pyx_n_s_cline_in_traceback;
-static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_kp_s_data_structures_graph_compiled_p;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_edge;
@@ -1715,12 +1713,11 @@ static PyObject *__pyx_codeobj__28;
 static PyObject *__pyx_codeobj__30;
 /* Late includes */
 
-/* "graph_compiled.pyx":3
+/* "graph_compiled.pyx":2
  * class Graph:
- * 
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered
  */
 
 /* Python wrapper */
@@ -1746,48 +1743,55 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph___init__(CYTHON_UNUSED PyObjec
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "graph_compiled.pyx":4
- * 
+  /* "graph_compiled.pyx":3
+ * class Graph:
  *     def __init__(self) -> None:
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys             # <<<<<<<<<<<<<<
- *         self.nodes = set()          # set containing the nodes discovered
- *         self.edges = {}             # dict containing the edges with a tuple of nodes as key and the weight as value
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys             # <<<<<<<<<<<<<<
+ *         self.nodes = set()  # set containing the nodes discovered
+ *         self.edges = (
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":5
+  /* "graph_compiled.pyx":4
  *     def __init__(self) -> None:
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered             # <<<<<<<<<<<<<<
- *         self.edges = {}             # dict containing the edges with a tuple of nodes as key and the weight as value
- * 
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered             # <<<<<<<<<<<<<<
+ *         self.edges = (
+ *             {}
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_nodes, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_nodes, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "graph_compiled.pyx":6
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered
- *         self.edges = {}             # dict containing the edges with a tuple of nodes as key and the weight as value             # <<<<<<<<<<<<<<
- * 
+ *         self.nodes = set()  # set containing the nodes discovered
+ *         self.edges = (
+ *             {}             # <<<<<<<<<<<<<<
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
  * 
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_edges, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
+
+  /* "graph_compiled.pyx":5
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered
+ *         self.edges = (             # <<<<<<<<<<<<<<
+ *             {}
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_edges, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":3
+  /* "graph_compiled.pyx":2
  * class Graph:
- * 
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered
  */
 
   /* function exit code */
@@ -1804,7 +1808,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph___init__(CYTHON_UNUSED PyObjec
 }
 
 /* "graph_compiled.pyx":9
- * 
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
  * 
  *     def addEdge(self, edge: tuple, weight: int):             # <<<<<<<<<<<<<<
  *         (v, u) = edge
@@ -2040,7 +2044,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
  *         edges = list(self.edges.keys())
  *         if edge not in edges:             # <<<<<<<<<<<<<<
  *             self.edges[edge] = weight
- *         else: return
+ *         else:
  */
   __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_edge, __pyx_v_edges, Py_NE)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 14, __pyx_L1_error)
   __pyx_t_5 = (__pyx_t_4 != 0);
@@ -2050,8 +2054,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
  *         edges = list(self.edges.keys())
  *         if edge not in edges:
  *             self.edges[edge] = weight             # <<<<<<<<<<<<<<
- *         else: return
- * 
+ *         else:
+ *             return
  */
     __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -2063,17 +2067,17 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
  *         edges = list(self.edges.keys())
  *         if edge not in edges:             # <<<<<<<<<<<<<<
  *             self.edges[edge] = weight
- *         else: return
+ *         else:
  */
     goto __pyx_L3;
   }
 
-  /* "graph_compiled.pyx":16
- *         if edge not in edges:
+  /* "graph_compiled.pyx":17
  *             self.edges[edge] = weight
- *         else: return             # <<<<<<<<<<<<<<
+ *         else:
+ *             return             # <<<<<<<<<<<<<<
  * 
- *         if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []
+ *         if v not in list(self.get_AL().keys()):
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -2082,14 +2086,14 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   }
   __pyx_L3:;
 
-  /* "graph_compiled.pyx":18
- *         else: return
+  /* "graph_compiled.pyx":19
+ *             return
  * 
- *         if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []             # <<<<<<<<<<<<<<
- *         if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []
- *         (self.Adj_list[v]).append(edge)
+ *         if v not in list(self.get_AL().keys()):             # <<<<<<<<<<<<<<
+ *             self.Adj_list[v] = []
+ *         if u not in list(self.get_AL().keys()):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2103,10 +2107,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   }
   __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2121,33 +2125,49 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   }
   __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_v, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_v, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_4 = (__pyx_t_5 != 0);
   if (__pyx_t_4) {
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+
+    /* "graph_compiled.pyx":20
+ * 
+ *         if v not in list(self.get_AL().keys()):
+ *             self.Adj_list[v] = []             # <<<<<<<<<<<<<<
+ *         if u not in list(self.get_AL().keys()):
+ *             self.Adj_list[u] = []
+ */
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (unlikely(PyObject_SetItem(__pyx_t_3, __pyx_v_v, __pyx_t_1) < 0)) __PYX_ERR(0, 18, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_t_3, __pyx_v_v, __pyx_t_1) < 0)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "graph_compiled.pyx":19
+ *             return
+ * 
+ *         if v not in list(self.get_AL().keys()):             # <<<<<<<<<<<<<<
+ *             self.Adj_list[v] = []
+ *         if u not in list(self.get_AL().keys()):
+ */
   }
 
-  /* "graph_compiled.pyx":19
- * 
- *         if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []
- *         if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []             # <<<<<<<<<<<<<<
+  /* "graph_compiled.pyx":21
+ *         if v not in list(self.get_AL().keys()):
+ *             self.Adj_list[v] = []
+ *         if u not in list(self.get_AL().keys()):             # <<<<<<<<<<<<<<
+ *             self.Adj_list[u] = []
  *         (self.Adj_list[v]).append(edge)
- *         (self.Adj_list[u]).append(edge)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2161,10 +2181,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   }
   __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -2179,57 +2199,73 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_u, __pyx_t_2, Py_NE)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_u, __pyx_t_2, Py_NE)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_5 = (__pyx_t_4 != 0);
   if (__pyx_t_5) {
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+
+    /* "graph_compiled.pyx":22
+ *             self.Adj_list[v] = []
+ *         if u not in list(self.get_AL().keys()):
+ *             self.Adj_list[u] = []             # <<<<<<<<<<<<<<
+ *         (self.Adj_list[v]).append(edge)
+ *         (self.Adj_list[u]).append(edge)
+ */
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_v_u, __pyx_t_2) < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_v_u, __pyx_t_2) < 0)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "graph_compiled.pyx":21
+ *         if v not in list(self.get_AL().keys()):
+ *             self.Adj_list[v] = []
+ *         if u not in list(self.get_AL().keys()):             # <<<<<<<<<<<<<<
+ *             self.Adj_list[u] = []
+ *         (self.Adj_list[v]).append(edge)
+ */
   }
 
-  /* "graph_compiled.pyx":20
- *         if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []
- *         if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []
+  /* "graph_compiled.pyx":23
+ *         if u not in list(self.get_AL().keys()):
+ *             self.Adj_list[u] = []
  *         (self.Adj_list[v]).append(edge)             # <<<<<<<<<<<<<<
  *         (self.Adj_list[u]).append(edge)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_v); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_v); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_v_edge); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_v_edge); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":21
- *         if u not in list(self.get_AL().keys()) : self.Adj_list[u] = []
+  /* "graph_compiled.pyx":24
+ *             self.Adj_list[u] = []
  *         (self.Adj_list[v]).append(edge)
  *         (self.Adj_list[u]).append(edge)             # <<<<<<<<<<<<<<
  * 
  *     def removeEdge(self, edge: tuple):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_u); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_u); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_edge); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_edge); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "graph_compiled.pyx":9
- * 
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
  * 
  *     def addEdge(self, edge: tuple, weight: int):             # <<<<<<<<<<<<<<
  *         (v, u) = edge
@@ -2255,7 +2291,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_2addEdge(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":23
+/* "graph_compiled.pyx":26
  *         (self.Adj_list[u]).append(edge)
  * 
  *     def removeEdge(self, edge: tuple):             # <<<<<<<<<<<<<<
@@ -2298,11 +2334,11 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_5removeEdge(PyObject *__pyx_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_edge)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("removeEdge", 1, 2, 2, 1); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("removeEdge", 1, 2, 2, 1); __PYX_ERR(0, 26, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "removeEdge") < 0)) __PYX_ERR(0, 23, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "removeEdge") < 0)) __PYX_ERR(0, 26, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2315,13 +2351,13 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_5removeEdge(PyObject *__pyx_se
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("removeEdge", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 23, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("removeEdge", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 26, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("graph_compiled.Graph.removeEdge", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edge), (&PyTuple_Type), 1, "edge", 1))) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_edge), (&PyTuple_Type), 1, "edge", 1))) __PYX_ERR(0, 26, __pyx_L1_error)
   __pyx_r = __pyx_pf_14graph_compiled_5Graph_4removeEdge(__pyx_self, __pyx_v_self, __pyx_v_edge);
 
   /* function exit code */
@@ -2346,7 +2382,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("removeEdge", 0);
 
-  /* "graph_compiled.pyx":24
+  /* "graph_compiled.pyx":27
  * 
  *     def removeEdge(self, edge: tuple):
  *         (u, w) = edge             # <<<<<<<<<<<<<<
@@ -2359,7 +2395,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 24, __pyx_L1_error)
+      __PYX_ERR(0, 27, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
@@ -2367,29 +2403,29 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_t_2);
     #else
-    __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 24, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 27, __pyx_L1_error)
   }
   __pyx_v_u = __pyx_t_1;
   __pyx_t_1 = 0;
   __pyx_v_w = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":25
+  /* "graph_compiled.pyx":28
  *     def removeEdge(self, edge: tuple):
  *         (u, w) = edge
  *         self.edges.pop((edge))             # <<<<<<<<<<<<<<
  *         (self.Adj_list[u]).remove(edge)
  *         (self.Adj_list[w]).remove(edge)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_pop); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_pop); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -2404,24 +2440,24 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_edge);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":26
+  /* "graph_compiled.pyx":29
  *         (u, w) = edge
  *         self.edges.pop((edge))
  *         (self.Adj_list[u]).remove(edge)             # <<<<<<<<<<<<<<
  *         (self.Adj_list[w]).remove(edge)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_u); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_u); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -2436,24 +2472,24 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_edge);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":27
+  /* "graph_compiled.pyx":30
  *         self.edges.pop((edge))
  *         (self.Adj_list[u]).remove(edge)
  *         (self.Adj_list[w]).remove(edge)             # <<<<<<<<<<<<<<
  * 
  *     def get_nodes(self):
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_w); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_w); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -2468,12 +2504,12 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
   }
   __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_edge);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":23
+  /* "graph_compiled.pyx":26
  *         (self.Adj_list[u]).append(edge)
  * 
  *     def removeEdge(self, edge: tuple):             # <<<<<<<<<<<<<<
@@ -2498,11 +2534,11 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_4removeEdge(CYTHON_UNUSED PyOb
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":29
+/* "graph_compiled.pyx":32
  *         (self.Adj_list[w]).remove(edge)
  * 
  *     def get_nodes(self):             # <<<<<<<<<<<<<<
- *         return self.nodes.copy()    # FIXME
+ *         return self.nodes
  * 
  */
 
@@ -2524,58 +2560,36 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_6get_nodes(CYTHON_UNUSED PyObj
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_nodes", 0);
 
-  /* "graph_compiled.pyx":30
+  /* "graph_compiled.pyx":33
  * 
  *     def get_nodes(self):
- *         return self.nodes.copy()    # FIXME             # <<<<<<<<<<<<<<
+ *         return self.nodes             # <<<<<<<<<<<<<<
  * 
  *     def get_edges(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":29
+  /* "graph_compiled.pyx":32
  *         (self.Adj_list[w]).remove(edge)
  * 
  *     def get_nodes(self):             # <<<<<<<<<<<<<<
- *         return self.nodes.copy()    # FIXME
+ *         return self.nodes
  * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("graph_compiled.Graph.get_nodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2584,11 +2598,11 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_6get_nodes(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":32
- *         return self.nodes.copy()    # FIXME
+/* "graph_compiled.pyx":35
+ *         return self.nodes
  * 
  *     def get_edges(self):             # <<<<<<<<<<<<<<
- *         return self.edges.copy()    # FIXME
+ *         return self.edges
  * 
  */
 
@@ -2610,58 +2624,36 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_8get_edges(CYTHON_UNUSED PyObj
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_edges", 0);
 
-  /* "graph_compiled.pyx":33
+  /* "graph_compiled.pyx":36
  * 
  *     def get_edges(self):
- *         return self.edges.copy()    # FIXME             # <<<<<<<<<<<<<<
+ *         return self.edges             # <<<<<<<<<<<<<<
  * 
  *     def get_AL(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":32
- *         return self.nodes.copy()    # FIXME
+  /* "graph_compiled.pyx":35
+ *         return self.nodes
  * 
  *     def get_edges(self):             # <<<<<<<<<<<<<<
- *         return self.edges.copy()    # FIXME
+ *         return self.edges
  * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("graph_compiled.Graph.get_edges", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2670,11 +2662,11 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_8get_edges(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":35
- *         return self.edges.copy()    # FIXME
+/* "graph_compiled.pyx":38
+ *         return self.edges
  * 
  *     def get_AL(self):             # <<<<<<<<<<<<<<
- *         return self.Adj_list.copy()       # FIXME
+ *         return self.Adj_list
  * 
  */
 
@@ -2696,58 +2688,36 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_10get_AL(CYTHON_UNUSED PyObjec
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_AL", 0);
 
-  /* "graph_compiled.pyx":36
+  /* "graph_compiled.pyx":39
  * 
  *     def get_AL(self):
- *         return self.Adj_list.copy()       # FIXME             # <<<<<<<<<<<<<<
+ *         return self.Adj_list             # <<<<<<<<<<<<<<
  * 
  *     def total_Weight(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_copy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Adj_list); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":35
- *         return self.edges.copy()    # FIXME
+  /* "graph_compiled.pyx":38
+ *         return self.edges
  * 
  *     def get_AL(self):             # <<<<<<<<<<<<<<
- *         return self.Adj_list.copy()       # FIXME
+ *         return self.Adj_list
  * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("graph_compiled.Graph.get_AL", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2756,8 +2726,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_10get_AL(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":38
- *         return self.Adj_list.copy()       # FIXME
+/* "graph_compiled.pyx":41
+ *         return self.Adj_list
  * 
  *     def total_Weight(self):             # <<<<<<<<<<<<<<
  *         return sum(self.edges.values())
@@ -2789,7 +2759,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_12total_Weight(CYTHON_UNUSED P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("total_Weight", 0);
 
-  /* "graph_compiled.pyx":39
+  /* "graph_compiled.pyx":42
  * 
  *     def total_Weight(self):
  *         return sum(self.edges.values())             # <<<<<<<<<<<<<<
@@ -2797,9 +2767,9 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_12total_Weight(CYTHON_UNUSED P
  *     # Returns all the nodes incident to node
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2814,18 +2784,18 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_12total_Weight(CYTHON_UNUSED P
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":38
- *         return self.Adj_list.copy()       # FIXME
+  /* "graph_compiled.pyx":41
+ *         return self.Adj_list
  * 
  *     def total_Weight(self):             # <<<<<<<<<<<<<<
  *         return sum(self.edges.values())
@@ -2845,10 +2815,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_12total_Weight(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":42
+/* "graph_compiled.pyx":45
  * 
  *     # Returns all the nodes incident to node
- *     def getAdjacentNodes(self, node : int) -> list:             # <<<<<<<<<<<<<<
+ *     def getAdjacentNodes(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         nodes = set()
  *         if node in self.nodes:
  */
@@ -2888,11 +2858,11 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_15getAdjacentNodes(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_node)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("getAdjacentNodes", 1, 2, 2, 1); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("getAdjacentNodes", 1, 2, 2, 1); __PYX_ERR(0, 45, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getAdjacentNodes") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getAdjacentNodes") < 0)) __PYX_ERR(0, 45, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2905,7 +2875,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_15getAdjacentNodes(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getAdjacentNodes", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getAdjacentNodes", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 45, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("graph_compiled.Graph.getAdjacentNodes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2939,40 +2909,40 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getAdjacentNodes", 0);
 
-  /* "graph_compiled.pyx":43
+  /* "graph_compiled.pyx":46
  *     # Returns all the nodes incident to node
- *     def getAdjacentNodes(self, node : int) -> list:
+ *     def getAdjacentNodes(self, node: int) -> list:
  *         nodes = set()             # <<<<<<<<<<<<<<
  *         if node in self.nodes:
  *             for (u, v) in list((self.get_AL())[node]):
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nodes = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":44
- *     def getAdjacentNodes(self, node : int) -> list:
+  /* "graph_compiled.pyx":47
+ *     def getAdjacentNodes(self, node: int) -> list:
  *         nodes = set()
  *         if node in self.nodes:             # <<<<<<<<<<<<<<
  *             for (u, v) in list((self.get_AL())[node]):
- *                 if node == u: nodes.add(v)
+ *                 if node == u:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "graph_compiled.pyx":45
+    /* "graph_compiled.pyx":48
  *         nodes = set()
  *         if node in self.nodes:
  *             for (u, v) in list((self.get_AL())[node]):             # <<<<<<<<<<<<<<
- *                 if node == u: nodes.add(v)
- *                 else: nodes.add(u)                   # if node == v
+ *                 if node == u:
+ *                     nodes.add(v)
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2986,13 +2956,13 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PySequence_List(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+    __pyx_t_1 = PySequence_List(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = __pyx_t_1; __Pyx_INCREF(__pyx_t_4); __pyx_t_6 = 0;
@@ -3000,9 +2970,9 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
     for (;;) {
       if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_4)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
       #else
-      __pyx_t_1 = PySequence_ITEM(__pyx_t_4, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(__pyx_t_4, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -3011,7 +2981,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 45, __pyx_L1_error)
+          __PYX_ERR(0, 48, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -3024,15 +2994,15 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(__pyx_t_7);
         #else
-        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 45, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 45, __pyx_L1_error)
+        __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 48, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 45, __pyx_L1_error)
+        __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 48, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_9 = Py_TYPE(__pyx_t_8)->tp_iternext;
@@ -3040,7 +3010,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
         __Pyx_GOTREF(__pyx_t_5);
         index = 1; __pyx_t_7 = __pyx_t_9(__pyx_t_8); if (unlikely(!__pyx_t_7)) goto __pyx_L6_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_7);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
         __pyx_t_9 = NULL;
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         goto __pyx_L7_unpacking_done;
@@ -3048,7 +3018,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_t_9 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 45, __pyx_L1_error)
+        __PYX_ERR(0, 48, __pyx_L1_error)
         __pyx_L7_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_u, __pyx_t_5);
@@ -3056,70 +3026,86 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_7);
       __pyx_t_7 = 0;
 
-      /* "graph_compiled.pyx":46
+      /* "graph_compiled.pyx":49
  *         if node in self.nodes:
  *             for (u, v) in list((self.get_AL())[node]):
- *                 if node == u: nodes.add(v)             # <<<<<<<<<<<<<<
- *                 else: nodes.add(u)                   # if node == v
- *         return list(nodes)
+ *                 if node == u:             # <<<<<<<<<<<<<<
+ *                     nodes.add(v)
+ *                 else:
  */
-      __pyx_t_1 = PyObject_RichCompare(__pyx_v_node, __pyx_v_u, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
-      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_v_node, __pyx_v_u, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 49, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_3) {
-        __pyx_t_10 = PySet_Add(__pyx_v_nodes, __pyx_v_v); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
+
+        /* "graph_compiled.pyx":50
+ *             for (u, v) in list((self.get_AL())[node]):
+ *                 if node == u:
+ *                     nodes.add(v)             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     nodes.add(u)  # if node == v
+ */
+        __pyx_t_10 = PySet_Add(__pyx_v_nodes, __pyx_v_v); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 50, __pyx_L1_error)
+
+        /* "graph_compiled.pyx":49
+ *         if node in self.nodes:
+ *             for (u, v) in list((self.get_AL())[node]):
+ *                 if node == u:             # <<<<<<<<<<<<<<
+ *                     nodes.add(v)
+ *                 else:
+ */
         goto __pyx_L8;
       }
 
-      /* "graph_compiled.pyx":47
- *             for (u, v) in list((self.get_AL())[node]):
- *                 if node == u: nodes.add(v)
- *                 else: nodes.add(u)                   # if node == v             # <<<<<<<<<<<<<<
+      /* "graph_compiled.pyx":52
+ *                     nodes.add(v)
+ *                 else:
+ *                     nodes.add(u)  # if node == v             # <<<<<<<<<<<<<<
  *         return list(nodes)
  * 
  */
       /*else*/ {
-        __pyx_t_10 = PySet_Add(__pyx_v_nodes, __pyx_v_u); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 47, __pyx_L1_error)
+        __pyx_t_10 = PySet_Add(__pyx_v_nodes, __pyx_v_u); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 52, __pyx_L1_error)
       }
       __pyx_L8:;
 
-      /* "graph_compiled.pyx":45
+      /* "graph_compiled.pyx":48
  *         nodes = set()
  *         if node in self.nodes:
  *             for (u, v) in list((self.get_AL())[node]):             # <<<<<<<<<<<<<<
- *                 if node == u: nodes.add(v)
- *                 else: nodes.add(u)                   # if node == v
+ *                 if node == u:
+ *                     nodes.add(v)
  */
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "graph_compiled.pyx":44
- *     def getAdjacentNodes(self, node : int) -> list:
+    /* "graph_compiled.pyx":47
+ *     def getAdjacentNodes(self, node: int) -> list:
  *         nodes = set()
  *         if node in self.nodes:             # <<<<<<<<<<<<<<
  *             for (u, v) in list((self.get_AL())[node]):
- *                 if node == u: nodes.add(v)
+ *                 if node == u:
  */
   }
 
-  /* "graph_compiled.pyx":48
- *                 if node == u: nodes.add(v)
- *                 else: nodes.add(u)                   # if node == v
+  /* "graph_compiled.pyx":53
+ *                 else:
+ *                     nodes.add(u)  # if node == v
  *         return list(nodes)             # <<<<<<<<<<<<<<
  * 
  *     # Returns all the edges with node
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PySequence_List(__pyx_v_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_4 = PySequence_List(__pyx_v_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":42
+  /* "graph_compiled.pyx":45
  * 
  *     # Returns all the nodes incident to node
- *     def getAdjacentNodes(self, node : int) -> list:             # <<<<<<<<<<<<<<
+ *     def getAdjacentNodes(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         nodes = set()
  *         if node in self.nodes:
  */
@@ -3142,7 +3128,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_14getAdjacentNodes(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":51
+/* "graph_compiled.pyx":56
  * 
  *     # Returns all the edges with node
  *     def getAdjacentEdges(self, node: int) -> list:             # <<<<<<<<<<<<<<
@@ -3185,11 +3171,11 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_17getAdjacentEdges(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_node)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("getAdjacentEdges", 1, 2, 2, 1); __PYX_ERR(0, 51, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("getAdjacentEdges", 1, 2, 2, 1); __PYX_ERR(0, 56, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getAdjacentEdges") < 0)) __PYX_ERR(0, 51, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "getAdjacentEdges") < 0)) __PYX_ERR(0, 56, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3202,7 +3188,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_17getAdjacentEdges(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getAdjacentEdges", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 51, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getAdjacentEdges", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 56, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("graph_compiled.Graph.getAdjacentEdges", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3230,26 +3216,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getAdjacentEdges", 0);
 
-  /* "graph_compiled.pyx":52
+  /* "graph_compiled.pyx":57
  *     # Returns all the edges with node
  *     def getAdjacentEdges(self, node: int) -> list:
  *         edges = set()             # <<<<<<<<<<<<<<
  *         for list_edges in list(self.get_AL()[node]):
  *             edges.add(list_edges)
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_edges = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":53
+  /* "graph_compiled.pyx":58
  *     def getAdjacentEdges(self, node: int) -> list:
  *         edges = set()
  *         for list_edges in list(self.get_AL()[node]):             # <<<<<<<<<<<<<<
  *             edges.add(list_edges)
  *         return list(edges)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_AL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3263,13 +3249,13 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_node); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_node); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
@@ -3277,24 +3263,24 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_list_edges, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "graph_compiled.pyx":54
+    /* "graph_compiled.pyx":59
  *         edges = set()
  *         for list_edges in list(self.get_AL()[node]):
  *             edges.add(list_edges)             # <<<<<<<<<<<<<<
  *         return list(edges)
  * 
  */
-    __pyx_t_5 = PySet_Add(__pyx_v_edges, __pyx_v_list_edges); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_5 = PySet_Add(__pyx_v_edges, __pyx_v_list_edges); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 59, __pyx_L1_error)
 
-    /* "graph_compiled.pyx":53
+    /* "graph_compiled.pyx":58
  *     def getAdjacentEdges(self, node: int) -> list:
  *         edges = set()
  *         for list_edges in list(self.get_AL()[node]):             # <<<<<<<<<<<<<<
@@ -3304,7 +3290,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":55
+  /* "graph_compiled.pyx":60
  *         for list_edges in list(self.get_AL()[node]):
  *             edges.add(list_edges)
  *         return list(edges)             # <<<<<<<<<<<<<<
@@ -3312,13 +3298,13 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
  *     # Orders the graph in non discending order of keys
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PySequence_List(__pyx_v_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_v_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":51
+  /* "graph_compiled.pyx":56
  * 
  *     # Returns all the edges with node
  *     def getAdjacentEdges(self, node: int) -> list:             # <<<<<<<<<<<<<<
@@ -3341,11 +3327,11 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_16getAdjacentEdges(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":58
+/* "graph_compiled.pyx":63
  * 
  *     # Orders the graph in non discending order of keys
  *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
  *         return self
  */
 
@@ -3363,10 +3349,10 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_19nonDiscendingOrderGraph_Keys
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":59
+/* "graph_compiled.pyx":64
  *     # Orders the graph in non discending order of keys
  *     def nonDiscendingOrderGraph_Keys(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))             # <<<<<<<<<<<<<<
  *         return self
  * 
  */
@@ -3394,7 +3380,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3411,11 +3397,11 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":58
+/* "graph_compiled.pyx":63
  * 
  *     # Orders the graph in non discending order of keys
  *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
  *         return self
  */
 
@@ -3431,197 +3417,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_18nonDiscendingOrderGraph_Keys
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("nonDiscendingOrderGraph_Keys", 0);
 
-  /* "graph_compiled.pyx":59
- *     # Orders the graph in non discending order of keys
- *     def nonDiscendingOrderGraph_Keys(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))             # <<<<<<<<<<<<<<
- *         return self
- * 
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_28nonDiscendingOrderGraph_Keys_lambda, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Ke, NULL, __pyx_n_s_graph_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_2) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_edges, __pyx_t_1) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "graph_compiled.pyx":60
- *     def nonDiscendingOrderGraph_Keys(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
- *         return self             # <<<<<<<<<<<<<<
- * 
- *     # Orders the graph in non discending order of values
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_self);
-  __pyx_r = __pyx_v_self;
-  goto __pyx_L0;
-
-  /* "graph_compiled.pyx":58
- * 
- *     # Orders the graph in non discending order of keys
- *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
- *         return self
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("graph_compiled.Graph.nonDiscendingOrderGraph_Keys", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "graph_compiled.pyx":63
- * 
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
- *         return self
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values = {"nonDiscendingOrderGraph_Values", (PyCFunction)__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values, METH_O, 0};
-static PyObject *__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values(PyObject *__pyx_self, PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("nonDiscendingOrderGraph_Values (wrapper)", 0);
-  __pyx_r = __pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Values(__pyx_self, ((PyObject *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "graph_compiled.pyx":64
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))             # <<<<<<<<<<<<<<
- *         return self
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_item); /*proto*/
-static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1 = {"lambda1", (PyCFunction)__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1, METH_O, 0};
-static PyObject *__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_item) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("lambda1 (wrapper)", 0);
-  __pyx_r = __pyx_lambda_funcdef_lambda1(__pyx_self, ((PyObject *)__pyx_v_item));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_item) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("lambda1", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("graph_compiled.Graph.nonDiscendingOrderGraph_Values.lambda1", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "graph_compiled.pyx":63
- * 
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
- *         return self
- */
-
-static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Values(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("nonDiscendingOrderGraph_Values", 0);
-
   /* "graph_compiled.pyx":64
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))             # <<<<<<<<<<<<<<
+ *     # Orders the graph in non discending order of keys
+ *     def nonDiscendingOrderGraph_Keys(self):
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))             # <<<<<<<<<<<<<<
  *         return self
  * 
  */
@@ -3667,7 +3466,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Valu
   __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Va, NULL, __pyx_n_s_graph_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_28nonDiscendingOrderGraph_Keys_lambda, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Ke, NULL, __pyx_n_s_graph_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_2) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3682,11 +3481,11 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Valu
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "graph_compiled.pyx":65
- *     def nonDiscendingOrderGraph_Values(self):
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
+ *     def nonDiscendingOrderGraph_Keys(self):
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
  *         return self             # <<<<<<<<<<<<<<
  * 
- * 
+ *     # Orders the graph in non discending order of values
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_self);
@@ -3695,9 +3494,196 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Valu
 
   /* "graph_compiled.pyx":63
  * 
+ *     # Orders the graph in non discending order of keys
+ *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
+ *         return self
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("graph_compiled.Graph.nonDiscendingOrderGraph_Keys", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "graph_compiled.pyx":68
+ * 
  *     # Orders the graph in non discending order of values
  *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
+ *         return self
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values = {"nonDiscendingOrderGraph_Values", (PyCFunction)__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values, METH_O, 0};
+static PyObject *__pyx_pw_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("nonDiscendingOrderGraph_Values (wrapper)", 0);
+  __pyx_r = __pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Values(__pyx_self, ((PyObject *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "graph_compiled.pyx":69
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))             # <<<<<<<<<<<<<<
+ *         return self
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_item); /*proto*/
+static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1 = {"lambda1", (PyCFunction)__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1, METH_O, 0};
+static PyObject *__pyx_pw_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_item) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("lambda1 (wrapper)", 0);
+  __pyx_r = __pyx_lambda_funcdef_lambda1(__pyx_self, ((PyObject *)__pyx_v_item));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_item) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("lambda1", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("graph_compiled.Graph.nonDiscendingOrderGraph_Values.lambda1", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "graph_compiled.pyx":68
+ * 
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
+ *         return self
+ */
+
+static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Values(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("nonDiscendingOrderGraph_Values", 0);
+
+  /* "graph_compiled.pyx":69
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))             # <<<<<<<<<<<<<<
+ *         return self
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_30nonDiscendingOrderGraph_Values_lambda1, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Va, NULL, __pyx_n_s_graph_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_2) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_edges, __pyx_t_1) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "graph_compiled.pyx":70
+ *     def nonDiscendingOrderGraph_Values(self):
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
+ *         return self             # <<<<<<<<<<<<<<
+ * 
+ *     def isCycle(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_self);
+  __pyx_r = __pyx_v_self;
+  goto __pyx_L0;
+
+  /* "graph_compiled.pyx":68
+ * 
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
  *         return self
  */
 
@@ -3715,8 +3701,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Valu
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":69
- * 
+/* "graph_compiled.pyx":72
+ *         return self
  * 
  *     def isCycle(self):             # <<<<<<<<<<<<<<
  *         """
@@ -3725,7 +3711,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_20nonDiscendingOrderGraph_Valu
 
 /* Python wrapper */
 static PyObject *__pyx_pw_14graph_compiled_5Graph_23isCycle(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static char __pyx_doc_14graph_compiled_5Graph_22isCycle[] = "\n        Based on Breadth-first search (BFS) to explore every vertex which is reachable from v. \n        The overall complexity is O(m+n), with m and n being the number of edges and vertices respectively.\n        ";
+static char __pyx_doc_14graph_compiled_5Graph_22isCycle[] = "\n        Based on Breadth-first search (BFS) to explore every vertex which is reachable from v.\n        The overall complexity is O(m+n), with m and n being the number of edges and vertices respectively.\n        ";
 static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_23isCycle = {"isCycle", (PyCFunction)__pyx_pw_14graph_compiled_5Graph_23isCycle, METH_O, __pyx_doc_14graph_compiled_5Graph_22isCycle};
 static PyObject *__pyx_pw_14graph_compiled_5Graph_23isCycle(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
@@ -3765,26 +3751,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("isCycle", 0);
 
-  /* "graph_compiled.pyx":75
+  /* "graph_compiled.pyx":78
  *         """
  * 
  *         Visited = []             # <<<<<<<<<<<<<<
  *         V = self.get_nodes()
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_Visited = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":76
+  /* "graph_compiled.pyx":79
  * 
  *         Visited = []
  *         V = self.get_nodes()             # <<<<<<<<<<<<<<
  * 
  *         # initially all vertices are unexplored
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3798,46 +3784,46 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_V = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":79
+  /* "graph_compiled.pyx":82
  * 
  *         # initially all vertices are unexplored
- *         L = { v: -1 for v in V }             # <<<<<<<<<<<<<<
+ *         L = {v: -1 for v in V}             # <<<<<<<<<<<<<<
  * 
  *         for v in V:
  */
   { /* enter inner scope */
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L5_error)
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (likely(PyList_CheckExact(__pyx_v_V)) || PyTuple_CheckExact(__pyx_v_V)) {
       __pyx_t_2 = __pyx_v_V; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
       __pyx_t_5 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_V); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L5_error)
+      __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_V); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L5_error)
+      __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L5_error)
     }
     for (;;) {
       if (likely(!__pyx_t_5)) {
         if (likely(PyList_CheckExact(__pyx_t_2))) {
           if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L5_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L5_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L5_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 79, __pyx_L5_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L5_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L5_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -3847,7 +3833,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 79, __pyx_L5_error)
+            else __PYX_ERR(0, 82, __pyx_L5_error)
           }
           break;
         }
@@ -3855,7 +3841,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
       }
       __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_v, __pyx_t_3);
       __pyx_t_3 = 0;
-      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_7genexpr__pyx_v_v, (PyObject*)__pyx_int_neg_1))) __PYX_ERR(0, 79, __pyx_L5_error)
+      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_7genexpr__pyx_v_v, (PyObject*)__pyx_int_neg_1))) __PYX_ERR(0, 82, __pyx_L5_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_7genexpr__pyx_v_v); __pyx_7genexpr__pyx_v_v = 0;
@@ -3868,8 +3854,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   __pyx_v_L = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":81
- *         L = { v: -1 for v in V }
+  /* "graph_compiled.pyx":84
+ *         L = {v: -1 for v in V}
  * 
  *         for v in V:             # <<<<<<<<<<<<<<
  * 
@@ -3879,26 +3865,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
     __pyx_t_1 = __pyx_v_V; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_V); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 84, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -3908,7 +3894,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 81, __pyx_L1_error)
+          else __PYX_ERR(0, 84, __pyx_L1_error)
         }
         break;
       }
@@ -3917,23 +3903,23 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "graph_compiled.pyx":84
+    /* "graph_compiled.pyx":87
  * 
  *             # v has already been explored; move on
  *             if L[v] != -1:             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyInt_NeObjC(__pyx_t_2, __pyx_int_neg_1, -1L, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_NeObjC(__pyx_t_2, __pyx_int_neg_1, -1L, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_6) {
 
-      /* "graph_compiled.pyx":85
+      /* "graph_compiled.pyx":88
  *             # v has already been explored; move on
  *             if L[v] != -1:
  *                 continue             # <<<<<<<<<<<<<<
@@ -3942,7 +3928,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
  */
       goto __pyx_L9_continue;
 
-      /* "graph_compiled.pyx":84
+      /* "graph_compiled.pyx":87
  * 
  *             # v has already been explored; move on
  *             if L[v] != -1:             # <<<<<<<<<<<<<<
@@ -3951,25 +3937,25 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
  */
     }
 
-    /* "graph_compiled.pyx":88
+    /* "graph_compiled.pyx":91
  * 
  *             # take v as a starting vertex
- *             L[v] = 0                # start by selecting some unexplored vertex v of G             # <<<<<<<<<<<<<<
+ *             L[v] = 0  # start by selecting some unexplored vertex v of G             # <<<<<<<<<<<<<<
  *             Visited.append(v)
  * 
  */
-    if (unlikely(PyDict_SetItem(__pyx_v_L, __pyx_v_v, __pyx_int_0) < 0)) __PYX_ERR(0, 88, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_L, __pyx_v_v, __pyx_int_0) < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
 
-    /* "graph_compiled.pyx":89
+    /* "graph_compiled.pyx":92
  *             # take v as a starting vertex
- *             L[v] = 0                # start by selecting some unexplored vertex v of G
+ *             L[v] = 0  # start by selecting some unexplored vertex v of G
  *             Visited.append(v)             # <<<<<<<<<<<<<<
  * 
  *             # as long as Q is not empty
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_Visited, __pyx_v_v); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_Visited, __pyx_v_v); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
 
-    /* "graph_compiled.pyx":92
+    /* "graph_compiled.pyx":95
  * 
  *             # as long as Q is not empty
  *             while len(Visited) > 0:             # <<<<<<<<<<<<<<
@@ -3977,30 +3963,30 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
  *                 # get the next vertex u of Q that must be looked at
  */
     while (1) {
-      __pyx_t_8 = PyList_GET_SIZE(__pyx_v_Visited); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
+      __pyx_t_8 = PyList_GET_SIZE(__pyx_v_Visited); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 95, __pyx_L1_error)
       __pyx_t_6 = ((__pyx_t_8 > 0) != 0);
       if (!__pyx_t_6) break;
 
-      /* "graph_compiled.pyx":95
+      /* "graph_compiled.pyx":98
  * 
  *                 # get the next vertex u of Q that must be looked at
  *                 u = Visited.pop(0)             # <<<<<<<<<<<<<<
  * 
  *                 Adjacents = self.getAdjacentNodes(u)
  */
-      __pyx_t_3 = __Pyx_PyList_PopIndex(__pyx_v_Visited, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyList_PopIndex(__pyx_v_Visited, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_XDECREF_SET(__pyx_v_u, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "graph_compiled.pyx":97
+      /* "graph_compiled.pyx":100
  *                 u = Visited.pop(0)
  * 
  *                 Adjacents = self.getAdjacentNodes(u)             # <<<<<<<<<<<<<<
  * 
  *                 for adj in Adjacents:
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_getAdjacentNodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_getAdjacentNodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_9 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4014,13 +4000,13 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
       }
       __pyx_t_3 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_9, __pyx_v_u) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_u);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF_SET(__pyx_v_Adjacents, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "graph_compiled.pyx":99
+      /* "graph_compiled.pyx":102
  *                 Adjacents = self.getAdjacentNodes(u)
  * 
  *                 for adj in Adjacents:             # <<<<<<<<<<<<<<
@@ -4031,26 +4017,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
         __pyx_t_3 = __pyx_v_Adjacents; __Pyx_INCREF(__pyx_t_3); __pyx_t_8 = 0;
         __pyx_t_10 = NULL;
       } else {
-        __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_Adjacents); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+        __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_Adjacents); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_10 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 99, __pyx_L1_error)
+        __pyx_t_10 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 102, __pyx_L1_error)
       }
       for (;;) {
         if (likely(!__pyx_t_10)) {
           if (likely(PyList_CheckExact(__pyx_t_3))) {
             if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
             #else
-            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             #endif
           } else {
             if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
             #else
-            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             #endif
           }
@@ -4060,7 +4046,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 99, __pyx_L1_error)
+              else __PYX_ERR(0, 102, __pyx_L1_error)
             }
             break;
           }
@@ -4069,47 +4055,47 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
         __Pyx_XDECREF_SET(__pyx_v_adj, __pyx_t_2);
         __pyx_t_2 = 0;
 
-        /* "graph_compiled.pyx":101
+        /* "graph_compiled.pyx":104
  *                 for adj in Adjacents:
  *                     # if z is being found for the first time
  *                     if L[adj] == -1:             # <<<<<<<<<<<<<<
  *                         L[adj] = L[u] + 1
  *                         Visited.append(adj)
  */
-        __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_adj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_adj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_9 = __Pyx_PyInt_EqObjC(__pyx_t_2, __pyx_int_neg_1, -1L, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyInt_EqObjC(__pyx_t_2, __pyx_int_neg_1, -1L, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 104, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 104, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         if (__pyx_t_6) {
 
-          /* "graph_compiled.pyx":102
+          /* "graph_compiled.pyx":105
  *                     # if z is being found for the first time
  *                     if L[adj] == -1:
  *                         L[adj] = L[u] + 1             # <<<<<<<<<<<<<<
  *                         Visited.append(adj)
  *                     elif L[adj] >= L[u]:
  */
-          __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_u); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 102, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_u); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 105, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_9, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_9, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          if (unlikely(PyDict_SetItem(__pyx_v_L, __pyx_v_adj, __pyx_t_2) < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
+          if (unlikely(PyDict_SetItem(__pyx_v_L, __pyx_v_adj, __pyx_t_2) < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "graph_compiled.pyx":103
+          /* "graph_compiled.pyx":106
  *                     if L[adj] == -1:
  *                         L[adj] = L[u] + 1
  *                         Visited.append(adj)             # <<<<<<<<<<<<<<
  *                     elif L[adj] >= L[u]:
  *                         return True
  */
-          __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_Visited, __pyx_v_adj); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_Visited, __pyx_v_adj); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 106, __pyx_L1_error)
 
-          /* "graph_compiled.pyx":101
+          /* "graph_compiled.pyx":104
  *                 for adj in Adjacents:
  *                     # if z is being found for the first time
  *                     if L[adj] == -1:             # <<<<<<<<<<<<<<
@@ -4119,25 +4105,25 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
           goto __pyx_L16;
         }
 
-        /* "graph_compiled.pyx":104
+        /* "graph_compiled.pyx":107
  *                         L[adj] = L[u] + 1
  *                         Visited.append(adj)
  *                     elif L[adj] >= L[u]:             # <<<<<<<<<<<<<<
  *                         return True
  *         return False
  */
-        __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_adj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_adj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_u); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyDict_GetItem(__pyx_v_L, __pyx_v_u); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 107, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_11 = PyObject_RichCompare(__pyx_t_2, __pyx_t_9, Py_GE); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_11 = PyObject_RichCompare(__pyx_t_2, __pyx_t_9, Py_GE); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 107, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         if (__pyx_t_6) {
 
-          /* "graph_compiled.pyx":105
+          /* "graph_compiled.pyx":108
  *                         Visited.append(adj)
  *                     elif L[adj] >= L[u]:
  *                         return True             # <<<<<<<<<<<<<<
@@ -4151,7 +4137,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           goto __pyx_L0;
 
-          /* "graph_compiled.pyx":104
+          /* "graph_compiled.pyx":107
  *                         L[adj] = L[u] + 1
  *                         Visited.append(adj)
  *                     elif L[adj] >= L[u]:             # <<<<<<<<<<<<<<
@@ -4161,7 +4147,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
         }
         __pyx_L16:;
 
-        /* "graph_compiled.pyx":99
+        /* "graph_compiled.pyx":102
  *                 Adjacents = self.getAdjacentNodes(u)
  * 
  *                 for adj in Adjacents:             # <<<<<<<<<<<<<<
@@ -4172,8 +4158,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
 
-    /* "graph_compiled.pyx":81
- *         L = { v: -1 for v in V }
+    /* "graph_compiled.pyx":84
+ *         L = {v: -1 for v in V}
  * 
  *         for v in V:             # <<<<<<<<<<<<<<
  * 
@@ -4183,7 +4169,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":106
+  /* "graph_compiled.pyx":109
  *                     elif L[adj] >= L[u]:
  *                         return True
  *         return False             # <<<<<<<<<<<<<<
@@ -4195,8 +4181,8 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "graph_compiled.pyx":69
- * 
+  /* "graph_compiled.pyx":72
+ *         return self
  * 
  *     def isCycle(self):             # <<<<<<<<<<<<<<
  *         """
@@ -4226,17 +4212,17 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_22isCycle(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":108
+/* "graph_compiled.pyx":111
  *         return False
  * 
  *     def inizialize(self, filename):             # <<<<<<<<<<<<<<
- *         """ Builds the adiacency lists from the txt file"""
+ *         """Builds the adiacency lists from the txt file"""
  * 
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_14graph_compiled_5Graph_25inizialize(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_14graph_compiled_5Graph_24inizialize[] = " Builds the adiacency lists from the txt file";
+static char __pyx_doc_14graph_compiled_5Graph_24inizialize[] = "Builds the adiacency lists from the txt file";
 static PyMethodDef __pyx_mdef_14graph_compiled_5Graph_25inizialize = {"inizialize", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14graph_compiled_5Graph_25inizialize, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14graph_compiled_5Graph_24inizialize};
 static PyObject *__pyx_pw_14graph_compiled_5Graph_25inizialize(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
@@ -4270,11 +4256,11 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_25inizialize(PyObject *__pyx_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_filename)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("inizialize", 1, 2, 2, 1); __PYX_ERR(0, 108, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("inizialize", 1, 2, 2, 1); __PYX_ERR(0, 111, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "inizialize") < 0)) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "inizialize") < 0)) __PYX_ERR(0, 111, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4287,7 +4273,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_25inizialize(PyObject *__pyx_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("inizialize", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("inizialize", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 111, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("graph_compiled.Graph.inizialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4331,19 +4317,19 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("inizialize", 0);
 
-  /* "graph_compiled.pyx":111
- *         """ Builds the adiacency lists from the txt file"""
+  /* "graph_compiled.pyx":114
+ *         """Builds the adiacency lists from the txt file"""
  * 
  *         with open(filename) as f:             # <<<<<<<<<<<<<<
  *             lines = f.readlines()
  *             for line in lines[1:]:
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_open, __pyx_v_filename); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_open, __pyx_v_filename); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L3_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4357,7 +4343,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L3_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = __pyx_t_3;
@@ -4375,14 +4361,14 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
           __pyx_v_f = __pyx_t_4;
           __pyx_t_4 = 0;
 
-          /* "graph_compiled.pyx":112
+          /* "graph_compiled.pyx":115
  * 
  *         with open(filename) as f:
  *             lines = f.readlines()             # <<<<<<<<<<<<<<
  *             for line in lines[1:]:
- *                 v1 = int(line.split()[0])   # First node
+ *                 v1 = int(line.split()[0])  # First node
  */
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_readlines); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_readlines); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __pyx_t_3 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -4396,28 +4382,28 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
           }
           __pyx_t_4 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L7_error)
+          if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_v_lines = __pyx_t_4;
           __pyx_t_4 = 0;
 
-          /* "graph_compiled.pyx":113
+          /* "graph_compiled.pyx":116
  *         with open(filename) as f:
  *             lines = f.readlines()
  *             for line in lines[1:]:             # <<<<<<<<<<<<<<
- *                 v1 = int(line.split()[0])   # First node
- *                 v2 = int(line.split()[1])   # Second node
+ *                 v1 = int(line.split()[0])  # First node
+ *                 v2 = int(line.split()[1])  # Second node
  */
-          __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_lines, 1, 0, NULL, NULL, &__pyx_slice_, 1, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L7_error)
+          __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_lines, 1, 0, NULL, NULL, &__pyx_slice_, 1, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_4);
           if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
             __pyx_t_1 = __pyx_t_4; __Pyx_INCREF(__pyx_t_1); __pyx_t_9 = 0;
             __pyx_t_10 = NULL;
           } else {
-            __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L7_error)
+            __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 113, __pyx_L7_error)
+            __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 116, __pyx_L7_error)
           }
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           for (;;) {
@@ -4425,17 +4411,17 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
               if (likely(PyList_CheckExact(__pyx_t_1))) {
                 if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_1)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 113, __pyx_L7_error)
+                __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 116, __pyx_L7_error)
                 #else
-                __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L7_error)
+                __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L7_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 #endif
               } else {
                 if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 113, __pyx_L7_error)
+                __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 116, __pyx_L7_error)
                 #else
-                __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L7_error)
+                __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L7_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 #endif
               }
@@ -4445,7 +4431,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
                 PyObject* exc_type = PyErr_Occurred();
                 if (exc_type) {
                   if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                  else __PYX_ERR(0, 113, __pyx_L7_error)
+                  else __PYX_ERR(0, 116, __pyx_L7_error)
                 }
                 break;
               }
@@ -4454,14 +4440,14 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             __Pyx_XDECREF_SET(__pyx_v_line, __pyx_t_4);
             __pyx_t_4 = 0;
 
-            /* "graph_compiled.pyx":114
+            /* "graph_compiled.pyx":117
  *             lines = f.readlines()
  *             for line in lines[1:]:
- *                 v1 = int(line.split()[0])   # First node             # <<<<<<<<<<<<<<
- *                 v2 = int(line.split()[1])   # Second node
- *                 w = int(line.split()[2])    # Weight
+ *                 v1 = int(line.split()[0])  # First node             # <<<<<<<<<<<<<<
+ *                 v2 = int(line.split()[1])  # Second node
+ *                 w = int(line.split()[2])  # Weight
  */
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __pyx_t_5 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4475,26 +4461,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             }
             __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L7_error)
+            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_XDECREF_SET(__pyx_v_v1, __pyx_t_4);
             __pyx_t_4 = 0;
 
-            /* "graph_compiled.pyx":115
+            /* "graph_compiled.pyx":118
  *             for line in lines[1:]:
- *                 v1 = int(line.split()[0])   # First node
- *                 v2 = int(line.split()[1])   # Second node             # <<<<<<<<<<<<<<
- *                 w = int(line.split()[2])    # Weight
+ *                 v1 = int(line.split()[0])  # First node
+ *                 v2 = int(line.split()[1])  # Second node             # <<<<<<<<<<<<<<
+ *                 w = int(line.split()[2])  # Weight
  * 
  */
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __pyx_t_5 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4508,26 +4494,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             }
             __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L7_error)
+            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_XDECREF_SET(__pyx_v_v2, __pyx_t_4);
             __pyx_t_4 = 0;
 
-            /* "graph_compiled.pyx":116
- *                 v1 = int(line.split()[0])   # First node
- *                 v2 = int(line.split()[1])   # Second node
- *                 w = int(line.split()[2])    # Weight             # <<<<<<<<<<<<<<
+            /* "graph_compiled.pyx":119
+ *                 v1 = int(line.split()[0])  # First node
+ *                 v2 = int(line.split()[1])  # Second node
+ *                 w = int(line.split()[2])  # Weight             # <<<<<<<<<<<<<<
  * 
- *                 self.addEdge((v1,v2), w)
+ *                 self.addEdge((v1, v2), w)
  */
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __pyx_t_5 = NULL;
             if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4541,28 +4527,28 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             }
             __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
             __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L7_error)
+            if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_XDECREF_SET(__pyx_v_w, __pyx_t_4);
             __pyx_t_4 = 0;
 
-            /* "graph_compiled.pyx":118
- *                 w = int(line.split()[2])    # Weight
+            /* "graph_compiled.pyx":121
+ *                 w = int(line.split()[2])  # Weight
  * 
- *                 self.addEdge((v1,v2), w)             # <<<<<<<<<<<<<<
+ *                 self.addEdge((v1, v2), w)             # <<<<<<<<<<<<<<
  * 
  *         ############# Testing ############
  */
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L7_error)
+            __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_INCREF(__pyx_v_v1);
             __Pyx_GIVEREF(__pyx_v_v1);
@@ -4585,7 +4571,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             #if CYTHON_FAST_PYCALL
             if (PyFunction_Check(__pyx_t_3)) {
               PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_t_5, __pyx_v_w};
-              __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L7_error)
+              __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L7_error)
               __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4594,14 +4580,14 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             #if CYTHON_FAST_PYCCALL
             if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
               PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_t_5, __pyx_v_w};
-              __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L7_error)
+              __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L7_error)
               __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             } else
             #endif
             {
-              __pyx_t_13 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 118, __pyx_L7_error)
+              __pyx_t_13 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 121, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_13);
               if (__pyx_t_11) {
                 __Pyx_GIVEREF(__pyx_t_11); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_11); __pyx_t_11 = NULL;
@@ -4612,25 +4598,25 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
               __Pyx_GIVEREF(__pyx_v_w);
               PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_12, __pyx_v_w);
               __pyx_t_5 = 0;
-              __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L7_error)
+              __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
             }
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-            /* "graph_compiled.pyx":113
+            /* "graph_compiled.pyx":116
  *         with open(filename) as f:
  *             lines = f.readlines()
  *             for line in lines[1:]:             # <<<<<<<<<<<<<<
- *                 v1 = int(line.split()[0])   # First node
- *                 v2 = int(line.split()[1])   # Second node
+ *                 v1 = int(line.split()[0])  # First node
+ *                 v2 = int(line.split()[1])  # Second node
  */
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "graph_compiled.pyx":111
- *         """ Builds the adiacency lists from the txt file"""
+          /* "graph_compiled.pyx":114
+ *         """Builds the adiacency lists from the txt file"""
  * 
  *         with open(filename) as f:             # <<<<<<<<<<<<<<
  *             lines = f.readlines()
@@ -4650,20 +4636,20 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("graph_compiled.Graph.inizialize", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_4, &__pyx_t_3) < 0) __PYX_ERR(0, 111, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_4, &__pyx_t_3) < 0) __PYX_ERR(0, 114, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_13 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 111, __pyx_L9_except_error)
+          __pyx_t_13 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 114, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_13);
           __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_13, NULL);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 111, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 114, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_14);
           __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          if (__pyx_t_15 < 0) __PYX_ERR(0, 111, __pyx_L9_except_error)
+          if (__pyx_t_15 < 0) __PYX_ERR(0, 114, __pyx_L9_except_error)
           __pyx_t_16 = ((!(__pyx_t_15 != 0)) != 0);
           if (__pyx_t_16) {
             __Pyx_GIVEREF(__pyx_t_1);
@@ -4671,7 +4657,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
             __Pyx_XGIVEREF(__pyx_t_3);
             __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_4, __pyx_t_3);
             __pyx_t_1 = 0; __pyx_t_4 = 0; __pyx_t_3 = 0; 
-            __PYX_ERR(0, 111, __pyx_L9_except_error)
+            __PYX_ERR(0, 114, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -4697,7 +4683,7 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
         if (__pyx_t_2) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__2, NULL);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 111, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 114, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -4712,17 +4698,17 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
     __pyx_L18:;
   }
 
-  /* "graph_compiled.pyx":121
+  /* "graph_compiled.pyx":124
  * 
  *         ############# Testing ############
  *         first_line = lines[0].split()             # <<<<<<<<<<<<<<
- *         assert(len(self.nodes) == int(first_line[0]))
- *         assert(len(self.edges) == int(first_line[1]))
+ *         assert len(self.nodes) == int(first_line[0])
+ *         assert len(self.edges) == int(first_line[1])
  */
-  if (unlikely(!__pyx_v_lines)) { __Pyx_RaiseUnboundLocalError("lines"); __PYX_ERR(0, 121, __pyx_L1_error) }
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_lines, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (unlikely(!__pyx_v_lines)) { __Pyx_RaiseUnboundLocalError("lines"); __PYX_ERR(0, 124, __pyx_L1_error) }
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_lines, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -4737,81 +4723,81 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
   }
   __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_first_line = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "graph_compiled.pyx":122
+  /* "graph_compiled.pyx":125
  *         ############# Testing ############
  *         first_line = lines[0].split()
- *         assert(len(self.nodes) == int(first_line[0]))             # <<<<<<<<<<<<<<
- *         assert(len(self.edges) == int(first_line[1]))
+ *         assert len(self.nodes) == int(first_line[0])             # <<<<<<<<<<<<<<
+ *         assert len(self.edges) == int(first_line[1])
  * 
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_9 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_first_line, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_first_line, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_16)) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 122, __pyx_L1_error)
+      __PYX_ERR(0, 125, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "graph_compiled.pyx":123
+  /* "graph_compiled.pyx":126
  *         first_line = lines[0].split()
- *         assert(len(self.nodes) == int(first_line[0]))
- *         assert(len(self.edges) == int(first_line[1]))             # <<<<<<<<<<<<<<
+ *         assert len(self.nodes) == int(first_line[0])
+ *         assert len(self.edges) == int(first_line[1])             # <<<<<<<<<<<<<<
  * 
- * 
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_first_line, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_first_line, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_16 < 0)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (unlikely(!__pyx_t_16)) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 123, __pyx_L1_error)
+      __PYX_ERR(0, 126, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "graph_compiled.pyx":108
+  /* "graph_compiled.pyx":111
  *         return False
  * 
  *     def inizialize(self, filename):             # <<<<<<<<<<<<<<
- *         """ Builds the adiacency lists from the txt file"""
+ *         """Builds the adiacency lists from the txt file"""
  * 
  */
 
@@ -4840,10 +4826,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_24inizialize(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "graph_compiled.pyx":126
+/* "graph_compiled.pyx":128
+ *         assert len(self.edges) == int(first_line[1])
  * 
- * 
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):             # <<<<<<<<<<<<<<
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):             # <<<<<<<<<<<<<<
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):
  */
@@ -4887,7 +4873,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_27PrintGraph(PyObject *__pyx_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_FunctionName)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("PrintGraph", 0, 2, 3, 1); __PYX_ERR(0, 126, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("PrintGraph", 0, 2, 3, 1); __PYX_ERR(0, 128, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -4897,7 +4883,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_27PrintGraph(PyObject *__pyx_s
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "PrintGraph") < 0)) __PYX_ERR(0, 126, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "PrintGraph") < 0)) __PYX_ERR(0, 128, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4915,7 +4901,7 @@ static PyObject *__pyx_pw_14graph_compiled_5Graph_27PrintGraph(PyObject *__pyx_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("PrintGraph", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 126, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("PrintGraph", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 128, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("graph_compiled.Graph.PrintGraph", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4945,9 +4931,9 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PrintGraph", 0);
 
-  /* "graph_compiled.pyx":127
+  /* "graph_compiled.pyx":129
  * 
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):
  *         total_weight = 0             # <<<<<<<<<<<<<<
  *         for weight in list(self.get_edges().values()):
  *             total_weight += weight
@@ -4955,14 +4941,14 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_total_weight = __pyx_int_0;
 
-  /* "graph_compiled.pyx":128
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):
+  /* "graph_compiled.pyx":130
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):             # <<<<<<<<<<<<<<
  *             total_weight += weight
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4976,10 +4962,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4994,10 +4980,10 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_3 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1); __pyx_t_5 = 0;
@@ -5005,28 +4991,28 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   for (;;) {
     if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 130, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_weight, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "graph_compiled.pyx":129
+    /* "graph_compiled.pyx":131
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):
  *             total_weight += weight             # <<<<<<<<<<<<<<
  * 
  *         if OriginalGraph != None:
  */
-    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_total_weight, __pyx_v_weight); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_total_weight, __pyx_v_weight); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_total_weight, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "graph_compiled.pyx":128
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):
+    /* "graph_compiled.pyx":130
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):             # <<<<<<<<<<<<<<
  *             total_weight += weight
@@ -5035,26 +5021,26 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "graph_compiled.pyx":131
+  /* "graph_compiled.pyx":133
  *             total_weight += weight
  * 
  *         if OriginalGraph != None:             # <<<<<<<<<<<<<<
- *             #OriginalGraph = Graph()
+ *             # OriginalGraph = Graph()
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_OriginalGraph, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_OriginalGraph, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "graph_compiled.pyx":133
+    /* "graph_compiled.pyx":135
  *         if OriginalGraph != None:
- *             #OriginalGraph = Graph()
+ *             # OriginalGraph = Graph()
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):             # <<<<<<<<<<<<<<
  *                 print(FunctionName)
  *                 print(self.get_edges())
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5068,12 +5054,12 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
     }
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_5 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_5 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_OriginalGraph, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_OriginalGraph, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5087,31 +5073,31 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
     }
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = ((__pyx_t_5 == __pyx_t_7) != 0);
     if (__pyx_t_6) {
 
-      /* "graph_compiled.pyx":134
- *             #OriginalGraph = Graph()
+      /* "graph_compiled.pyx":136
+ *             # OriginalGraph = Graph()
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):
  *                 print(FunctionName)             # <<<<<<<<<<<<<<
  *                 print(self.get_edges())
- *                 print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)
+ *                 print(
  */
-      if (__Pyx_PrintOne(0, __pyx_v_FunctionName) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_v_FunctionName) < 0) __PYX_ERR(0, 136, __pyx_L1_error)
 
-      /* "graph_compiled.pyx":135
+      /* "graph_compiled.pyx":137
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):
  *                 print(FunctionName)
  *                 print(self.get_edges())             # <<<<<<<<<<<<<<
- *                 print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)
- *             else:
+ *                 print(
+ *                     "The number of nodes in the MST is: ",
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_2 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5125,20 +5111,20 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       }
       __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "graph_compiled.pyx":136
- *                 print(FunctionName)
- *                 print(self.get_edges())
- *                 print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)             # <<<<<<<<<<<<<<
- *             else:
- *                 print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))
+      /* "graph_compiled.pyx":140
+ *                 print(
+ *                     "The number of nodes in the MST is: ",
+ *                     len(self.get_nodes()),             # <<<<<<<<<<<<<<
+ *                     " Total weight is: ",
+ *                     total_weight,
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_2 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5152,14 +5138,22 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       }
       __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+
+      /* "graph_compiled.pyx":139
+ *                 print(self.get_edges())
+ *                 print(
+ *                     "The number of nodes in the MST is: ",             # <<<<<<<<<<<<<<
+ *                     len(self.get_nodes()),
+ *                     " Total weight is: ",
+ */
+      __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_kp_s_The_number_of_nodes_in_the_MST_i);
       __Pyx_GIVEREF(__pyx_kp_s_The_number_of_nodes_in_the_MST_i);
@@ -5173,12 +5167,12 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       __Pyx_GIVEREF(__pyx_v_total_weight);
       PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_total_weight);
       __pyx_t_1 = 0;
-      if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 136, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "graph_compiled.pyx":133
+      /* "graph_compiled.pyx":135
  *         if OriginalGraph != None:
- *             #OriginalGraph = Graph()
+ *             # OriginalGraph = Graph()
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):             # <<<<<<<<<<<<<<
  *                 print(FunctionName)
  *                 print(self.get_edges())
@@ -5186,17 +5180,33 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       goto __pyx_L6;
     }
 
-    /* "graph_compiled.pyx":138
- *                 print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)
+    /* "graph_compiled.pyx":145
+ *                 )
  *             else:
- *                 print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))             # <<<<<<<<<<<<<<
- *                 print(self.get_edges())
- *         else: print(self.get_edges())
+ *                 print(             # <<<<<<<<<<<<<<
+ *                     FunctionName + " => Failed",
+ *                     "---- n. nodes = ",
  */
     /*else*/ {
-      __pyx_t_3 = PyNumber_Add(__pyx_v_FunctionName, __pyx_kp_s_Failed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
+
+      /* "graph_compiled.pyx":146
+ *             else:
+ *                 print(
+ *                     FunctionName + " => Failed",             # <<<<<<<<<<<<<<
+ *                     "---- n. nodes = ",
+ *                     len(self.get_nodes()),
+ */
+      __pyx_t_3 = PyNumber_Add(__pyx_v_FunctionName, __pyx_kp_s_Failed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+
+      /* "graph_compiled.pyx":148
+ *                     FunctionName + " => Failed",
+ *                     "---- n. nodes = ",
+ *                     len(self.get_nodes()),             # <<<<<<<<<<<<<<
+ *                 )
+ *                 print(self.get_edges())
+ */
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_4 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5210,14 +5220,22 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       }
       __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+
+      /* "graph_compiled.pyx":146
+ *             else:
+ *                 print(
+ *                     FunctionName + " => Failed",             # <<<<<<<<<<<<<<
+ *                     "---- n. nodes = ",
+ *                     len(self.get_nodes()),
+ */
+      __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3);
@@ -5228,17 +5246,17 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_1);
       __pyx_t_3 = 0;
       __pyx_t_1 = 0;
-      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "graph_compiled.pyx":139
- *             else:
- *                 print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))
+      /* "graph_compiled.pyx":150
+ *                     len(self.get_nodes()),
+ *                 )
  *                 print(self.get_edges())             # <<<<<<<<<<<<<<
- *         else: print(self.get_edges())
- * 
+ *         else:
+ *             print(self.get_edges())
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -5252,33 +5270,31 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
       }
       __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __pyx_L6:;
 
-    /* "graph_compiled.pyx":131
+    /* "graph_compiled.pyx":133
  *             total_weight += weight
  * 
  *         if OriginalGraph != None:             # <<<<<<<<<<<<<<
- *             #OriginalGraph = Graph()
+ *             # OriginalGraph = Graph()
  *             if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):
  */
     goto __pyx_L5;
   }
 
-  /* "graph_compiled.pyx":140
- *                 print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))
+  /* "graph_compiled.pyx":152
  *                 print(self.get_edges())
- *         else: print(self.get_edges())             # <<<<<<<<<<<<<<
- * 
- * 
+ *         else:
+ *             print(self.get_edges())             # <<<<<<<<<<<<<<
  */
   /*else*/ {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -5292,18 +5308,18 @@ static PyObject *__pyx_pf_14graph_compiled_5Graph_26PrintGraph(CYTHON_UNUSED PyO
     }
     __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_L5:;
 
-  /* "graph_compiled.pyx":126
+  /* "graph_compiled.pyx":128
+ *         assert len(self.edges) == int(first_line[1])
  * 
- * 
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):             # <<<<<<<<<<<<<<
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):             # <<<<<<<<<<<<<<
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):
  */
@@ -5405,7 +5421,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_adj, __pyx_k_adj, sizeof(__pyx_k_adj), 0, 0, 1, 1},
   {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-  {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
   {&__pyx_kp_s_data_structures_graph_compiled_p, __pyx_k_data_structures_graph_compiled_p, sizeof(__pyx_k_data_structures_graph_compiled_p), 0, 0, 1, 0},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_edge, __pyx_k_edge, sizeof(__pyx_k_edge), 0, 0, 1, 1},
@@ -5470,9 +5485,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_sum = __Pyx_GetBuiltinName(__pyx_n_s_sum); if (!__pyx_builtin_sum) __PYX_ERR(0, 39, __pyx_L1_error)
-  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 59, __pyx_L1_error)
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_builtin_sum = __Pyx_GetBuiltinName(__pyx_n_s_sum); if (!__pyx_builtin_sum) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 114, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -5482,42 +5497,41 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "graph_compiled.pyx":113
+  /* "graph_compiled.pyx":116
  *         with open(filename) as f:
  *             lines = f.readlines()
  *             for line in lines[1:]:             # <<<<<<<<<<<<<<
- *                 v1 = int(line.split()[0])   # First node
- *                 v2 = int(line.split()[1])   # Second node
+ *                 v1 = int(line.split()[0])  # First node
+ *                 v2 = int(line.split()[1])  # Second node
  */
-  __pyx_slice_ = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_slice_ = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
 
-  /* "graph_compiled.pyx":111
- *         """ Builds the adiacency lists from the txt file"""
+  /* "graph_compiled.pyx":114
+ *         """Builds the adiacency lists from the txt file"""
  * 
  *         with open(filename) as f:             # <<<<<<<<<<<<<<
  *             lines = f.readlines()
  *             for line in lines[1:]:
  */
-  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "graph_compiled.pyx":3
+  /* "graph_compiled.pyx":2
  * class Graph:
- * 
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_init, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_init, 2, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 2, __pyx_L1_error)
 
   /* "graph_compiled.pyx":9
- * 
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
  * 
  *     def addEdge(self, edge: tuple, weight: int):             # <<<<<<<<<<<<<<
  *         (v, u) = edge
@@ -5528,150 +5542,150 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__5);
   __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_addEdge, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 9, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":23
+  /* "graph_compiled.pyx":26
  *         (self.Adj_list[u]).append(edge)
  * 
  *     def removeEdge(self, edge: tuple):             # <<<<<<<<<<<<<<
  *         (u, w) = edge
  *         self.edges.pop((edge))
  */
-  __pyx_tuple__7 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_edge, __pyx_n_s_u, __pyx_n_s_w); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_edge, __pyx_n_s_u, __pyx_n_s_w); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_removeEdge, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_removeEdge, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 26, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":29
+  /* "graph_compiled.pyx":32
  *         (self.Adj_list[w]).remove(edge)
  * 
  *     def get_nodes(self):             # <<<<<<<<<<<<<<
- *         return self.nodes.copy()    # FIXME
+ *         return self.nodes
  * 
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_nodes, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 29, __pyx_L1_error)
-
-  /* "graph_compiled.pyx":32
- *         return self.nodes.copy()    # FIXME
- * 
- *     def get_edges(self):             # <<<<<<<<<<<<<<
- *         return self.edges.copy()    # FIXME
- * 
- */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_edges, 32, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_nodes, 32, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 32, __pyx_L1_error)
 
   /* "graph_compiled.pyx":35
- *         return self.edges.copy()    # FIXME
+ *         return self.nodes
  * 
- *     def get_AL(self):             # <<<<<<<<<<<<<<
- *         return self.Adj_list.copy()       # FIXME
+ *     def get_edges(self):             # <<<<<<<<<<<<<<
+ *         return self.edges
  * 
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_AL, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_edges, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 35, __pyx_L1_error)
 
   /* "graph_compiled.pyx":38
- *         return self.Adj_list.copy()       # FIXME
+ *         return self.edges
+ * 
+ *     def get_AL(self):             # <<<<<<<<<<<<<<
+ *         return self.Adj_list
+ * 
+ */
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_get_AL, 38, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 38, __pyx_L1_error)
+
+  /* "graph_compiled.pyx":41
+ *         return self.Adj_list
  * 
  *     def total_Weight(self):             # <<<<<<<<<<<<<<
  *         return sum(self.edges.values())
  * 
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_total_Weight, 38, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_total_Weight, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 41, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":42
+  /* "graph_compiled.pyx":45
  * 
  *     # Returns all the nodes incident to node
- *     def getAdjacentNodes(self, node : int) -> list:             # <<<<<<<<<<<<<<
+ *     def getAdjacentNodes(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         nodes = set()
  *         if node in self.nodes:
  */
-  __pyx_tuple__17 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_node, __pyx_n_s_nodes, __pyx_n_s_u, __pyx_n_s_v); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_node, __pyx_n_s_nodes, __pyx_n_s_u, __pyx_n_s_v); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_getAdjacentNodes, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_getAdjacentNodes, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 45, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":51
+  /* "graph_compiled.pyx":56
  * 
  *     # Returns all the edges with node
  *     def getAdjacentEdges(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         edges = set()
  *         for list_edges in list(self.get_AL()[node]):
  */
-  __pyx_tuple__19 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_node, __pyx_n_s_edges, __pyx_n_s_list_edges); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_node, __pyx_n_s_edges, __pyx_n_s_list_edges); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_getAdjacentEdges, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 51, __pyx_L1_error)
-
-  /* "graph_compiled.pyx":58
- * 
- *     # Orders the graph in non discending order of keys
- *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
- *         return self
- */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_nonDiscendingOrderGraph_Keys, 58, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_getAdjacentEdges, 56, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 56, __pyx_L1_error)
 
   /* "graph_compiled.pyx":63
  * 
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
+ *     # Orders the graph in non discending order of keys
+ *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
  *         return self
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_nonDiscendingOrderGraph_Keys, 63, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 63, __pyx_L1_error)
+
+  /* "graph_compiled.pyx":68
+ * 
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
+ *         return self
+ */
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_nonDiscendingOrderGraph_Values, 63, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_nonDiscendingOrderGraph_Values, 68, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 68, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":69
- * 
+  /* "graph_compiled.pyx":72
+ *         return self
  * 
  *     def isCycle(self):             # <<<<<<<<<<<<<<
  *         """
  *         Based on Breadth-first search (BFS) to explore every vertex which is reachable from v.
  */
-  __pyx_tuple__25 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_Visited, __pyx_n_s_V, __pyx_n_s_L, __pyx_n_s_v, __pyx_n_s_u, __pyx_n_s_Adjacents, __pyx_n_s_adj, __pyx_n_s_v); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_Visited, __pyx_n_s_V, __pyx_n_s_L, __pyx_n_s_v, __pyx_n_s_u, __pyx_n_s_Adjacents, __pyx_n_s_adj, __pyx_n_s_v); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_isCycle, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_isCycle, 72, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 72, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":108
+  /* "graph_compiled.pyx":111
  *         return False
  * 
  *     def inizialize(self, filename):             # <<<<<<<<<<<<<<
- *         """ Builds the adiacency lists from the txt file"""
+ *         """Builds the adiacency lists from the txt file"""
  * 
  */
-  __pyx_tuple__27 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_filename, __pyx_n_s_f, __pyx_n_s_lines, __pyx_n_s_line, __pyx_n_s_v1, __pyx_n_s_v2, __pyx_n_s_w, __pyx_n_s_first_line); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_filename, __pyx_n_s_f, __pyx_n_s_lines, __pyx_n_s_line, __pyx_n_s_v1, __pyx_n_s_v2, __pyx_n_s_w, __pyx_n_s_first_line); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_inizialize, 108, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_inizialize, 111, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 111, __pyx_L1_error)
 
-  /* "graph_compiled.pyx":126
+  /* "graph_compiled.pyx":128
+ *         assert len(self.edges) == int(first_line[1])
  * 
- * 
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):             # <<<<<<<<<<<<<<
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):             # <<<<<<<<<<<<<<
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):
  */
-  __pyx_tuple__29 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_FunctionName, __pyx_n_s_OriginalGraph, __pyx_n_s_total_weight, __pyx_n_s_weight); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_FunctionName, __pyx_n_s_OriginalGraph, __pyx_n_s_total_weight, __pyx_n_s_weight); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_PrintGraph, 126, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __pyx_tuple__31 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_data_structures_graph_compiled_p, __pyx_n_s_PrintGraph, 128, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
   __Pyx_RefNannyFinishContext();
@@ -5959,31 +5973,30 @@ if (!__Pyx_RefNanny) {
 
   /* "graph_compiled.pyx":1
  * class Graph:             # <<<<<<<<<<<<<<
- * 
  *     def __init__(self) -> None:
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
  */
   __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Graph, __pyx_n_s_Graph, (PyObject *) NULL, __pyx_n_s_graph_compiled, (PyObject *) NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "graph_compiled.pyx":3
+  /* "graph_compiled.pyx":2
  * class Graph:
- * 
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.Adj_list = {}          # [[]], dict in order to support an unordered set of keys
- *         self.nodes = set()          # set containing the nodes discovered
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
+ *         self.nodes = set()  # set containing the nodes discovered
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, Py_None) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_1__init__, 0, __pyx_n_s_Graph___init, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, Py_None) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_1__init__, 0, __pyx_n_s_Graph___init, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":9
- * 
+ *         )  # dict containing the edges with a tuple of nodes as key and the weight as value
  * 
  *     def addEdge(self, edge: tuple, weight: int):             # <<<<<<<<<<<<<<
  *         (v, u) = edge
@@ -6000,172 +6013,172 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_addEdge, __pyx_t_2) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":23
+  /* "graph_compiled.pyx":26
  *         (self.Adj_list[u]).append(edge)
  * 
  *     def removeEdge(self, edge: tuple):             # <<<<<<<<<<<<<<
  *         (u, w) = edge
  *         self.edges.pop((edge))
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_edge, __pyx_n_u_tuple) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_5removeEdge, 0, __pyx_n_s_Graph_removeEdge, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_edge, __pyx_n_u_tuple) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_5removeEdge, 0, __pyx_n_s_Graph_removeEdge, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_removeEdge, __pyx_t_3) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "graph_compiled.pyx":29
- *         (self.Adj_list[w]).remove(edge)
- * 
- *     def get_nodes(self):             # <<<<<<<<<<<<<<
- *         return self.nodes.copy()    # FIXME
- * 
- */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_7get_nodes, 0, __pyx_n_s_Graph_get_nodes, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_nodes, __pyx_t_3) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_removeEdge, __pyx_t_3) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":32
- *         return self.nodes.copy()    # FIXME
+ *         (self.Adj_list[w]).remove(edge)
  * 
- *     def get_edges(self):             # <<<<<<<<<<<<<<
- *         return self.edges.copy()    # FIXME
+ *     def get_nodes(self):             # <<<<<<<<<<<<<<
+ *         return self.nodes
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_9get_edges, 0, __pyx_n_s_Graph_get_edges, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_7get_nodes, 0, __pyx_n_s_Graph_get_nodes, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_edges, __pyx_t_3) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_nodes, __pyx_t_3) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":35
- *         return self.edges.copy()    # FIXME
+ *         return self.nodes
  * 
- *     def get_AL(self):             # <<<<<<<<<<<<<<
- *         return self.Adj_list.copy()       # FIXME
+ *     def get_edges(self):             # <<<<<<<<<<<<<<
+ *         return self.edges
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_11get_AL, 0, __pyx_n_s_Graph_get_AL, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_9get_edges, 0, __pyx_n_s_Graph_get_edges, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_AL, __pyx_t_3) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_edges, __pyx_t_3) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":38
- *         return self.Adj_list.copy()       # FIXME
+ *         return self.edges
+ * 
+ *     def get_AL(self):             # <<<<<<<<<<<<<<
+ *         return self.Adj_list
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_11get_AL, 0, __pyx_n_s_Graph_get_AL, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_AL, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "graph_compiled.pyx":41
+ *         return self.Adj_list
  * 
  *     def total_Weight(self):             # <<<<<<<<<<<<<<
  *         return sum(self.edges.values())
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_13total_Weight, 0, __pyx_n_s_Graph_total_Weight, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_13total_Weight, 0, __pyx_n_s_Graph_total_Weight, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_total_Weight, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_total_Weight, __pyx_t_3) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "graph_compiled.pyx":42
+  /* "graph_compiled.pyx":45
  * 
  *     # Returns all the nodes incident to node
- *     def getAdjacentNodes(self, node : int) -> list:             # <<<<<<<<<<<<<<
+ *     def getAdjacentNodes(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         nodes = set()
  *         if node in self.nodes:
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_node, __pyx_n_u_int) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_u_list) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_15getAdjacentNodes, 0, __pyx_n_s_Graph_getAdjacentNodes, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_node, __pyx_n_u_int) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_u_list) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_15getAdjacentNodes, 0, __pyx_n_s_Graph_getAdjacentNodes, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getAdjacentNodes, __pyx_t_2) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getAdjacentNodes, __pyx_t_2) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "graph_compiled.pyx":51
+  /* "graph_compiled.pyx":56
  * 
  *     # Returns all the edges with node
  *     def getAdjacentEdges(self, node: int) -> list:             # <<<<<<<<<<<<<<
  *         edges = set()
  *         for list_edges in list(self.get_AL()[node]):
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_node, __pyx_n_u_int) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_u_list) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_17getAdjacentEdges, 0, __pyx_n_s_Graph_getAdjacentEdges, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_node, __pyx_n_u_int) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_u_list) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_17getAdjacentEdges, 0, __pyx_n_s_Graph_getAdjacentEdges, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getAdjacentEdges, __pyx_t_3) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "graph_compiled.pyx":58
- * 
- *     # Orders the graph in non discending order of keys
- *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
- *         return self
- */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_19nonDiscendingOrderGraph_Keys, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Ke_2, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_nonDiscendingOrderGraph_Keys, __pyx_t_3) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getAdjacentEdges, __pyx_t_3) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":63
  * 
- *     # Orders the graph in non discending order of values
- *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
- *         self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
+ *     # Orders the graph in non discending order of keys
+ *     def nonDiscendingOrderGraph_Keys(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[0]))
  *         return self
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Va_2, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_19nonDiscendingOrderGraph_Keys, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Ke_2, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_nonDiscendingOrderGraph_Values, __pyx_t_3) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_nonDiscendingOrderGraph_Keys, __pyx_t_3) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "graph_compiled.pyx":69
+  /* "graph_compiled.pyx":68
  * 
+ *     # Orders the graph in non discending order of values
+ *     def nonDiscendingOrderGraph_Values(self):             # <<<<<<<<<<<<<<
+ *         self.edges = dict(sorted(self.get_edges().items(), key=lambda item: item[1]))
+ *         return self
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_21nonDiscendingOrderGraph_Values, 0, __pyx_n_s_Graph_nonDiscendingOrderGraph_Va_2, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_nonDiscendingOrderGraph_Values, __pyx_t_3) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "graph_compiled.pyx":72
+ *         return self
  * 
  *     def isCycle(self):             # <<<<<<<<<<<<<<
  *         """
  *         Based on Breadth-first search (BFS) to explore every vertex which is reachable from v.
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_23isCycle, 0, __pyx_n_s_Graph_isCycle, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_23isCycle, 0, __pyx_n_s_Graph_isCycle, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_isCycle, __pyx_t_3) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_isCycle, __pyx_t_3) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "graph_compiled.pyx":108
+  /* "graph_compiled.pyx":111
  *         return False
  * 
  *     def inizialize(self, filename):             # <<<<<<<<<<<<<<
- *         """ Builds the adiacency lists from the txt file"""
+ *         """Builds the adiacency lists from the txt file"""
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_25inizialize, 0, __pyx_n_s_Graph_inizialize, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_25inizialize, 0, __pyx_n_s_Graph_inizialize, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_inizialize, __pyx_t_3) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_inizialize, __pyx_t_3) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "graph_compiled.pyx":126
+  /* "graph_compiled.pyx":128
+ *         assert len(self.edges) == int(first_line[1])
  * 
- * 
- *     def PrintGraph(self, FunctionName,  OriginalGraph = None):             # <<<<<<<<<<<<<<
+ *     def PrintGraph(self, FunctionName, OriginalGraph=None):             # <<<<<<<<<<<<<<
  *         total_weight = 0
  *         for weight in list(self.get_edges().values()):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_27PrintGraph, 0, __pyx_n_s_Graph_PrintGraph, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_14graph_compiled_5Graph_27PrintGraph, 0, __pyx_n_s_Graph_PrintGraph, NULL, __pyx_n_s_graph_compiled, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__31);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_PrintGraph, __pyx_t_3) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_PrintGraph, __pyx_t_3) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "graph_compiled.pyx":1
  * class Graph:             # <<<<<<<<<<<<<<
- * 
  *     def __init__(self) -> None:
+ *         self.Adj_list = {}  # [[]], dict in order to support an unordered set of keys
  */
   __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Graph, __pyx_empty_tuple, __pyx_t_1, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
