@@ -7,7 +7,9 @@ class UnionFind:
         # create `n` disjoint sets (one for each node)
         for i in nodes:
             self.parent[i] = i
-            self.size[i] = 0
+            self.size[i] = 1  
+            # start from 1 instead of 0 otherwise
+            # the sum of size in the Union operator will sum always 0 -> size not correctly updated
  
     # Find the root of the set in which element `x` belongs
     def Find(self, x):
