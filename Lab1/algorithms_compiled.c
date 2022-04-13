@@ -1311,18 +1311,8 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 #define __Pyx_HAS_GCC_DIAGNOSTIC
 #endif
 
-/* Print.proto */
-static int __Pyx_Print(PyObject*, PyObject *, int);
-#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
-static PyObject* __pyx_print = 0;
-static PyObject* __pyx_print_kwargs = 0;
-#endif
-
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
-
-/* PrintOne.proto */
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
@@ -1365,14 +1355,13 @@ static const char __pyx_k_A[] = "A";
 static const char __pyx_k_G[] = "G";
 static const char __pyx_k_Q[] = "Q";
 static const char __pyx_k_U[] = "U";
+static const char __pyx_k_u[] = "u";
 static const char __pyx_k_v[] = "v";
 static const char __pyx_k_w[] = "w";
-static const char __pyx_k_end[] = "end";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_key[] = "key";
 static const char __pyx_k_Find[] = "Find";
 static const char __pyx_k_edge[] = "edge";
-static const char __pyx_k_file[] = "file";
 static const char __pyx_k_keys[] = "keys";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -1383,18 +1372,16 @@ static const char __pyx_k_Union[] = "Union";
 static const char __pyx_k_edges[] = "edges";
 static const char __pyx_k_heapq[] = "heapq";
 static const char __pyx_k_items[] = "items";
-static const char __pyx_k_print[] = "print";
-static const char __pyx_k_value[] = "value";
+static const char __pyx_k_nodes[] = "nodes";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_sorted[] = "sorted";
-static const char __pyx_k_weight[] = " weight";
+static const char __pyx_k_weight[] = "weight";
 static const char __pyx_k_Kruskal[] = "Kruskal";
 static const char __pyx_k_addEdge[] = "addEdge";
 static const char __pyx_k_heappop[] = "heappop";
 static const char __pyx_k_isCycle[] = "isCycle";
 static const char __pyx_k_visited[] = "visited";
 static const char __pyx_k_heappush[] = "heappush";
-static const char __pyx_k_weight_2[] = "weight";
 static const char __pyx_k_Prim_Heap[] = "Prim_Heap";
 static const char __pyx_k_UnionFind[] = "UnionFind";
 static const char __pyx_k_get_edges[] = "get_edges";
@@ -1402,6 +1389,7 @@ static const char __pyx_k_get_nodes[] = "get_nodes";
 static const char __pyx_k_Initialize[] = "Initialize";
 static const char __pyx_k_removeEdge[] = "removeEdge";
 static const char __pyx_k_sort_edges[] = "sort_edges";
+static const char __pyx_k_Total_weight[] = "Total_weight";
 static const char __pyx_k_total_Weight[] = "total_Weight";
 static const char __pyx_k_graph_compiled[] = "graph_compiled";
 static const char __pyx_k_sort_edges_keys[] = "sort_edges_keys";
@@ -1412,7 +1400,6 @@ static const char __pyx_k_unionFind_compiled[] = "unionFind_compiled";
 static const char __pyx_k_algorithms_compiled[] = "algorithms_compiled";
 static const char __pyx_k_Kruskal_locals_lambda[] = "Kruskal.<locals>.<lambda>";
 static const char __pyx_k_algorithms_compiled_pyx[] = "algorithms_compiled.pyx";
-static const char __pyx_k_value_equals_to_weight_key[] = "value equals to weight!key";
 static const char __pyx_k_nonDiscendingOrderGraph_Keys[] = "nonDiscendingOrderGraph_Keys";
 static const char __pyx_k_Efficient_Kruskal_locals_lambda[] = "Efficient_Kruskal.<locals>.<lambda>";
 static PyObject *__pyx_n_s_;
@@ -1427,6 +1414,7 @@ static PyObject *__pyx_n_s_Kruskal;
 static PyObject *__pyx_n_s_Kruskal_locals_lambda;
 static PyObject *__pyx_n_s_Prim_Heap;
 static PyObject *__pyx_n_s_Q;
+static PyObject *__pyx_n_s_Total_weight;
 static PyObject *__pyx_n_s_U;
 static PyObject *__pyx_n_s_Union;
 static PyObject *__pyx_n_s_UnionFind;
@@ -1436,8 +1424,6 @@ static PyObject *__pyx_kp_s_algorithms_compiled_pyx;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_edge;
 static PyObject *__pyx_n_s_edges;
-static PyObject *__pyx_n_s_end;
-static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_get;
 static PyObject *__pyx_n_s_getAdjacentNodes;
 static PyObject *__pyx_n_s_get_edges;
@@ -1454,22 +1440,20 @@ static PyObject *__pyx_n_s_keys;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_node;
+static PyObject *__pyx_n_s_nodes;
 static PyObject *__pyx_n_s_nonDiscendingOrderGraph_Keys;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_removeEdge;
 static PyObject *__pyx_n_s_sort_edges;
 static PyObject *__pyx_n_s_sort_edges_keys;
 static PyObject *__pyx_n_s_sorted;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_total_Weight;
+static PyObject *__pyx_n_s_u;
 static PyObject *__pyx_n_s_unionFind_compiled;
 static PyObject *__pyx_n_s_v;
-static PyObject *__pyx_n_s_value;
-static PyObject *__pyx_kp_s_value_equals_to_weight_key;
 static PyObject *__pyx_n_s_visited;
 static PyObject *__pyx_n_s_w;
-static PyObject *__pyx_kp_s_weight;
-static PyObject *__pyx_n_s_weight_2;
+static PyObject *__pyx_n_s_weight;
 static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_item); /* proto */
 static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G); /* proto */
 static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_item); /* proto */
@@ -1489,14 +1473,15 @@ static PyObject *__pyx_codeobj__7;
 /* "algorithms_compiled.pyx":11
  * 
  * 
- * def Efficient_Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = (
+ * def Efficient_Kruskal(G: Graph) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     This is a function that implements the Kruskal's algorithm
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_19algorithms_compiled_1Efficient_Kruskal(PyObject *__pyx_self, PyObject *__pyx_v_G); /*proto*/
-static PyMethodDef __pyx_mdef_19algorithms_compiled_1Efficient_Kruskal = {"Efficient_Kruskal", (PyCFunction)__pyx_pw_19algorithms_compiled_1Efficient_Kruskal, METH_O, 0};
+static char __pyx_doc_19algorithms_compiled_Efficient_Kruskal[] = "\n    This is a function that implements the Kruskal's algorithm \n    implemented using the \"Disjoint Set Union\" data structure, \n    which allows to achieve the time complexity of O(M * log(N)).\n    ";
+static PyMethodDef __pyx_mdef_19algorithms_compiled_1Efficient_Kruskal = {"Efficient_Kruskal", (PyCFunction)__pyx_pw_19algorithms_compiled_1Efficient_Kruskal, METH_O, __pyx_doc_19algorithms_compiled_Efficient_Kruskal};
 static PyObject *__pyx_pw_19algorithms_compiled_1Efficient_Kruskal(PyObject *__pyx_self, PyObject *__pyx_v_G) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -1508,12 +1493,12 @@ static PyObject *__pyx_pw_19algorithms_compiled_1Efficient_Kruskal(PyObject *__p
   return __pyx_r;
 }
 
-/* "algorithms_compiled.pyx":22
+/* "algorithms_compiled.pyx":23
+ * 
  *     edges = G.get_edges()
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])             # <<<<<<<<<<<<<<
- *     )  # In nondecrising order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight             # <<<<<<<<<<<<<<
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
+ * 
  */
 
 /* Python wrapper */
@@ -1539,7 +1524,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1559,9 +1544,9 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
 /* "algorithms_compiled.pyx":11
  * 
  * 
- * def Efficient_Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = (
+ * def Efficient_Kruskal(G: Graph) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     This is a function that implements the Kruskal's algorithm
  */
 
 static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G) {
@@ -1591,41 +1576,14 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Efficient_Kruskal", 0);
 
-  /* "algorithms_compiled.pyx":14
- * 
- *     A = (
- *         Graph()             # <<<<<<<<<<<<<<
- *     )  # Not an array because we need to store the weight associated to the edge
- * 
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Graph); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_A = __pyx_t_1;
-  __pyx_t_1 = 0;
-
   /* "algorithms_compiled.pyx":17
- *     )  # Not an array because we need to store the weight associated to the edge
+ *     which allows to achieve the time complexity of O(M * log(N)).
+ *     """
+ *     A = Graph() # Not an array because we need to store the weight associated to the edge             # <<<<<<<<<<<<<<
  * 
- *     U = UnionFind()             # <<<<<<<<<<<<<<
- *     U.Initialize(G.get_nodes())
- * 
+ *     U = UnionFind()
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_UnionFind); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Graph); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -1642,19 +1600,46 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_A = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "algorithms_compiled.pyx":19
+ *     A = Graph() # Not an array because we need to store the weight associated to the edge
+ * 
+ *     U = UnionFind()             # <<<<<<<<<<<<<<
+ *     U.Initialize(G.get_nodes())
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_UnionFind); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_U = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":18
+  /* "algorithms_compiled.pyx":20
  * 
  *     U = UnionFind()
  *     U.Initialize(G.get_nodes())             # <<<<<<<<<<<<<<
  * 
  *     edges = G.get_edges()
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_U, __pyx_n_s_Initialize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_U, __pyx_n_s_Initialize); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -1668,7 +1653,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -1684,46 +1669,19 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":20
+  /* "algorithms_compiled.pyx":22
  *     U.Initialize(G.get_nodes())
  * 
  *     edges = G.get_edges()             # <<<<<<<<<<<<<<
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_edges = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "algorithms_compiled.pyx":22
- *     edges = G.get_edges()
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])             # <<<<<<<<<<<<<<
- *     )  # In nondecrising order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1740,39 +1698,58 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_v_edges = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "algorithms_compiled.pyx":23
+ * 
+ *     edges = G.get_edges()
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight             # <<<<<<<<<<<<<<
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19algorithms_compiled_17Efficient_Kruskal_lambda, 0, __pyx_n_s_Efficient_Kruskal_locals_lambda, NULL, __pyx_n_s_algorithms_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19algorithms_compiled_17Efficient_Kruskal_lambda, 0, __pyx_n_s_Efficient_Kruskal_locals_lambda, NULL, __pyx_n_s_algorithms_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_3) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_3) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "algorithms_compiled.pyx":21
- * 
- *     edges = G.get_edges()
- *     sort_edges = dict(             # <<<<<<<<<<<<<<
- *         sorted(edges.items(), key=lambda item: item[1])
- *     )  # In nondecrising order of weight
- */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_sort_edges = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "algorithms_compiled.pyx":24
- *         sorted(edges.items(), key=lambda item: item[1])
- *     )  # In nondecrising order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys             # <<<<<<<<<<<<<<
+ *     edges = G.get_edges()
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys             # <<<<<<<<<<<<<<
  * 
  *     for edge in sort_edges_keys:
  */
@@ -1782,11 +1759,11 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   __pyx_t_1 = 0;
 
   /* "algorithms_compiled.pyx":26
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  * 
  *     for edge in sort_edges_keys:             # <<<<<<<<<<<<<<
- *         (v, w) = edge
- * 
+ *         (v,w) = edge
+ *         if v == w: continue
  */
   if (likely(PyList_CheckExact(__pyx_v_sort_edges_keys)) || PyTuple_CheckExact(__pyx_v_sort_edges_keys)) {
     __pyx_t_1 = __pyx_v_sort_edges_keys; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
@@ -1833,9 +1810,9 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
     /* "algorithms_compiled.pyx":27
  * 
  *     for edge in sort_edges_keys:
- *         (v, w) = edge             # <<<<<<<<<<<<<<
- * 
- *         if U.Find(v) != U.Find(w):  # No path v-w in A
+ *         (v,w) = edge             # <<<<<<<<<<<<<<
+ *         if v == w: continue
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A
  */
     if ((likely(PyTuple_CheckExact(__pyx_v_edge))) || (PyList_CheckExact(__pyx_v_edge))) {
       PyObject* sequence = __pyx_v_edge;
@@ -1886,12 +1863,26 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
     __Pyx_XDECREF_SET(__pyx_v_w, __pyx_t_2);
     __pyx_t_2 = 0;
 
+    /* "algorithms_compiled.pyx":28
+ *     for edge in sort_edges_keys:
+ *         (v,w) = edge
+ *         if v == w: continue             # <<<<<<<<<<<<<<
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A
+ *             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later
+ */
+    __pyx_t_2 = PyObject_RichCompare(__pyx_v_v, __pyx_v_w, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__pyx_t_9) {
+      goto __pyx_L3_continue;
+    }
+
     /* "algorithms_compiled.pyx":29
- *         (v, w) = edge
- * 
- *         if U.Find(v) != U.Find(w):  # No path v-w in A             # <<<<<<<<<<<<<<
- *             A.addEdge(
- *                 edge, edges.get(edge)
+ *         (v,w) = edge
+ *         if v == w: continue
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A             # <<<<<<<<<<<<<<
+ *             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later
+ *             U.Union(v, w)
  */
     __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_U, __pyx_n_s_Find); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -1935,23 +1926,15 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
     if (__pyx_t_9) {
 
       /* "algorithms_compiled.pyx":30
+ *         if v == w: continue
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A
+ *             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later             # <<<<<<<<<<<<<<
+ *             U.Union(v, w)
  * 
- *         if U.Find(v) != U.Find(w):  # No path v-w in A
- *             A.addEdge(             # <<<<<<<<<<<<<<
- *                 edge, edges.get(edge)
- *             )  # Adding weight in order to print it and test it later
  */
       __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-
-      /* "algorithms_compiled.pyx":31
- *         if U.Find(v) != U.Find(w):  # No path v-w in A
- *             A.addEdge(
- *                 edge, edges.get(edge)             # <<<<<<<<<<<<<<
- *             )  # Adding weight in order to print it and test it later
- *             U.Union(v, w)
- */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 30, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_10 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -1965,7 +1948,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
       }
       __pyx_t_2 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_10, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_edge);
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -2017,14 +2000,14 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "algorithms_compiled.pyx":33
- *                 edge, edges.get(edge)
- *             )  # Adding weight in order to print it and test it later
+      /* "algorithms_compiled.pyx":31
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A
+ *             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later
  *             U.Union(v, w)             # <<<<<<<<<<<<<<
  * 
  *     A.nonDiscendingOrderGraph_Keys()
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_U, __pyx_n_s_Union); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_U, __pyx_n_s_Union); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_10 = NULL;
       __pyx_t_11 = 0;
@@ -2041,7 +2024,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_v_v, __pyx_v_w};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
@@ -2049,13 +2032,13 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_v_v, __pyx_v_w};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
       #endif
       {
-        __pyx_t_2 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         if (__pyx_t_10) {
           __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -2066,7 +2049,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
         __Pyx_INCREF(__pyx_v_w);
         __Pyx_GIVEREF(__pyx_v_w);
         PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_11, __pyx_v_w);
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
@@ -2074,32 +2057,60 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
       /* "algorithms_compiled.pyx":29
- *         (v, w) = edge
- * 
- *         if U.Find(v) != U.Find(w):  # No path v-w in A             # <<<<<<<<<<<<<<
- *             A.addEdge(
- *                 edge, edges.get(edge)
+ *         (v,w) = edge
+ *         if v == w: continue
+ *         if U.Find(v) != U.Find(w):              # No path v-w in A             # <<<<<<<<<<<<<<
+ *             A.addEdge(edge, edges.get(edge))    # Adding weight in order to print it and test it later
+ *             U.Union(v, w)
  */
     }
 
     /* "algorithms_compiled.pyx":26
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  * 
  *     for edge in sort_edges_keys:             # <<<<<<<<<<<<<<
- *         (v, w) = edge
- * 
+ *         (v,w) = edge
+ *         if v == w: continue
  */
+    __pyx_L3_continue:;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":35
+  /* "algorithms_compiled.pyx":33
  *             U.Union(v, w)
  * 
  *     A.nonDiscendingOrderGraph_Keys()             # <<<<<<<<<<<<<<
- *     # A.PrintGraph("Efficient_Kruscal", G)
+ * 
  *     return A.total_Weight()
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_nonDiscendingOrderGraph_Keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_nonDiscendingOrderGraph_Keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "algorithms_compiled.pyx":35
+ *     A.nonDiscendingOrderGraph_Keys()
+ * 
+ *     return A.total_Weight()             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_total_Weight); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2116,33 +2127,6 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "algorithms_compiled.pyx":37
- *     A.nonDiscendingOrderGraph_Keys()
- *     # A.PrintGraph("Efficient_Kruscal", G)
- *     return A.total_Weight()             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_total_Weight); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
@@ -2150,9 +2134,9 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   /* "algorithms_compiled.pyx":11
  * 
  * 
- * def Efficient_Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = (
+ * def Efficient_Kruskal(G: Graph) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     This is a function that implements the Kruskal's algorithm
  */
 
   /* function exit code */
@@ -2179,17 +2163,18 @@ static PyObject *__pyx_pf_19algorithms_compiled_Efficient_Kruskal(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "algorithms_compiled.pyx":40
+/* "algorithms_compiled.pyx":38
  * 
  * 
  * def Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()
+ *     """
+ *     This is a function that implements the native Kruskal's algorithm,
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_19algorithms_compiled_3Kruskal(PyObject *__pyx_self, PyObject *__pyx_v_G); /*proto*/
-static PyMethodDef __pyx_mdef_19algorithms_compiled_3Kruskal = {"Kruskal", (PyCFunction)__pyx_pw_19algorithms_compiled_3Kruskal, METH_O, 0};
+static char __pyx_doc_19algorithms_compiled_2Kruskal[] = "\n    This is a function that implements the native Kruskal's algorithm, \n    which allows to achieve the time complexity of O(M + N).\n    ";
+static PyMethodDef __pyx_mdef_19algorithms_compiled_3Kruskal = {"Kruskal", (PyCFunction)__pyx_pw_19algorithms_compiled_3Kruskal, METH_O, __pyx_doc_19algorithms_compiled_2Kruskal};
 static PyObject *__pyx_pw_19algorithms_compiled_3Kruskal(PyObject *__pyx_self, PyObject *__pyx_v_G) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2201,12 +2186,12 @@ static PyObject *__pyx_pw_19algorithms_compiled_3Kruskal(PyObject *__pyx_self, P
   return __pyx_r;
 }
 
-/* "algorithms_compiled.pyx":45
+/* "algorithms_compiled.pyx":46
+ *     A=Graph()
  *     edges = G.get_edges()
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])             # <<<<<<<<<<<<<<
- *     )  # In nondecreasing order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight             # <<<<<<<<<<<<<<
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
+ * 
  */
 
 /* Python wrapper */
@@ -2232,7 +2217,7 @@ static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda1", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2249,12 +2234,12 @@ static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "algorithms_compiled.pyx":40
+/* "algorithms_compiled.pyx":38
  * 
  * 
  * def Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()
+ *     """
+ *     This is a function that implements the native Kruskal's algorithm,
  */
 
 static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G) {
@@ -2263,6 +2248,9 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   PyObject *__pyx_v_sort_edges = NULL;
   PyObject *__pyx_v_sort_edges_keys = NULL;
   PyObject *__pyx_v_edge = NULL;
+  PyObject *__pyx_v_u = NULL;
+  PyObject *__pyx_v_v = NULL;
+  PyObject *__pyx_v_nodes = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2270,24 +2258,26 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_3 = NULL;
   Py_ssize_t __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
+  PyObject *(*__pyx_t_6)(PyObject *);
   PyObject *__pyx_t_7 = NULL;
   int __pyx_t_8;
   int __pyx_t_9;
-  int __pyx_t_10;
+  PyObject *__pyx_t_10 = NULL;
+  int __pyx_t_11;
+  int __pyx_t_12;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Kruskal", 0);
 
-  /* "algorithms_compiled.pyx":42
- * def Kruskal(G: Graph):
+  /* "algorithms_compiled.pyx":44
+ *     """
  * 
- *     A = Graph()             # <<<<<<<<<<<<<<
+ *     A=Graph()             # <<<<<<<<<<<<<<
  *     edges = G.get_edges()
- *     sort_edges = dict(
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Graph); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Graph); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -2301,47 +2291,20 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_A = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":43
- * 
- *     A = Graph()
- *     edges = G.get_edges()             # <<<<<<<<<<<<<<
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_edges = __pyx_t_1;
-  __pyx_t_1 = 0;
-
   /* "algorithms_compiled.pyx":45
- *     edges = G.get_edges()
- *     sort_edges = dict(
- *         sorted(edges.items(), key=lambda item: item[1])             # <<<<<<<<<<<<<<
- *     )  # In nondecreasing order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ * 
+ *     A=Graph()
+ *     edges = G.get_edges()             # <<<<<<<<<<<<<<
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2358,39 +2321,58 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_v_edges = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "algorithms_compiled.pyx":46
+ *     A=Graph()
+ *     edges = G.get_edges()
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight             # <<<<<<<<<<<<<<
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19algorithms_compiled_7Kruskal_lambda1, 0, __pyx_n_s_Kruskal_locals_lambda, NULL, __pyx_n_s_algorithms_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19algorithms_compiled_7Kruskal_lambda1, 0, __pyx_n_s_Kruskal_locals_lambda, NULL, __pyx_n_s_algorithms_compiled, __pyx_d, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_3) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_key, __pyx_t_3) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "algorithms_compiled.pyx":44
- *     A = Graph()
- *     edges = G.get_edges()
- *     sort_edges = dict(             # <<<<<<<<<<<<<<
- *         sorted(edges.items(), key=lambda item: item[1])
- *     )  # In nondecreasing order of weight
- */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_sort_edges = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "algorithms_compiled.pyx":47
- *         sorted(edges.items(), key=lambda item: item[1])
- *     )  # In nondecreasing order of weight
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys             # <<<<<<<<<<<<<<
+ *     edges = G.get_edges()
+ *     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys             # <<<<<<<<<<<<<<
  * 
  *     for edge in list(sort_edges_keys):
  */
@@ -2400,11 +2382,11 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   __pyx_t_1 = 0;
 
   /* "algorithms_compiled.pyx":49
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  * 
  *     for edge in list(sort_edges_keys):             # <<<<<<<<<<<<<<
- *         A.addEdge(edge, edges.get(edge))
- *         if (
+ *         (u,v) = edge
+ *         nodes = A.get_nodes()
  */
   __pyx_t_1 = PySequence_List(__pyx_v_sort_edges_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2424,221 +2406,399 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
     /* "algorithms_compiled.pyx":50
  * 
  *     for edge in list(sort_edges_keys):
- *         A.addEdge(edge, edges.get(edge))             # <<<<<<<<<<<<<<
- *         if (
- *             A.isCycle() is True
+ *         (u,v) = edge             # <<<<<<<<<<<<<<
+ *         nodes = A.get_nodes()
+ *         if edge in A.get_edges().keys():
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
-      if (likely(__pyx_t_7)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-        __Pyx_INCREF(__pyx_t_7);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_6, function);
+    if ((likely(PyTuple_CheckExact(__pyx_v_edge))) || (PyList_CheckExact(__pyx_v_edge))) {
+      PyObject* sequence = __pyx_v_edge;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 50, __pyx_L1_error)
       }
-    }
-    __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_7, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_edge);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = NULL;
-    __pyx_t_8 = 0;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_6)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_8 = 1;
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_1 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_2 = PyList_GET_ITEM(sequence, 1); 
       }
-    }
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_2)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_edge, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      #else
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      #endif
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_5 = PyObject_GetIter(__pyx_v_edge); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 50, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
+      index = 0; __pyx_t_1 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_1)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_1);
+      index = 1; __pyx_t_2 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_2);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+      __pyx_t_6 = NULL;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_edge, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 50, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      if (__pyx_t_6) {
-        __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
-      }
-      __Pyx_INCREF(__pyx_v_edge);
-      __Pyx_GIVEREF(__pyx_v_edge);
-      PyTuple_SET_ITEM(__pyx_t_7, 0+__pyx_t_8, __pyx_v_edge);
-      __Pyx_GIVEREF(__pyx_t_5);
-      PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_8, __pyx_t_5);
-      __pyx_t_5 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_6 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 50, __pyx_L1_error)
+      __pyx_L6_unpacking_done:;
     }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "algorithms_compiled.pyx":52
- *         A.addEdge(edge, edges.get(edge))
- *         if (
- *             A.isCycle() is True             # <<<<<<<<<<<<<<
- *         ):  # Checking if the added node creates a cycle in the graph
- *             A.removeEdge(edge)  # If so, remove it
- */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_isCycle); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_7)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_7);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-      }
-    }
-    __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = (__pyx_t_1 == Py_True);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_10 = (__pyx_t_9 != 0);
+    __Pyx_XDECREF_SET(__pyx_v_u, __pyx_t_1);
+    __pyx_t_1 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
+    __pyx_t_2 = 0;
 
     /* "algorithms_compiled.pyx":51
  *     for edge in list(sort_edges_keys):
- *         A.addEdge(edge, edges.get(edge))
- *         if (             # <<<<<<<<<<<<<<
- *             A.isCycle() is True
- *         ):  # Checking if the added node creates a cycle in the graph
+ *         (u,v) = edge
+ *         nodes = A.get_nodes()             # <<<<<<<<<<<<<<
+ *         if edge in A.get_edges().keys():
+ *             continue
  */
-    if (__pyx_t_10) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_get_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_5 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_5)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_5);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+      }
+    }
+    __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_nodes, __pyx_t_2);
+    __pyx_t_2 = 0;
 
-      /* "algorithms_compiled.pyx":54
- *             A.isCycle() is True
- *         ):  # Checking if the added node creates a cycle in the graph
- *             A.removeEdge(edge)  # If so, remove it             # <<<<<<<<<<<<<<
+    /* "algorithms_compiled.pyx":52
+ *         (u,v) = edge
+ *         nodes = A.get_nodes()
+ *         if edge in A.get_edges().keys():             # <<<<<<<<<<<<<<
+ *             continue
+ *         A.addEdge(edge, edges.get(edge))
+ */
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+      }
+    }
+    __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_keys); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_1)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_1);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+      }
+    }
+    __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_edge, __pyx_t_2, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_9 = (__pyx_t_8 != 0);
+    if (__pyx_t_9) {
+
+      /* "algorithms_compiled.pyx":53
+ *         nodes = A.get_nodes()
+ *         if edge in A.get_edges().keys():
+ *             continue             # <<<<<<<<<<<<<<
+ *         A.addEdge(edge, edges.get(edge))
+ *         if u not in nodes or v not in nodes:
+ */
+      goto __pyx_L3_continue;
+
+      /* "algorithms_compiled.pyx":52
+ *         (u,v) = edge
+ *         nodes = A.get_nodes()
+ *         if edge in A.get_edges().keys():             # <<<<<<<<<<<<<<
+ *             continue
+ *         A.addEdge(edge, edges.get(edge))
+ */
+    }
+
+    /* "algorithms_compiled.pyx":54
+ *         if edge in A.get_edges().keys():
+ *             continue
+ *         A.addEdge(edge, edges.get(edge))             # <<<<<<<<<<<<<<
+ *         if u not in nodes or v not in nodes:
+ *             continue
+ */
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_edges, __pyx_n_s_get); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_10 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
+      __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_7);
+      if (likely(__pyx_t_10)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
+        __Pyx_INCREF(__pyx_t_10);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_7, function);
+      }
+    }
+    __pyx_t_1 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_10, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_edge);
+    __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = NULL;
+    __pyx_t_11 = 0;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+        __pyx_t_11 = 1;
+      }
+    }
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(__pyx_t_5)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_edge, __pyx_t_1};
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    } else
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_edge, __pyx_t_1};
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_11, 2+__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    } else
+    #endif
+    {
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      if (__pyx_t_7) {
+        __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_7); __pyx_t_7 = NULL;
+      }
+      __Pyx_INCREF(__pyx_v_edge);
+      __Pyx_GIVEREF(__pyx_v_edge);
+      PyTuple_SET_ITEM(__pyx_t_10, 0+__pyx_t_11, __pyx_v_edge);
+      __Pyx_GIVEREF(__pyx_t_1);
+      PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_11, __pyx_t_1);
+      __pyx_t_1 = 0;
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "algorithms_compiled.pyx":55
+ *             continue
+ *         A.addEdge(edge, edges.get(edge))
+ *         if u not in nodes or v not in nodes:             # <<<<<<<<<<<<<<
+ *             continue
+ *         if A.isCycle():
+ */
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_u, __pyx_v_nodes, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_12 = (__pyx_t_8 != 0);
+    if (!__pyx_t_12) {
+    } else {
+      __pyx_t_9 = __pyx_t_12;
+      goto __pyx_L9_bool_binop_done;
+    }
+    __pyx_t_12 = (__Pyx_PySequence_ContainsTF(__pyx_v_v, __pyx_v_nodes, Py_NE)); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_8 = (__pyx_t_12 != 0);
+    __pyx_t_9 = __pyx_t_8;
+    __pyx_L9_bool_binop_done:;
+    if (__pyx_t_9) {
+
+      /* "algorithms_compiled.pyx":56
+ *         A.addEdge(edge, edges.get(edge))
+ *         if u not in nodes or v not in nodes:
+ *             continue             # <<<<<<<<<<<<<<
+ *         if A.isCycle():
+ *             A.removeEdge(edge)
+ */
+      goto __pyx_L3_continue;
+
+      /* "algorithms_compiled.pyx":55
+ *             continue
+ *         A.addEdge(edge, edges.get(edge))
+ *         if u not in nodes or v not in nodes:             # <<<<<<<<<<<<<<
+ *             continue
+ *         if A.isCycle():
+ */
+    }
+
+    /* "algorithms_compiled.pyx":57
+ *         if u not in nodes or v not in nodes:
+ *             continue
+ *         if A.isCycle():             # <<<<<<<<<<<<<<
+ *             A.removeEdge(edge)
+ * 
+ */
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_isCycle); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_10 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_10)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_10);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+      }
+    }
+    __pyx_t_2 = (__pyx_t_10) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_10) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
+    __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__pyx_t_9) {
+
+      /* "algorithms_compiled.pyx":58
+ *             continue
+ *         if A.isCycle():
+ *             A.removeEdge(edge)             # <<<<<<<<<<<<<<
  * 
  *     A.nonDiscendingOrderGraph_Keys()
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_removeEdge); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = NULL;
-      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
-        if (likely(__pyx_t_7)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-          __Pyx_INCREF(__pyx_t_7);
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_removeEdge); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_10 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+        __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_5);
+        if (likely(__pyx_t_10)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+          __Pyx_INCREF(__pyx_t_10);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_2, function);
+          __Pyx_DECREF_SET(__pyx_t_5, function);
         }
       }
-      __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_7, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_edge);
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_2 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_10, __pyx_v_edge) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_edge);
+      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "algorithms_compiled.pyx":51
- *     for edge in list(sort_edges_keys):
- *         A.addEdge(edge, edges.get(edge))
- *         if (             # <<<<<<<<<<<<<<
- *             A.isCycle() is True
- *         ):  # Checking if the added node creates a cycle in the graph
+      /* "algorithms_compiled.pyx":57
+ *         if u not in nodes or v not in nodes:
+ *             continue
+ *         if A.isCycle():             # <<<<<<<<<<<<<<
+ *             A.removeEdge(edge)
+ * 
  */
     }
 
     /* "algorithms_compiled.pyx":49
- *     sort_edges_keys = sort_edges.keys()  # Getting the keys
+ *     sort_edges_keys = sort_edges.keys() # Getting the keys
  * 
  *     for edge in list(sort_edges_keys):             # <<<<<<<<<<<<<<
- *         A.addEdge(edge, edges.get(edge))
- *         if (
+ *         (u,v) = edge
+ *         nodes = A.get_nodes()
  */
+    __pyx_L3_continue:;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "algorithms_compiled.pyx":56
- *             A.removeEdge(edge)  # If so, remove it
+  /* "algorithms_compiled.pyx":60
+ *             A.removeEdge(edge)
  * 
  *     A.nonDiscendingOrderGraph_Keys()             # <<<<<<<<<<<<<<
- *     # A.PrintGraph("Kruscal", G)
+ * 
  *     return A.total_Weight()
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_nonDiscendingOrderGraph_Keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_nonDiscendingOrderGraph_Keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_5 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "algorithms_compiled.pyx":58
+  /* "algorithms_compiled.pyx":62
  *     A.nonDiscendingOrderGraph_Keys()
- *     # A.PrintGraph("Kruscal", G)
+ * 
  *     return A.total_Weight()             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_total_Weight); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_total_Weight); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_5 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "algorithms_compiled.pyx":40
+  /* "algorithms_compiled.pyx":38
  * 
  * 
  * def Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()
+ *     """
+ *     This is a function that implements the native Kruskal's algorithm,
  */
 
   /* function exit code */
@@ -2647,8 +2807,8 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("algorithms_compiled.Kruskal", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2657,22 +2817,26 @@ static PyObject *__pyx_pf_19algorithms_compiled_2Kruskal(CYTHON_UNUSED PyObject 
   __Pyx_XDECREF(__pyx_v_sort_edges);
   __Pyx_XDECREF(__pyx_v_sort_edges_keys);
   __Pyx_XDECREF(__pyx_v_edge);
+  __Pyx_XDECREF(__pyx_v_u);
+  __Pyx_XDECREF(__pyx_v_v);
+  __Pyx_XDECREF(__pyx_v_nodes);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "algorithms_compiled.pyx":61
+/* "algorithms_compiled.pyx":65
  * 
  * 
  * def Prim_Heap(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()  # Final MST
+ *     """
+ *     This is a function that implements the Prim's algorithm,
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_19algorithms_compiled_5Prim_Heap(PyObject *__pyx_self, PyObject *__pyx_v_G); /*proto*/
-static PyMethodDef __pyx_mdef_19algorithms_compiled_5Prim_Heap = {"Prim_Heap", (PyCFunction)__pyx_pw_19algorithms_compiled_5Prim_Heap, METH_O, 0};
+static char __pyx_doc_19algorithms_compiled_4Prim_Heap[] = "\n    This is a function that implements the Prim's algorithm, \n    which allows to achieve the time complexity of O(M * log(N)).\n    ";
+static PyMethodDef __pyx_mdef_19algorithms_compiled_5Prim_Heap = {"Prim_Heap", (PyCFunction)__pyx_pw_19algorithms_compiled_5Prim_Heap, METH_O, __pyx_doc_19algorithms_compiled_4Prim_Heap};
 static PyObject *__pyx_pw_19algorithms_compiled_5Prim_Heap(PyObject *__pyx_self, PyObject *__pyx_v_G) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2685,13 +2849,11 @@ static PyObject *__pyx_pw_19algorithms_compiled_5Prim_Heap(PyObject *__pyx_self,
 }
 
 static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_G) {
-  PyObject *__pyx_v_A = NULL;
+  PyObject *__pyx_v_Total_weight = NULL;
   PyObject *__pyx_v_Q = NULL;
   PyObject *__pyx_v_visited = NULL;
   PyObject *__pyx_v_weight = NULL;
   PyObject *__pyx_v_node = NULL;
-  PyObject *__pyx_v_key = NULL;
-  PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_v = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2713,75 +2875,50 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Prim_Heap", 0);
 
-  /* "algorithms_compiled.pyx":63
- * def Prim_Heap(G: Graph):
+  /* "algorithms_compiled.pyx":71
+ *     """
  * 
- *     A = Graph()  # Final MST             # <<<<<<<<<<<<<<
- *     Q = []  # This is the list uset to build the heap
+ *     Total_weight = 0    # The weight of the MST obtained             # <<<<<<<<<<<<<<
  * 
+ *     Q = []              # This is the list uset to build the heap
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Graph); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_A = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __Pyx_INCREF(__pyx_int_0);
+  __pyx_v_Total_weight = __pyx_int_0;
 
-  /* "algorithms_compiled.pyx":64
+  /* "algorithms_compiled.pyx":73
+ *     Total_weight = 0    # The weight of the MST obtained
  * 
- *     A = Graph()  # Final MST
- *     Q = []  # This is the list uset to build the heap             # <<<<<<<<<<<<<<
+ *     Q = []              # This is the list uset to build the heap             # <<<<<<<<<<<<<<
  * 
- *     visited = []  # Contains all the visited nodes
+ *     visited = []        # Contains all the visited nodes
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_Q = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":66
- *     Q = []  # This is the list uset to build the heap
+  /* "algorithms_compiled.pyx":75
+ *     Q = []              # This is the list uset to build the heap
  * 
- *     visited = []  # Contains all the visited nodes             # <<<<<<<<<<<<<<
- *     heappush(
- *         Q, [0, 1]
+ *     visited = []        # Contains all the visited nodes             # <<<<<<<<<<<<<<
+ *     heappush(Q,[0,1])   # [0,1] indicates a first weight of 0 and node 1 as starting node
+ *                         # In this way we don't need to use key and Phi as data structures
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_visited = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":67
+  /* "algorithms_compiled.pyx":76
  * 
- *     visited = []  # Contains all the visited nodes
- *     heappush(             # <<<<<<<<<<<<<<
- *         Q, [0, 1]
- *     )  # [0,1] indicates a first weight of 0 and node 1 as starting node
+ *     visited = []        # Contains all the visited nodes
+ *     heappush(Q,[0,1])   # [0,1] indicates a first weight of 0 and node 1 as starting node             # <<<<<<<<<<<<<<
+ *                         # In this way we don't need to use key and Phi as data structures
+ * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappush); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappush); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-
-  /* "algorithms_compiled.pyx":68
- *     visited = []  # Contains all the visited nodes
- *     heappush(
- *         Q, [0, 1]             # <<<<<<<<<<<<<<
- *     )  # [0,1] indicates a first weight of 0 and node 1 as starting node
- *     # In this way we don't need to use key and Phi as data structures
- */
-  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -2804,7 +2941,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_Q, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -2813,14 +2950,14 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_Q, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -2831,42 +2968,34 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "algorithms_compiled.pyx":72
- *     # In this way we don't need to use key and Phi as data structures
+  /* "algorithms_compiled.pyx":80
  * 
- *     while len(Q) != 0:             # <<<<<<<<<<<<<<
- *         weight, node = heappop(
- *             Q
+ * 
+ *     while len(Q)!=0:             # <<<<<<<<<<<<<<
+ * 
+ *         weight, node = heappop(Q)    # Extract the minimum edge incident [weignt, node], it pops the elements too
  */
   while (1) {
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_Q); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 72, __pyx_L1_error)
+    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_Q); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 80, __pyx_L1_error)
     __pyx_t_8 = ((__pyx_t_7 != 0) != 0);
     if (!__pyx_t_8) break;
 
-    /* "algorithms_compiled.pyx":73
+    /* "algorithms_compiled.pyx":82
+ *     while len(Q)!=0:
  * 
- *     while len(Q) != 0:
- *         weight, node = heappop(             # <<<<<<<<<<<<<<
- *             Q
- *         )  # Extract the minimum edge incident [weignt, node], it pops the elements too
+ *         weight, node = heappop(Q)    # Extract the minimum edge incident [weignt, node], it pops the elements too             # <<<<<<<<<<<<<<
+ *                                     # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
+ * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-
-    /* "algorithms_compiled.pyx":74
- *     while len(Q) != 0:
- *         weight, node = heappop(
- *             Q             # <<<<<<<<<<<<<<
- *         )  # Extract the minimum edge incident [weignt, node], it pops the elements too
- *         # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
- */
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
       __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
@@ -2879,7 +3008,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
     }
     __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_6, __pyx_v_Q) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_Q);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -2888,7 +3017,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 73, __pyx_L1_error)
+        __PYX_ERR(0, 82, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -2901,15 +3030,15 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
       __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -2917,7 +3046,7 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
       __Pyx_GOTREF(__pyx_t_2);
       index = 1; __pyx_t_6 = __pyx_t_9(__pyx_t_3); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_3), 2) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_3), 2) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L6_unpacking_done;
@@ -2925,661 +3054,344 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 73, __pyx_L1_error)
+      __PYX_ERR(0, 82, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
-
-    /* "algorithms_compiled.pyx":73
- * 
- *     while len(Q) != 0:
- *         weight, node = heappop(             # <<<<<<<<<<<<<<
- *             Q
- *         )  # Extract the minimum edge incident [weignt, node], it pops the elements too
- */
     __Pyx_XDECREF_SET(__pyx_v_weight, __pyx_t_2);
     __pyx_t_2 = 0;
     __Pyx_XDECREF_SET(__pyx_v_node, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "algorithms_compiled.pyx":78
- *         # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
+    /* "algorithms_compiled.pyx":85
+ *                                     # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
  * 
- *         if node in visited:  # node already visited             # <<<<<<<<<<<<<<
+ *         if node in visited:         # node already visited             # <<<<<<<<<<<<<<
  *             continue
  * 
  */
-    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_v_visited, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_v_visited, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
     __pyx_t_10 = (__pyx_t_8 != 0);
     if (__pyx_t_10) {
 
-      /* "algorithms_compiled.pyx":79
+      /* "algorithms_compiled.pyx":86
  * 
- *         if node in visited:  # node already visited
+ *         if node in visited:         # node already visited
  *             continue             # <<<<<<<<<<<<<<
  * 
- *         visited.append(node)  # Node non visited. Adding it to the final MST
+ *         visited.append(node)        # Node non visited. Adding it to the final MST
  */
       goto __pyx_L3_continue;
 
-      /* "algorithms_compiled.pyx":78
- *         # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
+      /* "algorithms_compiled.pyx":85
+ *                                     # This is the weight of a visited edge. It does not create cycles so let's add it to the final MST
  * 
- *         if node in visited:  # node already visited             # <<<<<<<<<<<<<<
+ *         if node in visited:         # node already visited             # <<<<<<<<<<<<<<
  *             continue
  * 
  */
     }
 
-    /* "algorithms_compiled.pyx":81
+    /* "algorithms_compiled.pyx":88
  *             continue
  * 
- *         visited.append(node)  # Node non visited. Adding it to the final MST             # <<<<<<<<<<<<<<
+ *         visited.append(node)        # Node non visited. Adding it to the final MST             # <<<<<<<<<<<<<<
  * 
- *         for key, value in G.get_edges().items():  #
+ *         Total_weight += weight      # Adding the edge's weight to the final MST weight
  */
-    __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_visited, __pyx_v_node); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_visited, __pyx_v_node); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 88, __pyx_L1_error)
 
-    /* "algorithms_compiled.pyx":83
- *         visited.append(node)  # Node non visited. Adding it to the final MST
+    /* "algorithms_compiled.pyx":90
+ *         visited.append(node)        # Node non visited. Adding it to the final MST
  * 
- *         for key, value in G.get_edges().items():  #             # <<<<<<<<<<<<<<
- *             if (
- *                 value == weight
+ *         Total_weight += weight      # Adding the edge's weight to the final MST weight             # <<<<<<<<<<<<<<
+ * 
+ * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_get_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_3)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_3);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-      }
-    }
-    __pyx_t_6 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_6)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-      }
-    }
-    __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_Total_weight, __pyx_v_weight); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_Total_weight, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "algorithms_compiled.pyx":93
+ * 
+ * 
+ *         for v in G.getAdjacentNodes(node):                      # for each v adiacent to node             # <<<<<<<<<<<<<<
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node
+ *             if weight == None:
+ */
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_getAdjacentNodes); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_2 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
+      if (likely(__pyx_t_2)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+        __Pyx_INCREF(__pyx_t_2);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_6, function);
+      }
+    }
+    __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_2, __pyx_v_node) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_node);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-      __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
+      __pyx_t_6 = __pyx_t_1; __Pyx_INCREF(__pyx_t_6); __pyx_t_7 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __pyx_t_7 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 93, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_12 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 93, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
       if (likely(!__pyx_t_12)) {
-        if (likely(PyList_CheckExact(__pyx_t_2))) {
-          if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        if (likely(PyList_CheckExact(__pyx_t_6))) {
+          if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_6)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 83, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
-          if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+          if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 83, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
       } else {
-        __pyx_t_1 = __pyx_t_12(__pyx_t_2);
+        __pyx_t_1 = __pyx_t_12(__pyx_t_6);
         if (unlikely(!__pyx_t_1)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 83, __pyx_L1_error)
+            else __PYX_ERR(0, 93, __pyx_L1_error)
           }
           break;
         }
         __Pyx_GOTREF(__pyx_t_1);
       }
-      if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
-        PyObject* sequence = __pyx_t_1;
-        Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-        if (unlikely(size != 2)) {
-          if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-          else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 83, __pyx_L1_error)
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        if (likely(PyTuple_CheckExact(sequence))) {
-          __pyx_t_6 = PyTuple_GET_ITEM(sequence, 0); 
-          __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
-        } else {
-          __pyx_t_6 = PyList_GET_ITEM(sequence, 0); 
-          __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
-        }
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(__pyx_t_3);
-        #else
-        __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        #endif
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      } else {
-        Py_ssize_t index = -1;
-        __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_9 = Py_TYPE(__pyx_t_4)->tp_iternext;
-        index = 0; __pyx_t_6 = __pyx_t_9(__pyx_t_4); if (unlikely(!__pyx_t_6)) goto __pyx_L10_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_6);
-        index = 1; __pyx_t_3 = __pyx_t_9(__pyx_t_4); if (unlikely(!__pyx_t_3)) goto __pyx_L10_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_3);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_4), 2) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
-        __pyx_t_9 = NULL;
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        goto __pyx_L11_unpacking_done;
-        __pyx_L10_unpacking_failed:;
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_9 = NULL;
-        if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 83, __pyx_L1_error)
-        __pyx_L11_unpacking_done:;
-      }
-      __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_6);
-      __pyx_t_6 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_3);
-      __pyx_t_3 = 0;
-
-      /* "algorithms_compiled.pyx":85
- *         for key, value in G.get_edges().items():  #
- *             if (
- *                 value == weight             # <<<<<<<<<<<<<<
- *             ):  #   Retrieve the adjacent node that identify the edge in order to obtain the weight
- *                 print("value equals to weight!key", key, " weight", weight)
- */
-      __pyx_t_1 = PyObject_RichCompare(__pyx_v_value, __pyx_v_weight, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
-      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-      /* "algorithms_compiled.pyx":84
- * 
- *         for key, value in G.get_edges().items():  #
- *             if (             # <<<<<<<<<<<<<<
- *                 value == weight
- *             ):  #   Retrieve the adjacent node that identify the edge in order to obtain the weight
- */
-      if (__pyx_t_10) {
-
-        /* "algorithms_compiled.pyx":87
- *                 value == weight
- *             ):  #   Retrieve the adjacent node that identify the edge in order to obtain the weight
- *                 print("value equals to weight!key", key, " weight", weight)             # <<<<<<<<<<<<<<
- *                 print()
- *                 A.addEdge(key, weight)  #
- */
-        __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_INCREF(__pyx_kp_s_value_equals_to_weight_key);
-        __Pyx_GIVEREF(__pyx_kp_s_value_equals_to_weight_key);
-        PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_s_value_equals_to_weight_key);
-        __Pyx_INCREF(__pyx_v_key);
-        __Pyx_GIVEREF(__pyx_v_key);
-        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_key);
-        __Pyx_INCREF(__pyx_kp_s_weight);
-        __Pyx_GIVEREF(__pyx_kp_s_weight);
-        PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_s_weight);
-        __Pyx_INCREF(__pyx_v_weight);
-        __Pyx_GIVEREF(__pyx_v_weight);
-        PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_v_weight);
-        if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-        /* "algorithms_compiled.pyx":88
- *             ):  #   Retrieve the adjacent node that identify the edge in order to obtain the weight
- *                 print("value equals to weight!key", key, " weight", weight)
- *                 print()             # <<<<<<<<<<<<<<
- *                 A.addEdge(key, weight)  #
- *                 break
- */
-        if (__Pyx_PrintOne(0, __pyx_empty_tuple) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
-
-        /* "algorithms_compiled.pyx":89
- *                 print("value equals to weight!key", key, " weight", weight)
- *                 print()
- *                 A.addEdge(key, weight)  #             # <<<<<<<<<<<<<<
- *                 break
- * 
- */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_addEdge); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_6 = NULL;
-        __pyx_t_5 = 0;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-          __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-          if (likely(__pyx_t_6)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-            __Pyx_INCREF(__pyx_t_6);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_3, function);
-            __pyx_t_5 = 1;
-          }
-        }
-        #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_key, __pyx_v_weight};
-          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_GOTREF(__pyx_t_1);
-        } else
-        #endif
-        #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_key, __pyx_v_weight};
-          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_GOTREF(__pyx_t_1);
-        } else
-        #endif
-        {
-          __pyx_t_4 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_4);
-          if (__pyx_t_6) {
-            __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __pyx_t_6 = NULL;
-          }
-          __Pyx_INCREF(__pyx_v_key);
-          __Pyx_GIVEREF(__pyx_v_key);
-          PyTuple_SET_ITEM(__pyx_t_4, 0+__pyx_t_5, __pyx_v_key);
-          __Pyx_INCREF(__pyx_v_weight);
-          __Pyx_GIVEREF(__pyx_v_weight);
-          PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_5, __pyx_v_weight);
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        }
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-        /* "algorithms_compiled.pyx":90
- *                 print()
- *                 A.addEdge(key, weight)  #
- *                 break             # <<<<<<<<<<<<<<
- * 
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
- */
-        goto __pyx_L9_break;
-
-        /* "algorithms_compiled.pyx":84
- * 
- *         for key, value in G.get_edges().items():  #
- *             if (             # <<<<<<<<<<<<<<
- *                 value == weight
- *             ):  #   Retrieve the adjacent node that identify the edge in order to obtain the weight
- */
-      }
-
-      /* "algorithms_compiled.pyx":83
- *         visited.append(node)  # Node non visited. Adding it to the final MST
- * 
- *         for key, value in G.get_edges().items():  #             # <<<<<<<<<<<<<<
- *             if (
- *                 value == weight
- */
-    }
-    __pyx_L9_break:;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "algorithms_compiled.pyx":92
- *                 break
- * 
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node             # <<<<<<<<<<<<<<
- *             weight = G.edges.get((node, v))  # Taking the weight of the node
- *             if weight is None:
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_getAdjacentNodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_3)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_3);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
-      }
-    }
-    __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_node) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_node);
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
-      __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_7 = 0;
-      __pyx_t_12 = NULL;
-    } else {
-      __pyx_t_7 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 92, __pyx_L1_error)
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    for (;;) {
-      if (likely(!__pyx_t_12)) {
-        if (likely(PyList_CheckExact(__pyx_t_1))) {
-          if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_1)) break;
-          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 92, __pyx_L1_error)
-          #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          #endif
-        } else {
-          if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 92, __pyx_L1_error)
-          #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          #endif
-        }
-      } else {
-        __pyx_t_2 = __pyx_t_12(__pyx_t_1);
-        if (unlikely(!__pyx_t_2)) {
-          PyObject* exc_type = PyErr_Occurred();
-          if (exc_type) {
-            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 92, __pyx_L1_error)
-          }
-          break;
-        }
-        __Pyx_GOTREF(__pyx_t_2);
-      }
-      __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_2);
-      __pyx_t_2 = 0;
-
-      /* "algorithms_compiled.pyx":93
- * 
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
- *             weight = G.edges.get((node, v))  # Taking the weight of the node             # <<<<<<<<<<<<<<
- *             if weight is None:
- *                 weight = G.edges.get((v, node))
- */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx_v_node);
-      __Pyx_GIVEREF(__pyx_v_node);
-      PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_node);
-      __Pyx_INCREF(__pyx_v_v);
-      __Pyx_GIVEREF(__pyx_v_v);
-      PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_v);
-      __pyx_t_6 = NULL;
-      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-        __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_4);
-        if (likely(__pyx_t_6)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-          __Pyx_INCREF(__pyx_t_6);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_4, function);
-        }
-      }
-      __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_6, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF_SET(__pyx_v_weight, __pyx_t_2);
-      __pyx_t_2 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_1);
+      __pyx_t_1 = 0;
 
       /* "algorithms_compiled.pyx":94
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
- *             weight = G.edges.get((node, v))  # Taking the weight of the node
- *             if weight is None:             # <<<<<<<<<<<<<<
+ * 
+ *         for v in G.getAdjacentNodes(node):                      # for each v adiacent to node
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node             # <<<<<<<<<<<<<<
+ *             if weight == None:
+ *                 weight = G.edges.get((v, node))
+ */
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_edges); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_v_node);
+      __Pyx_GIVEREF(__pyx_v_node);
+      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_node);
+      __Pyx_INCREF(__pyx_v_v);
+      __Pyx_GIVEREF(__pyx_v_v);
+      PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_v);
+      __pyx_t_4 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF_SET(__pyx_v_weight, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "algorithms_compiled.pyx":95
+ *         for v in G.getAdjacentNodes(node):                      # for each v adiacent to node
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node
+ *             if weight == None:             # <<<<<<<<<<<<<<
  *                 weight = G.edges.get((v, node))
  *             if v not in visited:
  */
-      __pyx_t_10 = (__pyx_v_weight == Py_None);
+      __pyx_t_1 = PyObject_RichCompare(__pyx_v_weight, Py_None, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (__pyx_t_10) {
+
+        /* "algorithms_compiled.pyx":96
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node
+ *             if weight == None:
+ *                 weight = G.edges.get((v, node))             # <<<<<<<<<<<<<<
+ *             if v not in visited:
+ *                 heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet
+ */
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_edges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_INCREF(__pyx_v_v);
+        __Pyx_GIVEREF(__pyx_v_v);
+        PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_v);
+        __Pyx_INCREF(__pyx_v_node);
+        __Pyx_GIVEREF(__pyx_v_node);
+        PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_node);
+        __pyx_t_4 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+            __Pyx_INCREF(__pyx_t_4);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_2, function);
+          }
+        }
+        __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF_SET(__pyx_v_weight, __pyx_t_1);
+        __pyx_t_1 = 0;
+
+        /* "algorithms_compiled.pyx":95
+ *         for v in G.getAdjacentNodes(node):                      # for each v adiacent to node
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node
+ *             if weight == None:             # <<<<<<<<<<<<<<
+ *                 weight = G.edges.get((v, node))
+ *             if v not in visited:
+ */
+      }
+
+      /* "algorithms_compiled.pyx":97
+ *             if weight == None:
+ *                 weight = G.edges.get((v, node))
+ *             if v not in visited:             # <<<<<<<<<<<<<<
+ *                 heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet
+ * 
+ */
+      __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_v, __pyx_v_visited, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 97, __pyx_L1_error)
       __pyx_t_8 = (__pyx_t_10 != 0);
       if (__pyx_t_8) {
 
-        /* "algorithms_compiled.pyx":95
- *             weight = G.edges.get((node, v))  # Taking the weight of the node
- *             if weight is None:
- *                 weight = G.edges.get((v, node))             # <<<<<<<<<<<<<<
- *             if v not in visited:
- *                 heappush(
- */
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_G, __pyx_n_s_edges); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_INCREF(__pyx_v_v);
-        __Pyx_GIVEREF(__pyx_v_v);
-        PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_v);
-        __Pyx_INCREF(__pyx_v_node);
-        __Pyx_GIVEREF(__pyx_v_node);
-        PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_node);
-        __pyx_t_6 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-          __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-          if (likely(__pyx_t_6)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-            __Pyx_INCREF(__pyx_t_6);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_3, function);
-          }
-        }
-        __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_6, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
-        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __Pyx_DECREF_SET(__pyx_v_weight, __pyx_t_2);
-        __pyx_t_2 = 0;
-
-        /* "algorithms_compiled.pyx":94
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
- *             weight = G.edges.get((node, v))  # Taking the weight of the node
- *             if weight is None:             # <<<<<<<<<<<<<<
- *                 weight = G.edges.get((v, node))
- *             if v not in visited:
- */
-      }
-
-      /* "algorithms_compiled.pyx":96
- *             if weight is None:
- *                 weight = G.edges.get((v, node))
- *             if v not in visited:             # <<<<<<<<<<<<<<
- *                 heappush(
- *                     Q, [weight, v]
- */
-      __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_v, __pyx_v_visited, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
-      __pyx_t_10 = (__pyx_t_8 != 0);
-      if (__pyx_t_10) {
-
-        /* "algorithms_compiled.pyx":97
- *                 weight = G.edges.get((v, node))
- *             if v not in visited:
- *                 heappush(             # <<<<<<<<<<<<<<
- *                     Q, [weight, v]
- *                 )  # Adding a new [w,v] to Q if v in not visited yet
- */
-        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_heappush); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-
         /* "algorithms_compiled.pyx":98
+ *                 weight = G.edges.get((v, node))
  *             if v not in visited:
- *                 heappush(
- *                     Q, [weight, v]             # <<<<<<<<<<<<<<
- *                 )  # Adding a new [w,v] to Q if v in not visited yet
+ *                 heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet             # <<<<<<<<<<<<<<
  * 
+ *     return Total_weight
  */
-        __pyx_t_4 = PyList_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_heappush); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_weight);
         __Pyx_GIVEREF(__pyx_v_weight);
-        PyList_SET_ITEM(__pyx_t_4, 0, __pyx_v_weight);
+        PyList_SET_ITEM(__pyx_t_3, 0, __pyx_v_weight);
         __Pyx_INCREF(__pyx_v_v);
         __Pyx_GIVEREF(__pyx_v_v);
-        PyList_SET_ITEM(__pyx_t_4, 1, __pyx_v_v);
-        __pyx_t_6 = NULL;
+        PyList_SET_ITEM(__pyx_t_3, 1, __pyx_v_v);
+        __pyx_t_4 = NULL;
         __pyx_t_5 = 0;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-          __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-          if (likely(__pyx_t_6)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-            __Pyx_INCREF(__pyx_t_6);
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+            __Pyx_INCREF(__pyx_t_4);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_3, function);
+            __Pyx_DECREF_SET(__pyx_t_2, function);
             __pyx_t_5 = 1;
           }
         }
         #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_Q, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_GOTREF(__pyx_t_2);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (PyFunction_Check(__pyx_t_2)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_Q, __pyx_t_3};
+          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_v_Q, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_GOTREF(__pyx_t_2);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_Q, __pyx_t_3};
+          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         } else
         #endif
         {
-          __pyx_t_13 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 97, __pyx_L1_error)
+          __pyx_t_13 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 98, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
-          if (__pyx_t_6) {
-            __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_6); __pyx_t_6 = NULL;
+          if (__pyx_t_4) {
+            __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_4); __pyx_t_4 = NULL;
           }
           __Pyx_INCREF(__pyx_v_Q);
           __Pyx_GIVEREF(__pyx_v_Q);
           PyTuple_SET_ITEM(__pyx_t_13, 0+__pyx_t_5, __pyx_v_Q);
-          __Pyx_GIVEREF(__pyx_t_4);
-          PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_5, __pyx_t_4);
-          __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_13, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_GIVEREF(__pyx_t_3);
+          PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_5, __pyx_t_3);
+          __pyx_t_3 = 0;
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         }
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "algorithms_compiled.pyx":96
- *             if weight is None:
+        /* "algorithms_compiled.pyx":97
+ *             if weight == None:
  *                 weight = G.edges.get((v, node))
  *             if v not in visited:             # <<<<<<<<<<<<<<
- *                 heappush(
- *                     Q, [weight, v]
+ *                 heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet
+ * 
  */
       }
 
-      /* "algorithms_compiled.pyx":92
- *                 break
+      /* "algorithms_compiled.pyx":93
  * 
- *         for v in G.getAdjacentNodes(node):  # for each v adiacent to node             # <<<<<<<<<<<<<<
- *             weight = G.edges.get((node, v))  # Taking the weight of the node
- *             if weight is None:
+ * 
+ *         for v in G.getAdjacentNodes(node):                      # for each v adiacent to node             # <<<<<<<<<<<<<<
+ *             weight = G.edges.get((node, v))                     # Taking the weight of the node
+ *             if weight == None:
  */
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_L3_continue:;
   }
 
-  /* "algorithms_compiled.pyx":101
- *                 )  # Adding a new [w,v] to Q if v in not visited yet
+  /* "algorithms_compiled.pyx":100
+ *                 heappush(Q,[weight,v])                          # Adding a new [w,v] to Q if v in not visited yet
  * 
- *     A.nonDiscendingOrderGraph_Keys()             # <<<<<<<<<<<<<<
- *     # A.PrintGraph("Prim_H", G)
- *     return A.total_Weight()
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_nonDiscendingOrderGraph_Keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "algorithms_compiled.pyx":103
- *     A.nonDiscendingOrderGraph_Keys()
- *     # A.PrintGraph("Prim_H", G)
- *     return A.total_Weight()             # <<<<<<<<<<<<<<
+ *     return Total_weight             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_A, __pyx_n_s_total_Weight); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __Pyx_INCREF(__pyx_v_Total_weight);
+  __pyx_r = __pyx_v_Total_weight;
   goto __pyx_L0;
 
-  /* "algorithms_compiled.pyx":61
+  /* "algorithms_compiled.pyx":65
  * 
  * 
  * def Prim_Heap(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()  # Final MST
+ *     """
+ *     This is a function that implements the Prim's algorithm,
  */
 
   /* function exit code */
@@ -3593,13 +3405,11 @@ static PyObject *__pyx_pf_19algorithms_compiled_4Prim_Heap(CYTHON_UNUSED PyObjec
   __Pyx_AddTraceback("algorithms_compiled.Prim_Heap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_A);
+  __Pyx_XDECREF(__pyx_v_Total_weight);
   __Pyx_XDECREF(__pyx_v_Q);
   __Pyx_XDECREF(__pyx_v_visited);
   __Pyx_XDECREF(__pyx_v_weight);
   __Pyx_XDECREF(__pyx_v_node);
-  __Pyx_XDECREF(__pyx_v_key);
-  __Pyx_XDECREF(__pyx_v_value);
   __Pyx_XDECREF(__pyx_v_v);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -3792,6 +3602,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Kruskal_locals_lambda, __pyx_k_Kruskal_locals_lambda, sizeof(__pyx_k_Kruskal_locals_lambda), 0, 0, 1, 1},
   {&__pyx_n_s_Prim_Heap, __pyx_k_Prim_Heap, sizeof(__pyx_k_Prim_Heap), 0, 0, 1, 1},
   {&__pyx_n_s_Q, __pyx_k_Q, sizeof(__pyx_k_Q), 0, 0, 1, 1},
+  {&__pyx_n_s_Total_weight, __pyx_k_Total_weight, sizeof(__pyx_k_Total_weight), 0, 0, 1, 1},
   {&__pyx_n_s_U, __pyx_k_U, sizeof(__pyx_k_U), 0, 0, 1, 1},
   {&__pyx_n_s_Union, __pyx_k_Union, sizeof(__pyx_k_Union), 0, 0, 1, 1},
   {&__pyx_n_s_UnionFind, __pyx_k_UnionFind, sizeof(__pyx_k_UnionFind), 0, 0, 1, 1},
@@ -3801,8 +3612,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_edge, __pyx_k_edge, sizeof(__pyx_k_edge), 0, 0, 1, 1},
   {&__pyx_n_s_edges, __pyx_k_edges, sizeof(__pyx_k_edges), 0, 0, 1, 1},
-  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
-  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
   {&__pyx_n_s_getAdjacentNodes, __pyx_k_getAdjacentNodes, sizeof(__pyx_k_getAdjacentNodes), 0, 0, 1, 1},
   {&__pyx_n_s_get_edges, __pyx_k_get_edges, sizeof(__pyx_k_get_edges), 0, 0, 1, 1},
@@ -3819,26 +3628,24 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_node, __pyx_k_node, sizeof(__pyx_k_node), 0, 0, 1, 1},
+  {&__pyx_n_s_nodes, __pyx_k_nodes, sizeof(__pyx_k_nodes), 0, 0, 1, 1},
   {&__pyx_n_s_nonDiscendingOrderGraph_Keys, __pyx_k_nonDiscendingOrderGraph_Keys, sizeof(__pyx_k_nonDiscendingOrderGraph_Keys), 0, 0, 1, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_removeEdge, __pyx_k_removeEdge, sizeof(__pyx_k_removeEdge), 0, 0, 1, 1},
   {&__pyx_n_s_sort_edges, __pyx_k_sort_edges, sizeof(__pyx_k_sort_edges), 0, 0, 1, 1},
   {&__pyx_n_s_sort_edges_keys, __pyx_k_sort_edges_keys, sizeof(__pyx_k_sort_edges_keys), 0, 0, 1, 1},
   {&__pyx_n_s_sorted, __pyx_k_sorted, sizeof(__pyx_k_sorted), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_total_Weight, __pyx_k_total_Weight, sizeof(__pyx_k_total_Weight), 0, 0, 1, 1},
+  {&__pyx_n_s_u, __pyx_k_u, sizeof(__pyx_k_u), 0, 0, 1, 1},
   {&__pyx_n_s_unionFind_compiled, __pyx_k_unionFind_compiled, sizeof(__pyx_k_unionFind_compiled), 0, 0, 1, 1},
   {&__pyx_n_s_v, __pyx_k_v, sizeof(__pyx_k_v), 0, 0, 1, 1},
-  {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
-  {&__pyx_kp_s_value_equals_to_weight_key, __pyx_k_value_equals_to_weight_key, sizeof(__pyx_k_value_equals_to_weight_key), 0, 0, 1, 0},
   {&__pyx_n_s_visited, __pyx_k_visited, sizeof(__pyx_k_visited), 0, 0, 1, 1},
   {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
-  {&__pyx_kp_s_weight, __pyx_k_weight, sizeof(__pyx_k_weight), 0, 0, 1, 0},
-  {&__pyx_n_s_weight_2, __pyx_k_weight_2, sizeof(__pyx_k_weight_2), 0, 0, 1, 1},
+  {&__pyx_n_s_weight, __pyx_k_weight, sizeof(__pyx_k_weight), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 23, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3851,38 +3658,38 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "algorithms_compiled.pyx":11
  * 
  * 
- * def Efficient_Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = (
+ * def Efficient_Kruskal(G: Graph) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     This is a function that implements the Kruskal's algorithm
  */
   __pyx_tuple__2 = PyTuple_Pack(9, __pyx_n_s_G, __pyx_n_s_A, __pyx_n_s_U, __pyx_n_s_edges, __pyx_n_s_sort_edges, __pyx_n_s_sort_edges_keys, __pyx_n_s_edge, __pyx_n_s_v, __pyx_n_s_w); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
   __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_algorithms_compiled_pyx, __pyx_n_s_Efficient_Kruskal, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 11, __pyx_L1_error)
 
-  /* "algorithms_compiled.pyx":40
+  /* "algorithms_compiled.pyx":38
  * 
  * 
  * def Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()
+ *     """
+ *     This is a function that implements the native Kruskal's algorithm,
  */
-  __pyx_tuple__4 = PyTuple_Pack(6, __pyx_n_s_G, __pyx_n_s_A, __pyx_n_s_edges, __pyx_n_s_sort_edges, __pyx_n_s_sort_edges_keys, __pyx_n_s_edge); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(9, __pyx_n_s_G, __pyx_n_s_A, __pyx_n_s_edges, __pyx_n_s_sort_edges, __pyx_n_s_sort_edges_keys, __pyx_n_s_edge, __pyx_n_s_u, __pyx_n_s_v, __pyx_n_s_nodes); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_algorithms_compiled_pyx, __pyx_n_s_Kruskal, 40, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_algorithms_compiled_pyx, __pyx_n_s_Kruskal, 38, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 38, __pyx_L1_error)
 
-  /* "algorithms_compiled.pyx":61
+  /* "algorithms_compiled.pyx":65
  * 
  * 
  * def Prim_Heap(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()  # Final MST
+ *     """
+ *     This is a function that implements the Prim's algorithm,
  */
-  __pyx_tuple__6 = PyTuple_Pack(9, __pyx_n_s_G, __pyx_n_s_A, __pyx_n_s_Q, __pyx_n_s_visited, __pyx_n_s_weight_2, __pyx_n_s_node, __pyx_n_s_key, __pyx_n_s_value, __pyx_n_s_v); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(7, __pyx_n_s_G, __pyx_n_s_Total_weight, __pyx_n_s_Q, __pyx_n_s_visited, __pyx_n_s_weight, __pyx_n_s_node, __pyx_n_s_v); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_algorithms_compiled_pyx, __pyx_n_s_Prim_Heap, 61, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_algorithms_compiled_pyx, __pyx_n_s_Prim_Heap, 65, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4228,37 +4035,37 @@ if (!__Pyx_RefNanny) {
   /* "algorithms_compiled.pyx":11
  * 
  * 
- * def Efficient_Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = (
+ * def Efficient_Kruskal(G: Graph) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     This is a function that implements the Kruskal's algorithm
  */
   __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_19algorithms_compiled_1Efficient_Kruskal, NULL, __pyx_n_s_algorithms_compiled); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Efficient_Kruskal, __pyx_t_2) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "algorithms_compiled.pyx":40
+  /* "algorithms_compiled.pyx":38
  * 
  * 
  * def Kruskal(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()
+ *     """
+ *     This is a function that implements the native Kruskal's algorithm,
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_19algorithms_compiled_3Kruskal, NULL, __pyx_n_s_algorithms_compiled); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_19algorithms_compiled_3Kruskal, NULL, __pyx_n_s_algorithms_compiled); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Kruskal, __pyx_t_2) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Kruskal, __pyx_t_2) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "algorithms_compiled.pyx":61
+  /* "algorithms_compiled.pyx":65
  * 
  * 
  * def Prim_Heap(G: Graph):             # <<<<<<<<<<<<<<
- * 
- *     A = Graph()  # Final MST
+ *     """
+ *     This is a function that implements the Prim's algorithm,
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_19algorithms_compiled_5Prim_Heap, NULL, __pyx_n_s_algorithms_compiled); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_19algorithms_compiled_5Prim_Heap, NULL, __pyx_n_s_algorithms_compiled); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Prim_Heap, __pyx_t_2) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Prim_Heap, __pyx_t_2) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "algorithms_compiled.pyx":1
@@ -5846,112 +5653,6 @@ bad:
     Py_XDECREF(py_frame);
 }
 
-/* Print */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static PyObject *__Pyx_GetStdout(void) {
-    PyObject *f = PySys_GetObject((char *)"stdout");
-    if (!f) {
-        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
-    }
-    return f;
-}
-static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
-    int i;
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
-        PyObject* v;
-        if (PyFile_SoftSpace(f, 1)) {
-            if (PyFile_WriteString(" ", f) < 0)
-                goto error;
-        }
-        v = PyTuple_GET_ITEM(arg_tuple, i);
-        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
-            goto error;
-        if (PyString_Check(v)) {
-            char *s = PyString_AsString(v);
-            Py_ssize_t len = PyString_Size(v);
-            if (len > 0) {
-                switch (s[len-1]) {
-                    case ' ': break;
-                    case '\f': case '\r': case '\n': case '\t': case '\v':
-                        PyFile_SoftSpace(f, 0);
-                        break;
-                    default:  break;
-                }
-            }
-        }
-    }
-    if (newline) {
-        if (PyFile_WriteString("\n", f) < 0)
-            goto error;
-        PyFile_SoftSpace(f, 0);
-    }
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-}
-#else
-static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
-    PyObject* kwargs = 0;
-    PyObject* result = 0;
-    PyObject* end_string;
-    if (unlikely(!__pyx_print)) {
-        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
-        if (!__pyx_print)
-            return -1;
-    }
-    if (stream) {
-        kwargs = PyDict_New();
-        if (unlikely(!kwargs))
-            return -1;
-        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
-            goto bad;
-        if (!newline) {
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                goto bad;
-            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                goto bad;
-            }
-            Py_DECREF(end_string);
-        }
-    } else if (!newline) {
-        if (unlikely(!__pyx_print_kwargs)) {
-            __pyx_print_kwargs = PyDict_New();
-            if (unlikely(!__pyx_print_kwargs))
-                return -1;
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                return -1;
-            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                return -1;
-            }
-            Py_DECREF(end_string);
-        }
-        kwargs = __pyx_print_kwargs;
-    }
-    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
-    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
-        Py_DECREF(kwargs);
-    if (!result)
-        return -1;
-    Py_DECREF(result);
-    return 0;
-bad:
-    if (kwargs != __pyx_print_kwargs)
-        Py_XDECREF(kwargs);
-    return -1;
-}
-#endif
-
 /* CIntToPy */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
@@ -5989,43 +5690,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
                                      little, !is_unsigned);
     }
 }
-
-/* PrintOne */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    if (PyFile_SoftSpace(f, 0)) {
-        if (PyFile_WriteString(" ", f) < 0)
-            goto error;
-    }
-    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
-        goto error;
-    if (PyFile_WriteString("\n", f) < 0)
-        goto error;
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-    /* the line below is just to avoid C compiler
-     * warnings about unused functions */
-    return __Pyx_Print(f, NULL, 0);
-}
-#else
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
-    int res;
-    PyObject* arg_tuple = PyTuple_Pack(1, o);
-    if (unlikely(!arg_tuple))
-        return -1;
-    res = __Pyx_Print(stream, arg_tuple, 1);
-    Py_DECREF(arg_tuple);
-    return res;
-}
-#endif
 
 /* CIntFromPyVerify */
 #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)\

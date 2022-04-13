@@ -44,7 +44,7 @@ def pyplot_Complete(graphs_sizes, run_times_Prim, run_times_Kruskal, run_times_K
     plt.legend(["Prim","Kruscal", "Kruskal_Efficient"])
     plt.ylabel('run time (ns)')
     plt.xlabel('size')
-    plt.savefig('All.png')
+    plt.savefig('RESULTS/All.png')
     plt.close()
 
 
@@ -57,7 +57,7 @@ def pyplot_Prim(graphs_sizes, run_times_Prim, graph_data):
     plt.legend(["Reference O(m*log(n))", "Prim"])
     plt.ylabel('run time (ns)')
     plt.xlabel('size')
-    plt.savefig('Prim.png')
+    plt.savefig('RESULTS/Prim.png')
     plt.close()
     #####################################################
 
@@ -71,7 +71,7 @@ def pyplot_Kruskal_Efficient(graphs_sizes, run_times_Kruskal_Efficient, graph_da
     plt.legend(["Reference O(m*log(n))", "Kruskal_Efficient"])
     plt.ylabel('run time (ns)')
     plt.xlabel('size')
-    plt.savefig('Kruskal_Efficient.png')
+    plt.savefig('RESULTS/Kruskal_Efficient.png')
     plt.close()
 
     #####################################################
@@ -86,7 +86,7 @@ def pyplot_Kruskal(graphs_sizes, run_times_Kruskal, graph_data):
     plt.legend(["Reference O(n*m)", "Kruskal"])
     plt.ylabel('run time (ns)')
     plt.xlabel('size')
-    plt.savefig('Kruskal.png')
+    plt.savefig('RESULTS/Kruskal.png')
     plt.close()
 
     #####################################################

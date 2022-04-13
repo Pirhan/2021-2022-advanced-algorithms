@@ -1,12 +1,10 @@
-import os
-
 # cythonized code start import
 from graph_compiled import Graph
 import algorithms_compiled as algorithms
 
 # cythonized code end import
 from time import perf_counter_ns
-import gc
+import gc, os 
 import pandas as pd
 import numpy as np
 from multiprocessing import Process
@@ -34,9 +32,10 @@ def main():
     Graphs = []
     Graphs_names = []
     foldername = "mst_dataset"
-    for filename in sorted(
-        os.listdir(foldername)
-    ):  # now generation of graph from file is in order(ouput from print more clear, sorted)
+    #count = 0
+    for filename in sorted(os.listdir(foldername)):
+        #if count == 25: break
+        #count += 1
         graph = Graph()
         graph.inizialize(foldername + "//" + filename)
         Graphs.append(graph)
@@ -60,7 +59,7 @@ def main():
         run_times_Prim,
         run_times_Kruskal,
         run_times_Kruskal_Efficient,
-        True,
+        False,
     )
 
     graph_data = []  # Obtaining data for the graphs references
@@ -78,7 +77,7 @@ def run(
     run_times_Prim,
     run_times_Kruskal,
     run_times_Kruskal_Efficient,
-    Multiprocess=True,
+    Multiprocess=False,
 ):
     # WARNING Don't let Kruskal run on the entire graph dataset. It takes too long.
 
@@ -86,7 +85,7 @@ def run(
         ############## No processs ##############
         measureTime(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim)
         measureTime(
-            Graphs, algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal
+            Graphs[:52], algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal
         )  # Graphs[:50] requires 4 hours to compute
         measureTime(
             Graphs,
@@ -96,7 +95,7 @@ def run(
         )
         ########################################
     else:
-        ############## processs ##############
+        ############## processs ################
         MSTs_Weights_Kruskal_1 = []
         MSTs_Weights_Kruskal_2 = []
         MSTs_Weights_Kruskal_3 = []
@@ -112,6 +111,7 @@ def run(
             target=measureTime,
             args=(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim),
         )
+
         Kruskal_process_1 = Process(
             target=measureTime,
             args=(
@@ -194,23 +194,14 @@ def run(
             + MSTs_Weights_Kruskal_3
             + MSTs_Weights_Kruskal_4
         )
-
-        ################################
+        ########################################
     saving_data_Prim = []
     for i in range(len(Graphs)):
         saving_data_Prim.append((run_times_Prim[i], MSTs_Weights_Prim[i]))
 
     mat = np.matrix(saving_data_Prim)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("Prim.csv", sep="\t", header=False, index=False)
-
-    saving_data_Kruskal = []
-    for i in range(len(Graphs)):  # Use range(50)
-        saving_data_Kruskal.append((run_times_Kruskal[i], MSTs_Weights_Kruskal[i]))
-
-    mat = np.matrix(saving_data_Kruskal)
-    df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("Kruskal.csv", sep="\t", header=False, index=False)
+    df.to_csv("RESULTS/Prim.csv", sep="\t", header=False, index=False)
 
     saving_data_Kruskal_Eff = []
     for i in range(len(Graphs)):
@@ -220,26 +211,39 @@ def run(
 
     mat = np.matrix(saving_data_Kruskal_Eff)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("Kruskal_Eff.csv", sep="\t", header=False, index=False)
+    df.to_csv("RESULTS/Kruskal_Eff.csv", sep="\t", header=False, index=False)
+
+    saving_data_Kruskal = []
+    for i in range(len(Graphs)):  # Use range(52)
+        saving_data_Kruskal.append((run_times_Kruskal[i], MSTs_Weights_Kruskal[i]))
+
+    mat = np.matrix(saving_data_Kruskal)
+    df = pd.DataFrame(data=mat.astype(str))
+    df.to_csv("RESULTS/Kruskal.csv", sep="\t", header=False, index=False)
+
 
     #####################################
-
+    data_to_file(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient)
 
 def data_to_file(
     Graphs,
-    Graphs_names,
+    
     MSTs_Weights_Prim,
     MSTs_Weights_Kruskal,
     MSTs_Weights_Kruscal_Efficient,
 ):
     """Extracts all the weights computed by the algorithms, writing them in a .csv file"""
 
-    table = [["File name", "Prim", "Kruskal", "Kruskal Efficient"]]
+    table = [["Prim", "Kruskal", "Kruskal Efficient"]]
+    
+    difference = len(MSTs_Weights_Kruskal) < len(Graphs)
+    if (difference > 0):                            # Adding empty fields to the table
+        for _ in range(difference):
+            MSTs_Weights_Kruskal.append(None)
 
     for i in range(len(Graphs)):
         table.append(
             [
-                Graphs_names[i],
                 MSTs_Weights_Prim[i],
                 MSTs_Weights_Kruskal[i],
                 MSTs_Weights_Kruscal_Efficient[i],
@@ -248,8 +252,8 @@ def data_to_file(
 
     mat = np.matrix(table)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("weights.csv", sep="\t", header=False, index=False)
-
+    df.to_csv("RESULTS/weights.csv", sep="\t", header=False, index=False)
+    
 
 if __name__ == "__main__":
     main()
