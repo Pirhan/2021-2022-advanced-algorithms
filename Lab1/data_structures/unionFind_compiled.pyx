@@ -1,9 +1,9 @@
-class UnionFind:
+cdef class UnionFind:
 
-    parent = {}
-    size = {}      # stores the depth of trees using memory n
+    parent: dict = {}
+    size: dict = {}      # stores the depth of trees using memory n
 
-    def Initialize(self, nodes):
+    cpdef void Initialize(self, set nodes):
         # create `n` disjoint sets (one for each node)
         for i in nodes:
             self.parent[i] = i
@@ -12,14 +12,14 @@ class UnionFind:
             # the sum of size in the Union operator will sum always 0 -> size not correctly updated
  
     # Find the root of the set in which element `x` belongs
-    def Find(self, x):
+    cpdef int Find(self, int x):
         # if `k` is not the root
         if self.parent[x] != x:
             self.parent[x] = self.Find(self.parent[x]) # Recursive call
         return self.parent[x]
  
     # Perform Union of two subsets
-    def Union(self, x, y):
+    cpdef void Union(self, int x, int y):
         # find the root of the sets in which elements `x` and `y` belongs
         i, j = self.Find(x), self.Find(y)
  
