@@ -6,7 +6,7 @@ class Graph:
         self.edges = {}             # dict containing the edges with a tuple of nodes as key and the weight as value                      
         
 
-    def addEdge(self, edge: tuple, weight: int):
+    def addEdge(self, edge: tuple, weight: int) -> None:
         (v, u) = edge 
         self.nodes.add(v)
         self.nodes.add(u)
@@ -15,25 +15,16 @@ class Graph:
             self.edges[edge] = weight
         else: return
                                                                          
-        if v not in list(self.get_AL().keys()) : self.Adj_list[v] = []  
-        if u not in list(self.get_AL().keys()) : self.Adj_list[u] = [] 
+        if v not in list(self.Adj_list.keys()) : self.Adj_list[v] = []  
+        if u not in list(self.Adj_list.keys()) : self.Adj_list[u] = [] 
         (self.Adj_list[v]).append(edge)
         (self.Adj_list[u]).append(edge)
 
-    def removeEdge(self, edge: tuple):
+    def removeEdge(self, edge: tuple) -> None:
         (u, w) = edge 
         self.edges.pop((edge))
         (self.Adj_list[u]).remove(edge)
-        (self.Adj_list[w]).remove(edge)
-    
-    def get_nodes(self):
-        return self.nodes.copy()    # FIXME
-
-    def get_edges(self):
-        return self.edges.copy()    # FIXME
-    
-    def get_AL(self):
-        return self.Adj_list.copy()       # FIXME
+        (self.Adj_list[w]).remove(edge)        
 
     def total_Weight(self):
         return sum(self.edges.values())
@@ -42,7 +33,7 @@ class Graph:
     def getAdjacentNodes(self, node : int) -> list:
         nodes = set()
         if node in self.nodes:
-            for (u, v) in list((self.get_AL())[node]):
+            for (u, v) in list((self.Adj_list)[node]):
                 if node == u: nodes.add(v)
                 else: nodes.add(u)                   # if node == v
         return list(nodes)
@@ -50,20 +41,17 @@ class Graph:
     # Returns all the edges with node 
     def getAdjacentEdges(self, node: int) -> list:
         edges = set()
-        for list_edges in list(self.get_AL()[node]):
+        for list_edges in list(self.Adj_list[node]):
             edges.add(list_edges)
         return list(edges)
 
     # Orders the graph in non discending order of keys
     def nonDiscendingOrderGraph_Keys(self):
-        self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[0]))
-        return self
+        self.edges = dict(sorted(self.edges.items(), key = lambda item: item[0]))
     
     # Orders the graph in non discending order of values
     def nonDiscendingOrderGraph_Values(self):
-        self.edges = dict(sorted(self.get_edges().items(), key = lambda item: item[1]))
-        return self
-
+        self.edges = dict(sorted(self.edges.items(), key = lambda item: item[1]))
 
 
     def isCycle(self):
@@ -73,12 +61,11 @@ class Graph:
         """
         
         Visited = []
-        V = self.get_nodes()
     
         # initially all vertices are unexplored
-        L = { v: -1 for v in V }
+        L = { v: -1 for v in self.nodes }
     
-        for v in V:
+        for v in self.nodes:
     
             # v has already been explored; move on
             if L[v] != -1:
@@ -125,19 +112,19 @@ class Graph:
 
     def PrintGraph(self, FunctionName,  OriginalGraph = None):
         total_weight = 0
-        for weight in list(self.get_edges().values()):
+        for weight in list(self.edges.values()):
             total_weight += weight
 
         if OriginalGraph != None:
             #OriginalGraph = Graph()
-            if len(self.get_nodes()) == len(OriginalGraph.get_nodes()):
+            if len(self.nodes) == len(OriginalGraph.nodes):
                 print(FunctionName)
-                print(self.get_edges())
-                print("The number of nodes in the MST is: ", len(self.get_nodes()), " Total weight is: ", total_weight)
+                print(self.edges)
+                print("The number of nodes in the MST is: ", len(self.nodes), " Total weight is: ", total_weight)
             else: 
-                print(FunctionName + " => Failed","---- n. nodes = ", len(self.get_nodes()))
-                print(self.get_edges())
-        else: print(self.get_edges())
+                print(FunctionName + " => Failed","---- n. nodes = ", len(self.nodes))
+                print(self.edges)
+        else: print(self.edges)
 
 
         

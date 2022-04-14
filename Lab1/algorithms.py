@@ -11,9 +11,9 @@ def Efficient_Kruskal(G: Graph) -> None:
     A = Graph() # Not an array because we need to store the weight associated to the edge
     
     U = UnionFind()
-    U.Initialize(G.get_nodes())
+    U.Initialize(G.nodes)
 
-    edges = G.get_edges()
+    edges = G.edges
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 
     
@@ -36,14 +36,14 @@ def Kruskal(G: Graph):
     """   
 
     A=Graph()
-    edges = G.get_edges()
+    edges = G.edges
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 
 
     for edge in list(sort_edges_keys):
         (u,v) = edge
-        nodes = A.get_nodes()
-        if edge in A.get_edges().keys():
+        nodes = A.nodes
+        if edge in A.edges.keys():
             continue
         A.addEdge(edge, edges.get(edge))
         if u not in nodes or v not in nodes:

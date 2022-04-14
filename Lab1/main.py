@@ -1,6 +1,6 @@
 # cythonized code start import
-from graph_compiled import Graph
-import algorithms_compiled as algorithms
+from data_structures.graph import Graph
+import algorithms as algorithms
 
 # cythonized code end import
 from time import perf_counter_ns
@@ -32,10 +32,10 @@ def main():
     Graphs = []
     Graphs_names = []
     foldername = "mst_dataset"
-    #count = 0
+    count = 0
     for filename in sorted(os.listdir(foldername)):
-        #if count == 25: break
-        #count += 1
+        if count == 25: break
+        count += 1
         graph = Graph()
         graph.inizialize(foldername + "//" + filename)
         Graphs.append(graph)
@@ -64,8 +64,8 @@ def main():
 
     graph_data = []  # Obtaining data for the graphs references
     for graph in Graphs:
-        n_nodes = len(graph.get_nodes())
-        n_edges = len(list(graph.get_edges().keys()))
+        n_nodes = len(graph.nodes)
+        n_edges = len(list(graph.edges.keys()))
         graph_data.append((n_nodes, n_edges))
 
 

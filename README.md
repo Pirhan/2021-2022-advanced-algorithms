@@ -5,18 +5,17 @@ Advanced algorithms class assignment for A.A. year 2021/2022
 **Deadline: Monday 25 April, 11:55 pm**
 ## How to run cythonized code
 
- From the Lab1 directory where there is the setup.py file
+ From the Lab1 directory
  From a regular shell
 
-	  python setup.py build_ext --inplace
-	  python main.py 
+	  pypy main.py 
 
-Note that the cythonized files have a different name (they and in _compiled)
-So the import from the main.py is changed accordingly
-Main.py generates three .csv files containing the algorithms output.
+ Note that it may require additional libraries.
+ Main.py generates three .csv files containing the algorithms output.
 
-After generating the .csv files, run:
+ After generating the .csv files, run:
 
-    python plot.py
+      python plot.py
 
-in order to gererate the final graphs.
+ in order to gererate the final graphs.
+ Not on pypy because matplotlib is not fully supported.
