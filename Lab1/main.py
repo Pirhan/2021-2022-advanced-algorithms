@@ -10,7 +10,7 @@ import numpy as np
 from multiprocessing import Process
 
 
-def measureTime(Graphs: list, Function, MSTs, Time):
+def measureTime(Graphs, Function, MSTs, Time):
     temp_time = 0
     for a_graph in Graphs:
         print(Function, "\t=>\t", Graphs.index(a_graph) + 1)
@@ -28,14 +28,10 @@ def measureTime(Graphs: list, Function, MSTs, Time):
 
 
 def main():
-
     Graphs = []
     Graphs_names = []
     foldername = "mst_dataset"
-    count = 0
     for filename in sorted(os.listdir(foldername)):
-        if count == 25: break
-        count += 1
         graph = Graph()
         graph.inizialize(foldername + "//" + filename)
         Graphs.append(graph)
@@ -85,8 +81,8 @@ def run(
         ############## No processs ##############
         measureTime(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim)
         measureTime(
-            Graphs[:52], algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal
-        )  # Graphs[:50] requires 4 hours to compute
+            Graphs, algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal
+        )
         measureTime(
             Graphs,
             algorithms.Efficient_Kruskal,
@@ -212,17 +208,16 @@ def run(
     mat = np.matrix(saving_data_Kruskal_Eff)
     df = pd.DataFrame(data=mat.astype(str))
     df.to_csv("RESULTS/Kruskal_Eff.csv", sep="\t", header=False, index=False)
-
+ 
     saving_data_Kruskal = []
-    for i in range(len(Graphs)):  # Use range(52)
+    for i in range(len(Graphs)):  
         saving_data_Kruskal.append((run_times_Kruskal[i], MSTs_Weights_Kruskal[i]))
 
     mat = np.matrix(saving_data_Kruskal)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/Kruskal.csv", sep="\t", header=False, index=False)
+    df.to_csv("RESULTS/Kruskal.csv", sep="\t", header=False, index=False) 
 
 
-    #####################################
     data_to_file(Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient)
 
 def data_to_file(
@@ -240,7 +235,7 @@ def data_to_file(
     if (difference > 0):                            # Adding empty fields to the table
         for _ in range(difference):
             MSTs_Weights_Kruskal.append(None)
-
+    
     for i in range(len(Graphs)):
         table.append(
             [
