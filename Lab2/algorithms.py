@@ -1,5 +1,6 @@
 from data_structures.graph import Graph
-from heapq import *
+from heapq import heappush
+from heapq import heappop
 
 
 def Prim_Heap(G: Graph):

@@ -31,7 +31,6 @@ def main():
     foldername = "tsp_dataset"
     for filename in sorted(os.listdir(foldername)):
         graph = Graph()
-        # graph.inizialize(foldername + "//" + filename)
         graph.initialize_from_file(foldername + "//" + filename)
         Graphs.append(graph)
         Graphs_names.append(filename)
