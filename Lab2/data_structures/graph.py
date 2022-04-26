@@ -54,43 +54,6 @@ class Graph:
         self.edges = dict(sorted(self.edges.items(), key = lambda item: item[1]))
 
 
-    def isCycle(self):
-        """
-        Based on Breadth-first search (BFS) to explore every vertex which is reachable from v. 
-        The overall complexity is O(m+n), with m and n being the number of edges and vertices respectively.
-        """
-        
-        Visited = []
-    
-        # initially all vertices are unexplored
-        L = { v: -1 for v in self.nodes }
-    
-        for v in self.nodes:
-    
-            # v has already been explored; move on
-            if L[v] != -1:
-                continue
-    
-            # take v as a starting vertex
-            L[v] = 0                # start by selecting some unexplored vertex v of G
-            Visited.append(v)
-    
-            # as long as Q is not empty
-            while len(Visited) > 0:
-    
-                # get the next vertex u of Q that must be looked at
-                u = Visited.pop(0)
-    
-                Adjacents = self.getAdjacentNodes(u)
-    
-                for adj in Adjacents:
-                    # if z is being found for the first time
-                    if L[adj] == -1:
-                        L[adj] = L[u] + 1
-                        Visited.append(adj)
-                    elif L[adj] >= L[u]:
-                        return True
-        return False
 
     def inizialize(self, filename):
         """ Builds the adiacency lists from the txt file"""
