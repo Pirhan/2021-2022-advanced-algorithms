@@ -8,7 +8,7 @@ def Prim_Heap(G: Graph):
     which allows to achieve the time complexity of O(M * log(N)).
     """
 
-    Total_weight = 0  # The weight of the MST obtained
+    total_weight = 0  # The weight of the MST obtained
 
     Q = []  # This is the list uset to build the heap
 
@@ -30,15 +30,15 @@ def Prim_Heap(G: Graph):
 
         visited.append(node)  # Node non visited. Adding it to the final MST
 
-        Total_weight += weight  # Adding the edge's weight to the final MST weight
+        total_weight += weight  # Adding the edge's weight to the final MST weight
 
         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
             weight = G.edges.get((node, v))  # Taking the weight of the node
-            if weight == None:
+            if weight is None:  # flake8 suggestion condition is None instead of equality operator
                 weight = G.edges.get((v, node))
             if v not in visited:
                 heappush(
                     Q, [weight, v]
                 )  # Adding a new [w,v] to Q if v in not visited yet
 
-    return Total_weight
+    return total_weight
