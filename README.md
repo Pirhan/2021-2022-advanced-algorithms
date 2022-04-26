@@ -6,12 +6,12 @@ Advanced algorithms class assignment for A.A. year 2021/2022
 ## Assignment 2 - Approximation algorithms
 **Deadline: Monday 16 May, 11:55 pm**
 
-## How to run cythonized code
+## How to run the code
 
  From the Lab1 directory
  From a regular shell
 
-	  pypy main.py 
+	  python main.py 
 
  Note that it may require additional libraries.
  Main.py generates three .csv files containing the algorithms output.
@@ -21,4 +21,3 @@ Advanced algorithms class assignment for A.A. year 2021/2022
       python plot.py
 
  in order to gererate the final graphs.
- Not on pypy because matplotlib is not fully supported.
