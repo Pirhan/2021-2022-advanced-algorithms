@@ -29,32 +29,6 @@ def Efficient_Kruskal(G: Graph) -> None:
     return A.total_Weight()
 
 
-def Kruskal(G: Graph): 
-    """
-    This is a function that implements the native Kruskal's algorithm, 
-    which allows to achieve the time complexity of O(M + N).
-    """   
-
-    A=Graph()
-    edges = G.edges
-    sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
-    sort_edges_keys = sort_edges.keys() # Getting the keys 
-
-    for edge in list(sort_edges_keys):
-        (u,v) = edge
-        nodes = A.nodes
-        if edge in A.edges.keys():
-            continue
-        A.addEdge(edge, edges.get(edge))
-        if u not in nodes or v not in nodes:
-            continue
-        if A.isCycle():
-            A.removeEdge(edge)
-
-    A.nonDiscendingOrderGraph_Keys()
-    
-    return A.total_Weight()
-
 
 def Prim_Heap(G: Graph):
     """
