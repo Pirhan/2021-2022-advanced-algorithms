@@ -26,12 +26,6 @@ class Graph:
         (self.Adj_list[v]).append(edge)
         (self.Adj_list[u]).append(edge)
 
-    def removeEdge(self, edge: tuple) -> None:
-        (u, w) = edge
-        self.edges.pop((edge))
-        (self.Adj_list[u]).remove(edge)
-        (self.Adj_list[w]).remove(edge)
-
     def total_Weight(self):
         return sum(self.edges.values())
 
