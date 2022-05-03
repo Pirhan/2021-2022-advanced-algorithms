@@ -1,7 +1,6 @@
 from data_structures.GEO_graph import Graph_GEO
 import os
 import geopy.distance
-import math
 
 
 def main():
