@@ -1,6 +1,6 @@
-from data_structures.GEO_graph import Graph_GEO
+from data_structures.GEO_graph import Graph_GEO  # type: ignore
 import os
-import geopy.distance
+import geopy.distance  # type: ignore
 
 
 def main():
