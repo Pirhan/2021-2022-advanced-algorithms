@@ -4,14 +4,14 @@ from typing import List
 class Graph_GEO:
 
     def __init__(self)->None:
-        self.nodes = {}     # key = index; value = (longitude, latitude)
+        self.nodes = {}     # key = index; value = (latitude, longitude)
 
     def add_node(self,index, coordinate_x, coordinate_y):
         self.nodes[index] = (Graph_GEO.toRadiant(coordinate_x), Graph_GEO.toRadiant(coordinate_y))
 
     def getLL(self, index):
-        (longitude, latitude) = self.nodes.get(index)
-        return longitude, latitude
+        (latitude, longitude) = self.nodes.get(index)
+        return latitude, longitude
     
     def toRadiant(value):
         PI = 3.141592
@@ -24,8 +24,8 @@ class Graph_GEO:
     def getDistance(self, node_x, node_y):
 
         RRR = 6378.388
-        longitude_x, latitude_x = self.getLL(node_x)
-        longitude_y, latitude_y = self.getLL(node_y)
+        latitude_x, longitude_x = self.getLL(node_x)
+        latitude_y, longitude_y = self.getLL(node_y)
         q1 = math.cos(longitude_x - longitude_y)
         q2 = math.cos(latitude_x - latitude_y)
         q3 = math.cos(latitude_x + latitude_y)
@@ -36,8 +36,8 @@ class Graph_GEO:
         # approximate radius of earth in km
         R = 6373.0
 
-        lon1, lat1 = self.getLL(node_x)
-        lon2, lat2 = self.getLL(node_y)
+        lat1, lon1= self.getLL(node_x)
+        lat2, lon2 = self.getLL(node_y)
         dlon = lon2 - lon1
         dlat = lat2 - lat1
         
@@ -51,6 +51,7 @@ class Graph_GEO:
         with open(file=filename) as file:
             lines: List[str] = file.readlines()  # all lines of the file
             start = 0 
+
             end = 0
             for index, line in enumerate(lines):
                 if line.startswith("NODE_COORD_SECTION"):
