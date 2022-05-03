@@ -14,7 +14,7 @@ def main():
     print(Graph.nodes.items())
     print("\n")
     print("Our distance =>\t", Graph.getDistance(1, 12))
-
+    print("Stack Overflow solution: =>\t", Graph.getDistance_2(1, 12))
     print("Geopy distance =>\t", geopy.distance.distance(Graph.nodes.get(1), Graph.nodes.get(12)).km)
 
 if __name__ == "__main__":

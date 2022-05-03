@@ -30,6 +30,21 @@ class Graph_GEO:
         q2 = math.cos(latitude_x - latitude_y)
         q3 = math.cos(latitude_x + latitude_y)
         return (int)(RRR * math.acos(0.5 * ((1.0 + q1)*q2 - (1.0 - q1)*q3)) + 1.0)
+    
+    def getDistance_2(self, node_x, node_y):
+        """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
+        # approximate radius of earth in km
+        R = 6373.0
+
+        lon1, lat1 = self.getLL(node_x)
+        lon2, lat2 = self.getLL(node_y)
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+        
+        a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+        return R * c
 
     def initialize_from_file(self, filename: str) -> None:
         """ Builds the graph from the filename"""
