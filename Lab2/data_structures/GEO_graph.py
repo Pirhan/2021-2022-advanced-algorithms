@@ -18,10 +18,14 @@ class Graph_GEO:
         (latitude, longitude) = self.nodes.get(index)
         return latitude, longitude
 
-    def toRadiant(value: float) -> float:  # seems missing the self, is this intended (ie a static method)
+    def toRadiant(
+        value: float,
+    ) -> float:  # seems missing the self, is this intended (ie a static method)
         PI: float = 3.141592
         deg: int = (int)(value)
-        minimum: float = value - deg  # min is also a function -> bit confusing -> renamed to minimum
+        minimum: float = (
+            value - deg
+        )  # min is also a function -> bit confusing -> renamed to minimum
 
         return PI * (deg + 5.0 * minimum / 3.0) / 180.0
 
@@ -38,20 +42,22 @@ class Graph_GEO:
     def getDistance_2(self, node_x: int, node_y: int) -> float:
         """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
         # approximate radius of earth in km
-        R: float = 6373.0
+        approximate_radius_earth: float = 6373.0
 
         lat1, lon1 = self.getLL(node_x)
         lat2, lon2 = self.getLL(node_y)
         dlon: float = lon2 - lon1
         dlat: float = lat2 - lat1
 
-        a: float = (
+        versine: float = (
             math.sin(dlat / 2) ** 2
             + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
-        )
-        c: float = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        )  # half of versine of an angle
+        haversine_distance: float = 2 * math.atan2(
+            math.sqrt(versine), math.sqrt(1 - versine)
+        )  # haversine distance, computes the versine of an angle, required for computing the haversine distance
 
-        return R * c
+        return approximate_radius_earth * haversine_distance
 
     def initialize_from_file(self, filename: str) -> None:
         """ Builds the graph from the filename"""

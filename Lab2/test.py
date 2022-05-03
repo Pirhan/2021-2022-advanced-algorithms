@@ -14,6 +14,7 @@ def main():
     print(Graph.nodes.items())
     print("\n")
     print("Our distance =>\t", Graph.getDistance(1, 12))
+    print("Our distance2", Graph.getDistance_2(1, 12))
     print("Stack Overflow solution: =>\t", Graph.getDistance_2(1, 12))
     print(
         "Geopy distance =>\t",
