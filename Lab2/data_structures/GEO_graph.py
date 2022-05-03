@@ -18,6 +18,7 @@ class Graph_GEO:
         (latitude, longitude) = self.nodes.get(index)
         return latitude, longitude
 
+    @staticmethod
     def toRadiant(
         value: float,
     ) -> float:  # seems missing the self, is this intended (ie a static method)
@@ -74,8 +75,8 @@ class Graph_GEO:
 
             for line in lines[(start + 1) : end]:
 
-                index: int = int(line.split()[0])
+                node: int = int(line.split()[0])
                 x_coord: float = float(line.split()[1])
                 y_coord: float = float(line.split()[2])
 
-                self.add_node(index, x_coord, y_coord)
+                self.add_node(node, x_coord, y_coord)
