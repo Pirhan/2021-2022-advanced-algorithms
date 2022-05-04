@@ -14,7 +14,7 @@ class Graph_GEO:
             Graph_GEO.toRadiant(coordinate_y),
         )
 
-    def getLL(self, index: int) -> Tuple[float, float]:
+    def getLatLong(self, index: int) -> Tuple[float, float]:
         (latitude, longitude) = self.nodes.get(index)
         return latitude, longitude
 
@@ -33,8 +33,8 @@ class Graph_GEO:
     def getDistance(self, node_x: int, node_y: int) -> int:
 
         RRR: float = 6378.388
-        latitude_x, longitude_x = self.getLL(node_x)
-        latitude_y, longitude_y = self.getLL(node_y)
+        latitude_x, longitude_x = self.getLatLong(node_x)
+        latitude_y, longitude_y = self.getLatLong(node_y)
         q1: float = math.cos(longitude_x - longitude_y)
         q2: float = math.cos(latitude_x - latitude_y)
         q3: float = math.cos(latitude_x + latitude_y)
@@ -44,7 +44,7 @@ class Graph_GEO:
     def getAllEdges(self) -> Dict[Tuple[int, int], int]:
 
         edges: Dict[Tuple[int, int], int] = {}
-        Nodes = self.nodes.keys()
+        Nodes: KeysView[int] = self.nodes.keys()
 
         for Node_1 in Nodes:
             for Node_2 in Nodes:
@@ -63,8 +63,8 @@ class Graph_GEO:
         # approximate radius of earth in km
         approximate_radius_earth: float = 6373.0
 
-        lat1, lon1 = self.getLL(node_x)
-        lat2, lon2 = self.getLL(node_y)
+        lat1, lon1 = self.getLatLong(node_x)
+        lat2, lon2 = self.getLatLong(node_y)
         dlon: float = lon2 - lon1
         dlat: float = lat2 - lat1
 
