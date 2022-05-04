@@ -29,6 +29,7 @@ def nearestNeighbour(graph: Graph_EUC) -> List[int]:
         graph.getNodes()
     )  # keyview not indexable -> convert it into list
     current_pick: int = all_nodes[0]  # initialization, first selection
+    print(current_pick)
     not_in_path: List[int] = all_nodes  # no duplicates
     final_path: List[int] = [current_pick]  # an ordering is required
     while (
@@ -45,7 +46,7 @@ def nearestNeighbour(graph: Graph_EUC) -> List[int]:
         )  # side effects here, not_in_path has one element less(smallest_neighbour) in_path has one more element(smallest_neighbour)
         current_pick = smallest_neighbour  # update the current_pick to reflect the path after the update
 
-    sorted_final_path = final_path.sort()
-    print("f path", sorted_final_path)
-    print("len", len(final_path))
+    # sorted_final_path = final_path.sort()
+    # print("f path", sorted_final_path)
+    # print("len", len(final_path))
     return final_path  # ordered by insertion
