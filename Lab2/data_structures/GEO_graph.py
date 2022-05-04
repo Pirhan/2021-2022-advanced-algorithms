@@ -1,5 +1,5 @@
 import math
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, KeysView
 
 
 class Graph_GEO:
@@ -21,7 +21,7 @@ class Graph_GEO:
     @staticmethod
     def toRadiant(
         value: float,
-    ) -> float:  # seems missing the self, is this intended (ie a static method)
+    ) -> float:
         PI: float = 3.141592
         deg: int = (int)(value)
         minimum: float = (
@@ -41,23 +41,22 @@ class Graph_GEO:
         return (int)(RRR * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0)
 
     # Returns a Dict contianing the distance between all nodes
-    def getAllEdges(self)->Dict[Tuple[int, int], int]:
-    
-        edges : Dict[Tuple[int, int], int] = {}
+    def getAllEdges(self) -> Dict[Tuple[int, int], int]:
+
+        edges: Dict[Tuple[int, int], int] = {}
         Nodes = self.nodes.keys()
 
         for Node_1 in Nodes:
             for Node_2 in Nodes:
-                if Node_1 == Node_2: continue
+                if Node_1 == Node_2:
+                    continue
                 distance = self.getDistance(Node_1, Node_2)
                 edges[(Node_1, Node_2)] = distance
 
         return edges
 
-
-    def getNodes(self)->List[int]:
+    def getNodes(self) -> KeysView[int]:
         return self.nodes.keys()
-
 
     def getDistance_2(self, node_x: int, node_y: int) -> float:
         """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
