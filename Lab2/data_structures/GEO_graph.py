@@ -55,11 +55,8 @@ class Graph_GEO:
         return edges
 
 
-
-
-
-
-
+    def getNodes(self)->List[int]:
+        return self.nodes.keys()
 
 
     def getDistance_2(self, node_x: int, node_y: int) -> float:

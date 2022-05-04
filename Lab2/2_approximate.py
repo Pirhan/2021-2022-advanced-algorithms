@@ -1,6 +1,7 @@
 from data_structures.EUC_graph import Graph_EUC
 from data_structures.GEO_graph import Graph_GEO
 from data_structures.unionfind import UnionFind
+from data_structures.graph import Graph
 
 def Efficient_Kruskal(G) -> None:
     """
@@ -8,13 +9,12 @@ def Efficient_Kruskal(G) -> None:
     implemented using the "Disjoint Set Union" data structure, 
     which allows to achieve the time complexity of O(M * log(N)).
     """
-    if isinstance(G, Graph_EUC()): A = Graph_EUC()
-    if isinstance(G, Graph_GEO()): A = Graph_GEO()
+    A = Graph()
     # Not an array because we need to store the weight associated to the edge
     
     U = UnionFind()
-    U.Initialize(G.nodes)
-
+    U.Initialize(G.getNodes())
+    
     edges = G.getAllEdges()
     sort_edges = dict(sorted(edges.items(), key=lambda item: item[1])) # In nondecrising order of weight
     sort_edges_keys = sort_edges.keys() # Getting the keys 

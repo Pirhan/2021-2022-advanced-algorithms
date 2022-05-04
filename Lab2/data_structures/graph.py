@@ -10,6 +10,8 @@ class Graph:
             return
         if node1 not in self.nodes: self.nodes.append(node1)
         if node2 not in self.nodes: self.nodes.append(node2)
+        if isinstance(weight, int): 
+            weight = (float) (weight)   # FIXME Not sure if this works
         self.edges[(node1, node2)] = weight
 
     def getNodes(self) -> List[int]:

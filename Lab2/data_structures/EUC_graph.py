@@ -20,6 +20,9 @@ class Graph_EUC:
 
         return math.sqrt((n1_x - n2_x)**2 + (n1_y - n2_y)**2)
 
+    def getNodes(self)->List[int]:
+        return self.nodes.keys()
+        
     # Returns a Dict contianing the distance between all nodes
     def getAllEdges(self)->Dict[Tuple[int, int], float]:
     
