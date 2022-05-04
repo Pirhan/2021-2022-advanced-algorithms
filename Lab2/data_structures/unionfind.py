@@ -1,8 +1,8 @@
 from typing import Dict
 class UnionFind:
 
-    parent = Dict[int,int]
-    size = Dict[int,int]     # stores the depth of trees using memory n
+    parent : Dict[int,int] = {}
+    size : Dict[int,int] = {}    # stores the depth of trees using memory n
 
     def Initialize(self, nodes):
         # create `n` disjoint sets (one for each node)
