@@ -40,6 +40,28 @@ class Graph_GEO:
         q3: float = math.cos(latitude_x + latitude_y)
         return (int)(RRR * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0)
 
+    # Returns a Dict contianing the distance between all nodes
+    def getAllEdges(self)->Dict[Tuple[int, int], int]:
+    
+        edges : Dict[Tuple[int, int], int] = {}
+        Nodes = self.nodes.keys()
+
+        for Node_1 in Nodes:
+            for Node_2 in Nodes:
+                if Node_1 == Node_2: continue
+                distance = self.getDistance(Node_1, Node_2)
+                edges[(Node_1, Node_2)] = distance
+
+        return edges
+
+
+
+
+
+
+
+
+
     def getDistance_2(self, node_x: int, node_y: int) -> float:
         """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
         # approximate radius of earth in km

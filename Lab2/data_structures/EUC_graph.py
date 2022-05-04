@@ -14,11 +14,25 @@ class Graph_EUC:
         (x,y) = self.nodes.get(index)
         return x, y
 
-    def distance(self, index_n1: int, index_n2: int)->float:
+    def getDistance(self, index_n1: int, index_n2: int)->float:
         n1_x, n1_y = self.getCoordinates(index_n1)
         n2_x, n2_y = self.getCoordinates(index_n2)
 
         return math.sqrt((n1_x - n2_x)**2 + (n1_y - n2_y)**2)
+
+    # Returns a Dict contianing the distance between all nodes
+    def getAllEdges(self)->Dict[Tuple[int, int], float]:
+    
+        edges : Dict[Tuple[int, int], float] = {}
+        Nodes = self.nodes.keys()
+
+        for Node_1 in Nodes:
+            for Node_2 in Nodes:
+                if Node_1 == Node_2: continue
+                distance = self.getDistance(Node_1, Node_2)
+                edges[(Node_1, Node_2)] = distance
+
+        return edges
     
     def initialize_from_file(self, filename: str) -> None:
         """ Builds the graph from the filename"""
