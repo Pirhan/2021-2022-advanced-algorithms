@@ -29,9 +29,9 @@ def nearestNeighbour(graph: Graph_EUC) -> List[int]:
         graph.getNodes()
     )  # keyview not indexable -> convert it into list
     current_pick: int = all_nodes[0]  # initialization, first selection
-    print(current_pick)
-    not_in_path: List[int] = all_nodes  # no duplicates
-    final_path: List[int] = [current_pick]  # an ordering is required
+    print("current pick", current_pick)
+    not_in_path: List[int] = all_nodes[1:]
+    final_path: List[int] = [current_pick]
     while (
         len(not_in_path) > 0
     ):  # inside this loop, end when there are no more in the graph
