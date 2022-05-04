@@ -7,6 +7,7 @@ class Graph_GEO:
         self.nodes: Dict[
             int, Tuple[float, float]
         ] = {}  # key = index; value = (latitude, longitude)
+        self.dimension: int = 0
 
     def add_node(self, index: int, coordinate_x: float, coordinate_y: float):
         self.nodes[index] = (
@@ -86,12 +87,14 @@ class Graph_GEO:
 
             end: int = 0
             for index, line in enumerate(lines):
+                if line.startswith("DIMENSION"):
+                    self.dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
                 if line.startswith("NODE_COORD_SECTION"):
                     start = index
                 if line.startswith("EOF"):
                     end = index
 
-            for line in lines[(start + 1) : end]:
+            for line in lines[(start + 1): end]:
 
                 node: int = int(line.split()[0])
                 x_coord: float = float(line.split()[1])

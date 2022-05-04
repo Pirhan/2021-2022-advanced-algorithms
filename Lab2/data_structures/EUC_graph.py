@@ -45,6 +45,8 @@ class Graph_EUC:
 
             end = 0
             for index, line in enumerate(lines):
+                if line.startswith("DIMENSION"):
+                    self.dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
                 if line.startswith("NODE_COORD_SECTION"):
                     start = index
                 if line.startswith("EOF"):
