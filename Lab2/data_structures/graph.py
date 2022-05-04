@@ -1,28 +1,48 @@
-from typing import List, Dict, Tuple
-
-
+from typing import List, Dict, Tuple, Set
 class Graph:
-    def __init__(self) -> None:
-        self.nodes: List[int] = []
-        self.edges: Dict[Tuple[int, int], float] = {}
 
-    def addEdge(self, edge: Tuple[int, int], weight) -> None:
-        (node1, node2) = edge
-        if node1 in self.nodes and node2 in self.nodes:
-            return
-        if node1 not in self.nodes:
-            self.nodes.append(node1)
-        if node2 not in self.nodes:
-            self.nodes.append(node2)
-        if isinstance(weight, int):
-            weight = (float)(weight)  # FIXME Not sure if this works
-        self.edges[(node1, node2)] = weight
+    def __init__(self)->None:
+        self.nodes : Set[int] = set()
+        self.edges : Dict[Tuple[int, int], float] = {}
+        self.Adj_list : Dict[Tuple[int, int], float] = {}         # [[]], dict in order to support an unordered set of keys
+
+
+    def addEdge(self, edge: tuple, weight) -> None:
+        (v, u) = edge 
+        self.nodes.add(v)
+        self.nodes.add(u)
+        edges = list(self.edges.keys())
+        if edge not in edges:
+            self.edges[edge] = float(weight)
+        else: return
+                                                                         
+        if v not in list(self.Adj_list.keys()) : self.Adj_list[v] = []  
+        if u not in list(self.Adj_list.keys()) : self.Adj_list[u] = [] 
+        (self.Adj_list[v]).append(edge)
+        (self.Adj_list[u]).append(edge)
+
 
     def getNodes(self) -> List[int]:
-        return self.nodes
+        return list(self.nodes)
 
     def getEdges(self) -> Dict[Tuple[int, int], float]:
         return self.edges
-
-    def orderEdges(self) -> None:
+    
+    def orderEdges(self)->None:
         self.edges = dict(sorted(self.edges.items(), key=lambda item: item[0]))
+
+    def getAdjacentNodes(self, node : int) -> list:
+        nodes = set()
+        if node in self.nodes:
+            for (u, v) in list((self.Adj_list)[node]):
+                if node == u: nodes.add(v)
+                else: nodes.add(u)                  
+        return list(nodes)
+
+    def DFS_Traversal(self, visited = [], node = None):
+        if node == None: node = self.getNodes()[0]
+        if node not in visited:
+            visited.append(node)
+            for adj in self.getAdjacentNodes(node):
+                self.DFS_Traversal(visited, adj)
+        return visited

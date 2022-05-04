@@ -12,7 +12,7 @@ def main():
             Graph = Graph_GEO()
             Graph.initialize_from_file(foldername + "/" + filename)
             Result = Efficient_Kruskal(Graph)
-            print(Result.getEdges().items())
+            print(Result.DFS_Traversal())
 
 
     """print(
