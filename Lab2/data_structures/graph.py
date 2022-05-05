@@ -1,4 +1,5 @@
 from typing import List, Dict, Tuple, Set
+
 class Graph:
 
     def __init__(self)->None:
@@ -38,11 +39,3 @@ class Graph:
                 if node == u: nodes.add(v)
                 else: nodes.add(u)                  
         return list(nodes)
-
-    def DFS_Traversal(self, visited = [], node = None):
-        if node == None: node = self.getNodes()[0]
-        if node not in visited:
-            visited.append(node)
-            for adj in self.getAdjacentNodes(node):
-                self.DFS_Traversal(visited, adj)
-        return visited

@@ -1,4 +1,4 @@
-from data_structures.GEO_graph import Graph_GEO  # type: ignore
+from data_structures.Complete_graphs import * # type: ignore
 import os
 import geopy.distance  # type: ignore
 from Two_approximate import *
@@ -10,9 +10,8 @@ def main():
     for filename in sorted(os.listdir(foldername)):
         if filename == "burma14.tsp":
             Graph = Graph_GEO()
-            Graph.initialize_from_file(foldername + "/" + filename)
-            Result = Efficient_Kruskal(Graph)
-            print(Result.DFS_Traversal())
+            Result = TwoApproximate(Graph, foldername + "/" + filename)
+            print(Result)
 
 
     """print(

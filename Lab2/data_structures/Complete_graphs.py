@@ -1,13 +1,67 @@
-import math
 from typing import List, Dict, Tuple, KeysView
+import math
 
-
-class Graph_GEO:
+class CompleteGraph:
     def __init__(self) -> None:
-        self.nodes: Dict[
-            int, Tuple[float, float]
-        ] = {}  # key = index; value = (latitude, longitude)
-        self.dimension: int = 0
+        self.nodes: Dict[int, Tuple[float, float]] = {}  # key = index; value = (x,y)
+
+    def add_node(self, index: int, value1: float, value2: float):
+        self.nodes[index] = (value1, value2)
+
+    def getCoordinates(self, index: int) -> tuple:
+        (x, y) = self.nodes.get(index)
+        return x, y
+
+    def getNodes(self) -> KeysView[int]:
+        return self.nodes.keys()
+    
+    # Returns a Dict contianing the distance between all nodes
+    def getAllEdges(self) -> Dict[Tuple[int, int], float]:
+
+        edges: Dict[Tuple[int, int], float] = {}
+        Nodes = self.nodes.keys()
+
+        for Node_1 in Nodes:
+            for Node_2 in Nodes:
+                if Node_1 == Node_2:
+                    continue
+                distance = self.getDistance(Node_1, Node_2)
+                edges[(Node_1, Node_2)] = distance
+
+        return edges
+
+    def initialize_from_file(self, filename: str) -> None:
+        """ Builds the graph from the filename"""
+        with open(file=filename) as file:
+            lines: List[str] = file.readlines()  # all lines of the file
+            start = 0
+
+            end = 0
+            for index, line in enumerate(lines):
+                if line.startswith("DIMENSION"):
+                    self.dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
+                if line.startswith("NODE_COORD_SECTION"):
+                    start = index
+                if line.startswith("EOF"):
+                    end = index
+
+            for line in lines[start + 1 : end]:
+
+                node: int = int(line.split()[0])
+                x_coord: float = float(line.split()[1])
+                y_coord: float = float(line.split()[2])
+
+                self.add_node(node, x_coord, y_coord)
+
+class Graph_EUC(CompleteGraph):
+
+    def getDistance(self, index_n1: int, index_n2: int) -> float:
+        n1_x, n1_y = self.getCoordinates(index_n1)
+        n2_x, n2_y = self.getCoordinates(index_n2)
+
+        return math.sqrt((n1_x - n2_x) ** 2 + (n1_y - n2_y) ** 2)
+
+class Graph_GEO(CompleteGraph):
 
     def add_node(self, index: int, coordinate_x: float, coordinate_y: float):
         self.nodes[index] = (
@@ -42,22 +96,7 @@ class Graph_GEO:
         return (int)(RRR * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0)
 
     # Returns a Dict contianing the distance between all nodes
-    def getAllEdges(self) -> Dict[Tuple[int, int], int]:
 
-        edges: Dict[Tuple[int, int], int] = {}
-        Nodes: KeysView[int] = self.nodes.keys()
-
-        for Node_1 in Nodes:
-            for Node_2 in Nodes:
-                if Node_1 == Node_2:
-                    continue
-                distance = self.getDistance(Node_1, Node_2)
-                edges[(Node_1, Node_2)] = distance
-
-        return edges
-
-    def getNodes(self) -> KeysView[int]:
-        return self.nodes.keys()
 
     def getDistance_2(self, node_x: int, node_y: int) -> float:
         """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
@@ -78,26 +117,3 @@ class Graph_GEO:
         )  # haversine distance, computes the versine of an angle, required for computing the haversine distance
 
         return approximate_radius_earth * haversine_distance
-
-    def initialize_from_file(self, filename: str) -> None:
-        """ Builds the graph from the filename"""
-        with open(file=filename) as file:
-            lines: List[str] = file.readlines()  # all lines of the file
-            start: int = 0
-
-            end: int = 0
-            for index, line in enumerate(lines):
-                if line.startswith("DIMENSION"):
-                    self.dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
-                if line.startswith("NODE_COORD_SECTION"):
-                    start = index
-                if line.startswith("EOF"):
-                    end = index
-
-            for line in lines[(start + 1): end]:
-
-                node: int = int(line.split()[0])
-                x_coord: float = float(line.split()[1])
-                y_coord: float = float(line.split()[2])
-
-                self.add_node(node, x_coord, y_coord)

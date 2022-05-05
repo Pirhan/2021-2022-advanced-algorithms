@@ -1,4 +1,4 @@
-from data_structures.EUC_graph import Graph_EUC  # type: ignore
+from data_structures.Complete_graphs import * # type: ignore
 import os
 import nearest_neighbour
 from typing import List

@@ -1,9 +1,8 @@
-from data_structures.EUC_graph import Graph_EUC
-from data_structures.GEO_graph import Graph_GEO
 from data_structures.unionfind import UnionFind
 from data_structures.graph import Graph
+from data_structures.Complete_graphs import * # type: ignore
 
-def Efficient_Kruskal(G):
+def Efficient_Kruskal(G:CompleteGraph):
     """
     This is a function that implements the Kruskal's algorithm 
     implemented using the "Disjoint Set Union" data structure, 
@@ -27,3 +26,16 @@ def Efficient_Kruskal(G):
             U.Union(v, w)
     A.orderEdges()
     return A
+
+def DFS_Traversal(graph : Graph, visited = [], node = None):
+    if node == None: node = graph.getNodes()[0]
+    if node not in visited:
+        visited.append(node)
+        for adj in graph.getAdjacentNodes(node):
+            DFS_Traversal(graph, visited, adj)
+    return visited
+
+def TwoApproximate(Graph, path):
+    Graph.initialize_from_file(path)
+    Result = Efficient_Kruskal(Graph)
+    return DFS_Traversal(Result)

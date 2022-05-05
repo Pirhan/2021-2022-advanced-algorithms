@@ -1,4 +1,4 @@
-from data_structures.EUC_graph import Graph_EUC  # type: ignore
+from data_structures.Complete_graphs import * # type: ignore
 
 #  from data_structures.GEO_graph import GEO_graph  # type: ignore
 
@@ -6,7 +6,7 @@ from typing import List
 
 
 def computeSmallestNeighbour(
-    graph: Graph_EUC, not_in_path: List[int], current_pick: int
+    graph: CompleteGraph, not_in_path: List[int], current_pick: int
 ) -> int:  # return the index of the smallest_neighbour
     minimum_node: int = -1
     minimum: float = float("+Infinity")
@@ -23,7 +23,7 @@ def removeNode(from_s: List[int], what: int) -> None:
     from_s.remove(what)
 
 
-def nearestNeighbour(graph: Graph_EUC) -> List[int]:
+def nearestNeighbour(graph: CompleteGraph) -> List[int]:
     """ computes the tsp using nearest_neighbour heuristic"""
     all_nodes: List[int] = list(
         graph.getNodes()
