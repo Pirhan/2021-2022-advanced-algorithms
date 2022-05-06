@@ -9,11 +9,9 @@ def main():
     foldername: str = "tsp_dataset"
     for filename in sorted(os.listdir(foldername)):
         if filename == "eil51.tsp":
-            Graph = Graph_EUC()
-            Graph.initialize_from_file(foldername + "/" + filename)
+            Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
             Result: List[int] = nearest_neighbour.nearestNeighbour(graph=Graph)
-            for i in Result:
-                print(i)
+            print(Result)
 
 
 if __name__ == "__main__":

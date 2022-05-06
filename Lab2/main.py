@@ -1,139 +1,100 @@
 from data_structures.graph import Graph
-import algorithms as algorithms
-
+from data_structures.Complete_graphs import *
+from Two_approximate import TwoApproximate
+from nearest_neighbour import nearestNeighbour
+from typing import List, Dict, Tuple, Set
 from time import perf_counter_ns
 import gc
 import os
 import pandas as pd
 import numpy as np
 
+Optimal_solutions : Dict[str,float] = {
+"burma14.tsp":3323,
+"ulysses16.tsp":6859,
+"ulysses22.tsp":7013,
+"eil51.tsp":426,
+"berlin52.tsp":7542,
+"kroD100.tsp":21294,
+"kroA100.tsp":21282,
+"ch150.tsp":6528,
+"gr202.tsp":40160,
+"gr229.tsp":134602,
+"pcb442.tsp":50778,
+"d493.tsp":35002,
+"dsj1000.tsp":18659688,
+}
 
-def measureTime(Graphs, Function, MSTs, Time):
+def measureTime(Graphs, Function, Weights, Time):
     temp_time = 0
-    for a_graph in Graphs:
-        print(Function, "\t=>\t", Graphs.index(a_graph) + 1)
+    for c_graph in Graphs:
+        print(Function, "\t=>\t", Graphs.index(c_graph) + 1)
         gc.disable()
-        start_time = perf_counter_ns()
+        Result = []
+        temp_time = []
+        iterations = 1
+        for _ in range(iterations):
+            start_time = perf_counter_ns()
 
-        temp_time = Function(a_graph)  # Function call
+            Result = Function(c_graph)  # Function call
 
-        end_time = perf_counter_ns()
+            end_time = perf_counter_ns()
+            
+            temp_time.append(end_time - start_time)
+        
         gc.enable()
-        MSTs.append(temp_time)
-        Time.append(end_time - start_time)
+        Time.append(sum(temp_time)/iterations)
+        Weights.append(Result)
 
-    return Time, MSTs
-
+    return Time, Weights
 
 def main():
-    Graphs = []
-    Graphs_names = []
+    CompGraphs : List[float] = [] 
     foldername = "tsp_dataset"
+    optimal_sol = []
     for filename in sorted(os.listdir(foldername)):
-        graph = Graph()
-        graph.initialize_from_file(foldername + "//" + filename)
-        Graphs.append(graph)
-        Graphs_names.append(filename)
-        print(filename, "\t=>\tOK")
+        optimal_sol.append(Optimal_solutions.get(filename)) # Possible None
+        CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
+        CompGraphs.append(CompGraph) # we don't need to understand the type of graph
+    
+    Output_two_approximate = []
+    Output_nearest_neighbour = []
+    #....
 
-    # no calls to the run algorithms for the moment
-    # Run the algorithms and computes all the measurements
-    # param Multiprocess = True/False
-    # run(
-    #  Graphs,
-    #    MSTs_Weights_Prim,
-    #    MSTs_Weights_Kruskal,
-    #    MSTs_Weights_Kruscal_Efficient,
-    #    run_times_Prim,
-    #    run_times_Kruskal,
-    #    run_times_Kruskal_Efficient,
-    # )
+    Times_two_approximate = []
+    Times_nearest_neighbour = []
+    #....
+    
+    measureTime(CompGraphs, TwoApproximate, Output_two_approximate, Times_nearest_neighbour)
+    measureTime(CompGraphs, nearestNeighbour, Output_nearest_neighbour, Times_nearest_neighbour)
+    #....TODO Add the other function
+    
+    Error_calculated_two_approximate = []
+    Error_calculated_nearest_neighbour = []
+    #....
 
-    # graph_data = []  # Obtaining data for the graphs references
-    # for graph in Graphs:
-    #    n_nodes = len(graph.nodes)
-    #    n_edges = len(list(graph.edges.keys()))
-    #    graph_data.append((n_nodes, n_edges))
+    for index, optimalError in enumerate(optimal_sol):   # They are in the same order
+        Error_calculated_two_approximate.append((Output_two_approximate[index] - optimalError) / optimalError)
+        Error_calculated_nearest_neighbour.append((Output_nearest_neighbour[index] - optimalError) / optimalError)
+        #....
 
+    saving_data_twoApprox = []
+    saving_data_twoApprox.append(("Solution", "Run times", "Error"))
+    for i in range(len(CompGraphs)):
+        saving_data_twoApprox.append((Output_two_approximate[i], Times_two_approximate[i], Error_calculated_twoApprox[i]))
 
-def run(
-    Graphs,
-    MSTs_Weights_Prim,
-    MSTs_Weights_Kruskal,
-    MSTs_Weights_Kruscal_Efficient,
-    run_times_Prim,
-    run_times_Kruskal,
-    run_times_Kruskal_Efficient,
-):
-    # WARNING Don't let Kruskal run on the entire graph dataset. It takes too long.
-
-    measureTime(Graphs, algorithms.Prim_Heap, MSTs_Weights_Prim, run_times_Prim)
-    measureTime(Graphs, algorithms.Kruskal, MSTs_Weights_Kruskal, run_times_Kruskal)
-    measureTime(
-        Graphs,
-        algorithms.Efficient_Kruskal,
-        MSTs_Weights_Kruscal_Efficient,
-        run_times_Kruskal_Efficient,
-    )
-
-    saving_data_Prim = []
-    for i in range(len(Graphs)):
-        saving_data_Prim.append((run_times_Prim[i], MSTs_Weights_Prim[i]))
-
-    mat = np.matrix(saving_data_Prim)
+    mat = np.matrix(saving_data_twoApprox)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/Prim.csv", sep="\t", header=False, index=False)
+    df.to_csv("RESULTS/TWOAPPROX.csv", sep="\t", header=False, index=False)
 
-    saving_data_Kruskal_Eff = []
-    for i in range(len(Graphs)):
-        saving_data_Kruskal_Eff.append(
-            (run_times_Kruskal_Efficient[i], MSTs_Weights_Kruscal_Efficient[i])
-        )
+    saving_data_nearest_neighbour= []
+    saving_data_tnearest_neighbour.append(("Solution", "Run times", "Error"))
+    for i in range(len(CompGraphs)):
+        saving_data_nearest_neighbour.append((Output_nearest_neighbour[i], Times_nearest_neighbour[i], Error_calculated_nearest_neighbour[i]))
 
-    mat = np.matrix(saving_data_Kruskal_Eff)
+    mat = np.matrix(saving_data_nearest_neighbour)
     df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/Kruskal_Eff.csv", sep="\t", header=False, index=False)
-
-    saving_data_Kruskal = []
-    for i in range(len(Graphs)):
-        saving_data_Kruskal.append((run_times_Kruskal[i], MSTs_Weights_Kruskal[i]))
-
-    mat = np.matrix(saving_data_Kruskal)
-    df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/Kruskal.csv", sep="\t", header=False, index=False)
-
-    data_to_file(
-        Graphs, MSTs_Weights_Prim, MSTs_Weights_Kruskal, MSTs_Weights_Kruscal_Efficient
-    )
-
-
-def data_to_file(
-    Graphs,
-    MSTs_Weights_Prim,
-    MSTs_Weights_Kruskal,
-    MSTs_Weights_Kruscal_Efficient,
-):
-    """Extracts all the weights computed by the algorithms, writing them in a .csv file"""
-
-    table = [["Prim", "Kruskal", "Kruskal Efficient"]]
-
-    difference = len(MSTs_Weights_Kruskal) < len(Graphs)
-    if difference > 0:  # Adding empty fields to the table
-        for _ in range(difference):
-            MSTs_Weights_Kruskal.append(None)
-
-    for i in range(len(Graphs)):
-        table.append(
-            [
-                MSTs_Weights_Prim[i],
-                MSTs_Weights_Kruskal[i],
-                MSTs_Weights_Kruscal_Efficient[i],
-            ]
-        )
-
-    mat = np.matrix(table)
-    df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/weights.csv", sep="\t", header=False, index=False)
+    df.to_csv("RESULTS/NEAREST_NEIGHBOUR.csv", sep="\t", header=False, index=False)
 
 
 if __name__ == "__main__":

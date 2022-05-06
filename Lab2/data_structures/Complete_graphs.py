@@ -4,6 +4,7 @@ import math
 class CompleteGraph:
     def __init__(self) -> None:
         self.nodes: Dict[int, Tuple[float, float]] = {}  # key = index; value = (x,y)
+        self.dimension: int = 0
 
     def add_node(self, index: int, value1: float, value2: float):
         self.nodes[index] = (value1, value2)
@@ -30,7 +31,9 @@ class CompleteGraph:
 
         return edges
 
-    def initialize_from_file(self, filename: str) -> None:
+
+    @staticmethod
+    def initialize_from_file(filename: str) -> None:
         """ Builds the graph from the filename"""
         with open(file=filename) as file:
             lines: List[str] = file.readlines()  # all lines of the file
@@ -39,19 +42,27 @@ class CompleteGraph:
             end = 0
             for index, line in enumerate(lines):
                 if line.startswith("DIMENSION"):
-                    self.dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
+                    graph_dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
+                if line.startswith("EDGE_WEIGHT_TYPE"):
+                    graph_type = line.split()[1]
                 if line.startswith("NODE_COORD_SECTION"):
                     start = index
                 if line.startswith("EOF"):
                     end = index
+            
+            
+            if graph_type == "EUC_2D": Comp_graph = Graph_EUC()
+            if graph_type == "GEO" : Comp_graph = Graph_GEO()
 
+            Comp_graph.dimension = graph_dimension
             for line in lines[start + 1 : end]:
 
                 node: int = int(line.split()[0])
                 x_coord: float = float(line.split()[1])
                 y_coord: float = float(line.split()[2])
 
-                self.add_node(node, x_coord, y_coord)
+                Comp_graph.add_node(node, x_coord, y_coord)
+        return Comp_graph
 
 class Graph_EUC(CompleteGraph):
 
@@ -70,6 +81,7 @@ class Graph_GEO(CompleteGraph):
         )
 
     def getLatLong(self, index: int) -> Tuple[float, float]:
+       
         (latitude, longitude) = self.nodes.get(index)
         return latitude, longitude
 

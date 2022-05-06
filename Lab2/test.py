@@ -2,16 +2,18 @@ from data_structures.Complete_graphs import * # type: ignore
 import os
 import geopy.distance  # type: ignore
 from Two_approximate import *
+from data_structures import Complete_graphs
 
 
 def main():
 
     foldername: str = "tsp_dataset"
     for filename in sorted(os.listdir(foldername)):
-        if filename == "burma14.tsp":
-            Graph = Graph_GEO()
-            Result = TwoApproximate(Graph, foldername + "/" + filename)
-            print(Result)
+        
+        if filename != "d493.tsp": continue
+        Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
+        Result = TwoApproximate(Graph)
+        print(Result)
 
 
     """print(

@@ -2,6 +2,7 @@ from data_structures.unionfind import UnionFind
 from data_structures.graph import Graph
 from data_structures.Complete_graphs import * # type: ignore
 
+
 def Efficient_Kruskal(G:CompleteGraph):
     """
     This is a function that implements the Kruskal's algorithm 
@@ -33,9 +34,21 @@ def DFS_Traversal(graph : Graph, visited = [], node = None):
         visited.append(node)
         for adj in graph.getAdjacentNodes(node):
             DFS_Traversal(graph, visited, adj)
-    return visited
+            
+    return visited + [graph.getNodes()[0]]
 
-def TwoApproximate(Graph, path):
-    Graph.initialize_from_file(path)
+def getTotalWeight(Graph: CompleteGraph, cycle : List):
+    total_weight: float = 0
+    node1 = cycle[0]
+    for node2 in cycle[1:]:
+        total_weight += Graph.getDistance(node1, node2)
+        #print("Distance: ", node1, node2)
+        node1 = node2
+
+    return total_weight
+
+def TwoApproximate(Graph):
     Result = Efficient_Kruskal(Graph)
-    return DFS_Traversal(Result)
+    Cycle = DFS_Traversal(Result) # This is a list
+    return getTotalWeight(Graph, Cycle)
+

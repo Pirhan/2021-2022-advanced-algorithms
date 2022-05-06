@@ -23,6 +23,16 @@ def removeNode(from_s: List[int], what: int) -> None:
     """ remove the neighbour to the set of the element in te path. this is done with side effects"""
     from_s.remove(what)
 
+def getTotalWeight(Graph: CompleteGraph, cycle : List):
+    total_weight: float = 0
+
+    node1 = cycle[0]
+    total_weight
+    for node2 in cycle[1:]:
+        total_weight += Graph.getDistance(node1, node2)
+        node1 = node2
+
+    return total_weight
 
 def nearestNeighbour(graph: CompleteGraph) -> List[int]:
     """ computes the tsp using nearest_neighbour heuristic"""
@@ -50,4 +60,5 @@ def nearestNeighbour(graph: CompleteGraph) -> List[int]:
     # sorted_final_path = final_path.sort()
     # print("f path", sorted_final_path)
     # print("len", len(final_path))
-    return final_path  # ordered by insertion
+    return getTotalWeight(graph, final_path)  # ordered by insertion
+
