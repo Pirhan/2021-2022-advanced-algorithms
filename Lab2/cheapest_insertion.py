@@ -10,8 +10,9 @@ def first_circuit(
     minimum: float = float("+Infinity")
     for node in not_in_path:
         if node != current_pick:  # maybe useless?
-            if graph.getDistance(current_pick, node) < minimum:
-                minimum = graph.getDistance(current_pick, node)
+            current_distance: float = graph.getDistance(current_pick, node)
+            if current_distance < minimum:
+                minimum = current_distance
                 minimum_node = node
     #  we care of the minimum node only, weight is unneded
     return minimum_node
@@ -49,21 +50,14 @@ def selection(
     edge_to_be_replaced: Tuple[int, int] = (-1, -1)
     for current_edge in partial_circuit:
         for node_not_in_path in not_in_path:
-            if (
-                triangular_inequality(
-                    graph=graph,
-                    first_node_in_edge=current_edge[0],
-                    intermediate_node=node_not_in_path,
-                    second_node_in_edge=current_edge[1],
-                )
-                < minimum
-            ):
-                minimum = triangular_inequality(
-                    graph=graph,
-                    first_node_in_edge=current_edge[0],
-                    intermediate_node=node_not_in_path,
-                    second_node_in_edge=current_edge[1],
-                )
+            current_triangular_inequality: float = triangular_inequality(
+                graph=graph,
+                first_node_in_edge=current_edge[0],
+                intermediate_node=node_not_in_path,
+                second_node_in_edge=current_edge[1],
+            )
+            if current_triangular_inequality < minimum:
+                minimum = current_triangular_inequality
                 minimum_node = node_not_in_path
                 edge_to_be_replaced = current_edge
     return (minimum_node, edge_to_be_replaced)
@@ -105,21 +99,36 @@ def add_to_circuit(
     current_circuit[index_edge_to_replace + 1] = new_edge_right
 
 
-
 # still working on it WORK IN PROGRESS
 # no guarantee!!
-    # def cheapest_insertion(graph: CompleteGraph) -> List[int]:
-    """ computes the tsp using cheapest_insertion heuristic
-    all_nodes: List[int] = list(
-        graph.getNodes()
-    )  # keyview not indexable -> convert it into list
-    current_pick: int = all_nodes[0]  # initialization, first selection
-    not_in_path: List[int] = all_nodes[1:]
-    other_edge_first_circuit: int = first_circuit(graph=graph, not_in_path=not_in_path,current_pick=current_pick)
-    circuit: List[Tuple[int, int]] = [(current_pick, other_edge_first_circuit)]  # will be used to build a partial circuit
-    #  final_path: List[int] = [current_pick]
-    while len(not_in_path) > 0:  # keep going until all nodes are in the path
 
 
+def cheapest_insertion(graph: CompleteGraph) -> List[int]:
+    #  initialization
+    all_nodes: List[int] = list(graph.getNodes())  # must be indexable
+    initial_pick: int = all_nodes[0]  # convention: start from 0
+    final_path: List[int] = [initial_pick]
+    not_in_path: List[int] = all_nodes[
+        1:
+    ]  # all other nodes still does not belong to path
+    nearest_neighbour: int = first_circuit(
+        graph=graph, not_in_path=not_in_path, current_pick=initial_pick
+    )
+    #  nearest_neighbour with smaller weight
+    partial_circuit: List[Tuple[int, int]] = [(initial_pick, nearest_neighbour)]
+    #  build the first part of the partial_circuit
+    while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
+        new_node, edge_to_be_replaced = selection(
+            graph=graph, partial_circuit=partial_circuit, not_in_path=not_in_path
+        )
+        add_to_circuit(
+            current_circuit=partial_circuit,
+            node_to_add=new_node,
+            edge_to_be_replaced=edge_to_be_replaced,
+        )
+        not_in_path.remove(new_node)
+        final_path += [new_node]
+    final_path += [initial_pick]  # add the initial node to close the cycle
+    print("pre ordered path", final_path)
+    final_path.sort()
     return final_path
-"""
