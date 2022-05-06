@@ -41,14 +41,16 @@ def getTotalWeight(Graph: CompleteGraph, cycle : List):
     total_weight: float = 0
     node1 = cycle[0]
     for node2 in cycle[1:]:
+        
         total_weight += Graph.getDistance(node1, node2)
-        #print("Distance: ", node1, node2)
         node1 = node2
-
+    
     return total_weight
 
 def TwoApproximate(Graph):
     Result = Efficient_Kruskal(Graph)
+    print("\n\n", Result.getNodes(),"\n\n")
     Cycle = DFS_Traversal(Result) # This is a list
+    print("Cycle in: => ", Cycle)
     return getTotalWeight(Graph, Cycle)
 

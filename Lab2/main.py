@@ -52,7 +52,7 @@ def main():
     CompGraphs : List[float] = [] 
     foldername = "tsp_dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername)):
+    for filename in os.listdir(foldername)[:3]:
         optimal_sol.append(Optimal_solutions.get(filename)) # Possible None
         CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         CompGraphs.append(CompGraph) # we don't need to understand the type of graph
@@ -65,15 +65,16 @@ def main():
     Times_nearest_neighbour = []
     #....
     
-    measureTime(CompGraphs, TwoApproximate, Output_two_approximate, Times_nearest_neighbour)
+    measureTime(CompGraphs, TwoApproximate, Output_two_approximate, Times_two_approximate)
     measureTime(CompGraphs, nearestNeighbour, Output_nearest_neighbour, Times_nearest_neighbour)
     #....TODO Add the other function
+
     
     Error_calculated_two_approximate = []
     Error_calculated_nearest_neighbour = []
     #....
 
-    for index, optimalError in enumerate(optimal_sol):   # They are in the same order
+    for index, optimalError in enumerate(optimal_sol[:3]):   # They are in the same order
         Error_calculated_two_approximate.append((Output_two_approximate[index] - optimalError) / optimalError)
         Error_calculated_nearest_neighbour.append((Output_nearest_neighbour[index] - optimalError) / optimalError)
         #....
@@ -81,14 +82,15 @@ def main():
     saving_data_twoApprox = []
     saving_data_twoApprox.append(("Solution", "Run times", "Error"))
     for i in range(len(CompGraphs)):
-        saving_data_twoApprox.append((Output_two_approximate[i], Times_two_approximate[i], Error_calculated_twoApprox[i]))
+        print(i)
+        saving_data_twoApprox.append((Output_two_approximate[i], Times_two_approximate[i], Error_calculated_two_approximate[i]))
 
     mat = np.matrix(saving_data_twoApprox)
     df = pd.DataFrame(data=mat.astype(str))
     df.to_csv("RESULTS/TWOAPPROX.csv", sep="\t", header=False, index=False)
 
     saving_data_nearest_neighbour= []
-    saving_data_tnearest_neighbour.append(("Solution", "Run times", "Error"))
+    saving_data_nearest_neighbour.append(("Solution", "Run times", "Error"))
     for i in range(len(CompGraphs)):
         saving_data_nearest_neighbour.append((Output_nearest_neighbour[i], Times_nearest_neighbour[i], Error_calculated_nearest_neighbour[i]))
 

@@ -10,7 +10,10 @@ class CompleteGraph:
         self.nodes[index] = (value1, value2)
 
     def getCoordinates(self, index: int) -> tuple:
-        (x, y) = self.nodes.get(index)
+        
+        coo = self.nodes.get(index)
+        if coo == None: print("Errore: ", list(self.nodes.keys()), " index: ", index)
+        (x, y) = coo
         return x, y
 
     def getNodes(self) -> KeysView[int]:
@@ -62,6 +65,8 @@ class CompleteGraph:
                 y_coord: float = float(line.split()[2])
 
                 Comp_graph.add_node(node, x_coord, y_coord)
+
+            file.close()
         return Comp_graph
 
 class Graph_EUC(CompleteGraph):
