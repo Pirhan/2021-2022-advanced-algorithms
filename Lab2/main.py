@@ -1,13 +1,15 @@
-from data_structures.graph import Graph
-from data_structures.Complete_graphs import *
-from Two_approximate import TwoApproximate
-from nearest_neighbour import nearestNeighbour
-from typing import List, Dict, Tuple, Set
-from time import perf_counter_ns
 import gc
 import os
-import pandas as pd
+from time import perf_counter_ns
+from typing import Dict, List, Set, Tuple
+
 import numpy as np
+import pandas as pd
+
+from data_structures.Complete_graphs import *
+from data_structures.graph import Graph
+from nearest_neighbour import nearestNeighbour
+from Two_approximate import TwoApproximate
 
 Optimal_solutions : Dict[str,float] = {
 "burma14.tsp":3323,
@@ -28,7 +30,7 @@ Optimal_solutions : Dict[str,float] = {
 def measureTime(Graphs, Function, Weights, Time):
     print(Function, "\n")
     temp_time = 0
-    iterations = 10         # Iterations
+    iterations = 1         # Iterations
     current: int = 1
     for c_graph in Graphs:
         Result = []
@@ -61,6 +63,17 @@ def progress_bar(progress : int, total : int) -> None:
     
     print(f"\r|{bar}|{percent:.2f}%", end = "\r")
 
+def print_to_file(Output_nearest_neighbour, Times_nearest_neighbour, Error_calculated_nearest_neighbour, Path_File):
+    saving_data_nearest_neighbour= []
+    saving_data_nearest_neighbour.append(("Solution", "Run times", "Error"))
+    for i in range(len(Output_nearest_neighbour)):
+        saving_data_nearest_neighbour.append((Output_nearest_neighbour[i], Times_nearest_neighbour[i], Error_calculated_nearest_neighbour[i]))
+    
+    mat = np.matrix(saving_data_nearest_neighbour)
+    df = pd.DataFrame(data=mat.astype(str))
+    df.to_csv(Path_File, sep="\t", header=False, index=False)
+    
+
 def main():
     CompGraphs : List[float] = [] 
     foldername = "tsp_dataset"
@@ -72,11 +85,11 @@ def main():
     
     Output_two_approximate = []
     Output_nearest_neighbour = []
-    #....
+    #....TODO Add the other function
 
     Times_two_approximate = []
     Times_nearest_neighbour = []
-    #....
+    #....TODO Add the other function
     
     measureTime(CompGraphs, TwoApproximate, Output_two_approximate, Times_two_approximate)
     measureTime(CompGraphs, nearestNeighbour, Output_nearest_neighbour, Times_nearest_neighbour)
@@ -85,31 +98,16 @@ def main():
     
     Error_calculated_two_approximate = []
     Error_calculated_nearest_neighbour = []
-    #....
+    #....TODO Add the other function
 
     for index, optimalError in enumerate(optimal_sol):   # They are in the same order [:3]
         Error_calculated_two_approximate.append((Output_two_approximate[index] - optimalError) / optimalError)
         Error_calculated_nearest_neighbour.append((Output_nearest_neighbour[index] - optimalError) / optimalError)
-        #....
+        #....TODO Add the other function
 
-    saving_data_twoApprox = []
-    saving_data_twoApprox.append(("Solution", "Run times", "Error"))
-    for i in range(len(CompGraphs)):
-        saving_data_twoApprox.append((Output_two_approximate[i], Times_two_approximate[i], Error_calculated_two_approximate[i]))
-
-    mat = np.matrix(saving_data_twoApprox)
-    df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/TWOAPPROX.csv", sep="\t", header=False, index=False)
-
-    saving_data_nearest_neighbour= []
-    saving_data_nearest_neighbour.append(("Solution", "Run times", "Error"))
-    for i in range(len(CompGraphs)):
-        saving_data_nearest_neighbour.append((Output_nearest_neighbour[i], Times_nearest_neighbour[i], Error_calculated_nearest_neighbour[i]))
-
-    mat = np.matrix(saving_data_nearest_neighbour)
-    df = pd.DataFrame(data=mat.astype(str))
-    df.to_csv("RESULTS/NEAREST_NEIGHBOUR.csv", sep="\t", header=False, index=False)
-
+    print_to_file(Output_two_approximate, Output_two_approximate, Error_calculated_two_approximate, "RESULTS/TWOAPPROX.csv")
+    print_to_file(Output_nearest_neighbour, Times_nearest_neighbour, Error_calculated_nearest_neighbour, "RESULTS/NEAREST_NEIGHBOUR.csv")
+    #....TODO Add the other function
 
 if __name__ == "__main__":
     main()
