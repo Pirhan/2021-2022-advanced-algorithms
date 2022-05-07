@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple, KeysView
 import math
 
+
 class CompleteGraph:
     def __init__(self) -> None:
         self.nodes: Dict[int, Tuple[float, float]] = {}  # key = index; value = (x,y)
@@ -10,15 +11,16 @@ class CompleteGraph:
         self.nodes[index] = (value1, value2)
 
     def getCoordinates(self, index: int) -> tuple:
-        
+
         coo = self.nodes.get(index)
-        if coo == None: print("Errore: ", list(self.nodes.keys()), " index: ", index)
+        if coo == None:
+            print("Errore: ", list(self.nodes.keys()), " index: ", index)
         (x, y) = coo
         return x, y
 
     def getNodes(self) -> KeysView[int]:
         return self.nodes.keys()
-    
+
     # Returns a Dict contianing the distance between all nodes
     def getAllEdges(self) -> Dict[Tuple[int, int], float]:
 
@@ -34,10 +36,9 @@ class CompleteGraph:
 
         return edges
 
-
     @staticmethod
     def initialize_from_file(filename: str) -> None:
-        """ Builds the graph from the filename"""
+        """Builds the graph from the filename"""
         with open(file=filename) as file:
             lines: List[str] = file.readlines()  # all lines of the file
             start = 0
@@ -45,17 +46,20 @@ class CompleteGraph:
             end = 0
             for index, line in enumerate(lines):
                 if line.startswith("DIMENSION"):
-                    graph_dimension = int(line.split()[1])  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
+                    graph_dimension = int(
+                        line.split()[1]
+                    )  # could be useful when deciding if repeat or not an algorithm if the problem instance is small
                 if line.startswith("EDGE_WEIGHT_TYPE"):
                     graph_type = line.split()[1]
                 if line.startswith("NODE_COORD_SECTION"):
                     start = index
                 if line.startswith("EOF"):
                     end = index
-            
-            
-            if graph_type == "EUC_2D": Comp_graph = Graph_EUC()
-            if graph_type == "GEO" : Comp_graph = Graph_GEO()
+
+            if graph_type == "EUC_2D":
+                Comp_graph = Graph_EUC()
+            if graph_type == "GEO":
+                Comp_graph = Graph_GEO()
 
             Comp_graph.dimension = graph_dimension
             for line in lines[start + 1 : end]:
@@ -69,16 +73,16 @@ class CompleteGraph:
             file.close()
         return Comp_graph
 
-class Graph_EUC(CompleteGraph):
 
+class Graph_EUC(CompleteGraph):
     def getDistance(self, index_n1: int, index_n2: int) -> float:
         n1_x, n1_y = self.getCoordinates(index_n1)
         n2_x, n2_y = self.getCoordinates(index_n2)
 
         return math.sqrt((n1_x - n2_x) ** 2 + (n1_y - n2_y) ** 2)
 
-class Graph_GEO(CompleteGraph):
 
+class Graph_GEO(CompleteGraph):
     def add_node(self, index: int, coordinate_x: float, coordinate_y: float):
         self.nodes[index] = (
             Graph_GEO.toRadiant(coordinate_x),
@@ -86,7 +90,7 @@ class Graph_GEO(CompleteGraph):
         )
 
     def getLatLong(self, index: int) -> Tuple[float, float]:
-       
+
         (latitude, longitude) = self.nodes.get(index)
         return latitude, longitude
 
@@ -114,9 +118,8 @@ class Graph_GEO(CompleteGraph):
 
     # Returns a Dict contianing the distance between all nodes
 
-
     def getDistance_2(self, node_x: int, node_y: int) -> float:
-        """ Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
+        """Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
         # approximate radius of earth in km
         approximate_radius_earth: float = 6373.0
 

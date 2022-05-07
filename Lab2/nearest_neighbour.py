@@ -4,7 +4,7 @@ from typing import List
 
 
 def computeSmallestNeighbour(
-    graph: CompleteGraph, not_in_path: List[int], current_pick: int
+    graph: CompleteGraph, not_in_path: List[int], current_pick: int # type: ignore
 ) -> int:  # return the index of the smallest_neighbour
     minimum_node: int = -1
     minimum: float = float("+Infinity")
@@ -23,7 +23,7 @@ def removeNode(from_s: List[int], what: int) -> None:
     """ remove the neighbour to the set of the element in te path. this is done with side effects"""
     from_s.remove(what)
 
-def getTotalWeight(Graph: CompleteGraph, cycle : List):
+def getTotalWeight(Graph: CompleteGraph, cycle : List): # type: ignore
     total_weight: float = 0
 
     node1 = cycle[0]
@@ -34,7 +34,7 @@ def getTotalWeight(Graph: CompleteGraph, cycle : List):
 
     return total_weight
 
-def nearestNeighbour(graph: CompleteGraph) -> List[int]:
+def nearestNeighbour(graph: CompleteGraph) -> List[int]: # type: ignore
     """ computes the tsp using nearest_neighbour heuristic"""
     all_nodes: List[int] = list(
         graph.getNodes()
