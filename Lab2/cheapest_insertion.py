@@ -99,6 +99,17 @@ def add_to_circuit(
     current_circuit[index_edge_to_replace + 1] = new_edge_right
 
 
+def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
+    total_weight: float = 0
+    node1 = cycle[0]
+    for node2 in cycle[1:]:
+
+        total_weight += Graph.getDistance(node1, node2)
+        node1 = node2
+
+    return total_weight
+
+
 # still working on it WORK IN PROGRESS
 # no guarantee!!
 
@@ -129,6 +140,6 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
         not_in_path.remove(new_node)
         final_path += [new_node]
     final_path += [initial_pick]  # add the initial node to close the cycle
-    print("pre ordered path", final_path)
+    #print("pre ordered path", final_path)
     final_path.sort()
-    return final_path
+    return getTotalWeight(graph, final_path)

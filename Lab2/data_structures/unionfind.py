@@ -11,14 +11,14 @@ class UnionFind:
             self.size[i] = 1
  
     # Find the root of the set in which element `x` belongs
-    def Find(self, x):
+    def Find_rec(self, x):
         # if `k` is not the root
         if self.parent[x] != x:
             self.parent[x] = self.Find(self.parent[x]) # Recursive call
         return self.parent[x]
 
     # Perform the Find method iteratively
-    def Find_it(self, x):
+    def Find(self, x):
 
         while(self.parent[x] != x):
             x = self.parent[x]
