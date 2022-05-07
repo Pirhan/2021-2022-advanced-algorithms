@@ -29,10 +29,10 @@ Optimal_solutions: Dict[str, float] = {
 
 def measureTime(Graphs, Function, Weights, Time):
     print(Function)
-    temp_time = 0       # List of times
-    iterations = 1      # Iterations
-    current: int = 1    # Progress bas's counter
-    start_time = 0
+    temp_time = 0  # List of times
+    iterations = 1  # Iterations
+    current: int = 1  # Progress bas's counter
+    start_time_bar = perf_counter_ns()
     end_time = 0
     for c_graph in Graphs:
         Result = []
@@ -41,9 +41,7 @@ def measureTime(Graphs, Function, Weights, Time):
         gc.disable()
 
         for _ in range(iterations):
-            # Prints a progress bar for the specific function
-            progress_bar(current, (len(Graphs) * iterations), end_time - start_time)
-            current += 1 
+           
 
             start_time = perf_counter_ns()
 
@@ -52,6 +50,10 @@ def measureTime(Graphs, Function, Weights, Time):
             end_time = perf_counter_ns()
 
             temp_time.append(end_time - start_time)
+
+            # Prints a progress bar for the specific function
+            progress_bar(current, (len(Graphs) * iterations), perf_counter_ns() - start_time_bar)
+            current += 1
 
         gc.enable()
         Time.append(sum(temp_time) / iterations)
@@ -63,9 +65,9 @@ def measureTime(Graphs, Function, Weights, Time):
 def progress_bar(progress: int, total: int, current_time) -> None:
     # Progress bar
 
-    percent = 100 * (progress / float(total)) # Obtaining the percent
-    bar = "█" * int(percent) + "_" * (100 - int(percent)) # Building the bar
-    current_time = current_time / 10**6         # Conversion to ms
+    percent = 100 * (progress / float(total))  # Obtaining the percent
+    bar = "█" * int(percent) + "_" * (100 - int(percent))  # Building the bar
+    current_time = current_time / 10**6  # Conversion to ms
     print(f"\r|{bar}|{percent:.2f}% - {current_time:.2f} ms", end="\r")
 
 
