@@ -28,10 +28,12 @@ Optimal_solutions : Dict[str,float] = {
 }
 
 def measureTime(Graphs, Function, Weights, Time):
-    print(Function, "\n")
+    print(Function)
     temp_time = 0
     iterations = 1         # Iterations
     current: int = 1
+    start_time = 0
+    end_time = 0
     for c_graph in Graphs:
         Result = []
         temp_time = []
@@ -39,7 +41,7 @@ def measureTime(Graphs, Function, Weights, Time):
         gc.disable()
         
         for _ in range(iterations):
-            progress_bar(current, (len(Graphs)*iterations))
+            progress_bar(current, (len(Graphs)*iterations), end_time - start_time)
             current += 1
 
             start_time = perf_counter_ns()
@@ -57,11 +59,11 @@ def measureTime(Graphs, Function, Weights, Time):
     return Time, Weights
 
 
-def progress_bar(progress : int, total : int) -> None:
+def progress_bar(progress : int, total : int, current_time) -> None:
     percent = 100 * (progress / float (total))
     bar = '█' * int(percent) + '_' * (100 - int(percent))
-    
-    print(f"\r|{bar}|{percent:.2f}%", end = "\r")
+    current_time = current_time/10**6
+    print(f"\r|{bar}|{percent:.2f}% - {current_time:.2f} ms", end = "\r")
 
 def print_to_file(Output_nearest_neighbour, Times_nearest_neighbour, Error_calculated_nearest_neighbour, Path_File):
     saving_data_nearest_neighbour= []
@@ -73,6 +75,15 @@ def print_to_file(Output_nearest_neighbour, Times_nearest_neighbour, Error_calcu
     df = pd.DataFrame(data=mat.astype(str))
     df.to_csv(Path_File, sep="\t", header=False, index=False)
     
+def functionExecution(CompGraphs, optimal_sol, Function, FilePath)->None :
+    Output = []
+    Times = []
+    measureTime(CompGraphs, Function, Output, Times)
+
+    Error_calculated = []
+    for index, optimalError in enumerate(optimal_sol):
+        Error_calculated.append((Output[index] - optimalError) / optimalError)
+    print_to_file(Output, Times, Error_calculated, FilePath)
 
 def main():
     CompGraphs : List[float] = [] 
@@ -83,31 +94,9 @@ def main():
         CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         CompGraphs.append(CompGraph) # we don't need to understand the type of graph
     
-    Output_two_approximate = []
-    Output_nearest_neighbour = []
-    #....TODO Add the other function
-
-    Times_two_approximate = []
-    Times_nearest_neighbour = []
+    functionExecution(CompGraphs, optimal_sol, TwoApproximate, "RESULTS/TWOAPPROX.csv")
+    functionExecution(CompGraphs, optimal_sol, nearestNeighbour, "RESULTS/NEAREST_NEIGHBOUR.csv")
     #....TODO Add the other function
     
-    measureTime(CompGraphs, TwoApproximate, Output_two_approximate, Times_two_approximate)
-    measureTime(CompGraphs, nearestNeighbour, Output_nearest_neighbour, Times_nearest_neighbour)
-    #....TODO Add the other function
-
-    
-    Error_calculated_two_approximate = []
-    Error_calculated_nearest_neighbour = []
-    #....TODO Add the other function
-
-    for index, optimalError in enumerate(optimal_sol):   # They are in the same order [:3]
-        Error_calculated_two_approximate.append((Output_two_approximate[index] - optimalError) / optimalError)
-        Error_calculated_nearest_neighbour.append((Output_nearest_neighbour[index] - optimalError) / optimalError)
-        #....TODO Add the other function
-
-    print_to_file(Output_two_approximate, Output_two_approximate, Error_calculated_two_approximate, "RESULTS/TWOAPPROX.csv")
-    print_to_file(Output_nearest_neighbour, Times_nearest_neighbour, Error_calculated_nearest_neighbour, "RESULTS/NEAREST_NEIGHBOUR.csv")
-    #....TODO Add the other function
-
 if __name__ == "__main__":
     main()
