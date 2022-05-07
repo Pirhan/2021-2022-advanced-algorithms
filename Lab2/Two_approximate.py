@@ -35,7 +35,6 @@ def DFS_Traversal(graph : Graph, visited = [], node = None):
         for adj in graph.getAdjacentNodes(node):
             DFS_Traversal(graph, visited, adj)
             
-    return visited + [graph.getNodes()[0]]
 
 def getTotalWeight(Graph: CompleteGraph, cycle : List):
     total_weight: float = 0
@@ -48,9 +47,17 @@ def getTotalWeight(Graph: CompleteGraph, cycle : List):
     return total_weight
 
 def TwoApproximate(Graph):
-    Result = Efficient_Kruskal(Graph)
-    print("\n\n", Result.getNodes(),"\n\n")
-    Cycle = DFS_Traversal(Result) # This is a list
-    print("Cycle in: => ", Cycle)
-    return getTotalWeight(Graph, Cycle)
+    # Getting the MST
+    Result = Efficient_Kruskal(Graph)   
+
+    # List containing the final set of nodes
+    Cycle : List[int] = []    
+
+    # Preorder          
+    DFS_Traversal(Result, Cycle)        
+    
+    # Adding the starting node to the end in order to complete the cycle
+    Cycle.append(Result.getNodes()[0])  
+    
+    return getTotalWeight(Graph, Cycle) # Obtaining the total weight and return it
 

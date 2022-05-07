@@ -26,14 +26,20 @@ Optimal_solutions : Dict[str,float] = {
 }
 
 def measureTime(Graphs, Function, Weights, Time):
+    print(Function, "\n")
     temp_time = 0
+    iterations = 10         # Iterations
+    current: int = 1
     for c_graph in Graphs:
-        print(Function, "\t=>\t", Graphs.index(c_graph) + 1)
-        gc.disable()
         Result = []
         temp_time = []
-        iterations = 1
+
+        gc.disable()
+        
         for _ in range(iterations):
+            progress_bar(current, (len(Graphs)*iterations))
+            current += 1
+
             start_time = perf_counter_ns()
 
             Result = Function(c_graph)  # Function call
@@ -45,14 +51,21 @@ def measureTime(Graphs, Function, Weights, Time):
         gc.enable()
         Time.append(sum(temp_time)/iterations)
         Weights.append(Result)
-
+    print("\n")
     return Time, Weights
+
+
+def progress_bar(progress : int, total : int) -> None:
+    percent = 100 * (progress / float (total))
+    bar = '█' * int(percent) + '_' * (100 - int(percent))
+    
+    print(f"\r|{bar}|{percent:.2f}%", end = "\r")
 
 def main():
     CompGraphs : List[float] = [] 
     foldername = "tsp_dataset"
     optimal_sol = []
-    for filename in os.listdir(foldername)[:3]:
+    for filename in os.listdir(foldername): #[:3]
         optimal_sol.append(Optimal_solutions.get(filename)) # Possible None
         CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         CompGraphs.append(CompGraph) # we don't need to understand the type of graph
@@ -74,7 +87,7 @@ def main():
     Error_calculated_nearest_neighbour = []
     #....
 
-    for index, optimalError in enumerate(optimal_sol[:3]):   # They are in the same order
+    for index, optimalError in enumerate(optimal_sol):   # They are in the same order [:3]
         Error_calculated_two_approximate.append((Output_two_approximate[index] - optimalError) / optimalError)
         Error_calculated_nearest_neighbour.append((Output_nearest_neighbour[index] - optimalError) / optimalError)
         #....
@@ -82,7 +95,6 @@ def main():
     saving_data_twoApprox = []
     saving_data_twoApprox.append(("Solution", "Run times", "Error"))
     for i in range(len(CompGraphs)):
-        print(i)
         saving_data_twoApprox.append((Output_two_approximate[i], Times_two_approximate[i], Error_calculated_two_approximate[i]))
 
     mat = np.matrix(saving_data_twoApprox)
