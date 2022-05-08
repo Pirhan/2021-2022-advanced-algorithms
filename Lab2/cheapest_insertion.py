@@ -5,7 +5,7 @@ from typing import List, Tuple
 
 def first_circuit(
     graph: CompleteGraph, not_in_path: List[int], current_pick: int
-) -> int:  # only the minimal distance vertex required here since we can build the the first partial circuit with just that
+) -> int:  # compute the first partial_circuit, used for initialization, only the minimal distance vertex required here since we can build the the first partial circuit with just that
     minimum_node: int = -1
     minimum: float = float("+Infinity")
     for node in not_in_path:
@@ -23,7 +23,7 @@ def triangular_inequality(
     first_node_in_edge: int,
     intermediate_node: int,
     second_node_in_edge: int,
-) -> float:
+) -> float:  # compute the triangular_inequality for three nodes
     first_intermediate_distance: float = graph.getDistance(
         first_node_in_edge, intermediate_node
     )
@@ -47,8 +47,13 @@ def selection(
 ]:  # first element = vertex which connection have the best triangular_inequality, second element the first  node which compose the edge that must be replaced
     minimum_node: int = -1
     minimum: float = float("+Infinity")
-    index_insertion: int = -1
+    index_insertion: int = (
+        -1
+    )  # this tell us where we must insert the node that have the smallest triangular_inequality value
     for first_end_edge in partial_circuit[:-1]:  # upto the last but one
+        #  first_end_edge and second_end_edge
+        #  are the first and second element of
+        #  the edge that will be compared with the nodes not_in_path
         second_end_edge: int = partial_circuit[
             partial_circuit.index(first_end_edge) + 1
         ]
@@ -83,8 +88,10 @@ def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
 
 def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     #  initialization
-    all_nodes: List[int] = list(graph.getNodes())  # must be indexable
-    initial_pick: int = all_nodes[0]  # convention: start from 0
+    all_nodes: List[int] = list(
+        graph.getNodes()
+    )  # must be indexable while what returned from getNodes is not
+    initial_pick: int = all_nodes[0]  # convention: start from node of index 0
     path: List[int] = [initial_pick]
     not_in_path: List[int] = all_nodes[
         1:
@@ -95,26 +102,12 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     # also second end of first partial circuit now belongs to the path
     not_in_path.remove(nearest_neighbour)
     path += [nearest_neighbour]
-    print("path", path)
-
-    #  nearest_neighbour with smaller weight
-    #  partial_circuit: List[Tuple[int, int]] = [(initial_pick, nearest_neighbour)]
-    #  no need of explicit partial_circuit
-    #  we will do with final path
-    #  ie let [1,2,3] a partial circuit
-    #  then the list of edges will be (1,2),(2,3)
-    #  ie generate an edge with (i, i + 1) for i < len(partial_circuit) - 2
     while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
         new_node, index_insertion = selection(
             graph=graph, partial_circuit=path, not_in_path=not_in_path
         )
-        path[
-            index_insertion:index_insertion] = [
-            new_node
-        ]  # insert new node in between
+        path[index_insertion:index_insertion] = [new_node]  # insert new node in between
         not_in_path.remove(new_node)
     path += [initial_pick]  # add the initial node to close the cycle
-    print("path", path)
-    path.sort()
-    return path
-    # return getTotalWeight(graph, path)
+    # return path
+    return getTotalWeight(graph, path)

@@ -8,7 +8,7 @@ def main():
 
     foldername: str = "tsp_dataset"
     for filename in sorted(os.listdir(foldername)):
-        if filename == "eil51.tsp":
+        if filename == "dsj1000.tsp":
             Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
             Result: List[int] = cheapest_insertion.cheapest_insertion(graph=Graph)
             print(Result)

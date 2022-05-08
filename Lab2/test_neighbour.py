@@ -8,7 +8,7 @@ def main():
 
     foldername: str = "tsp_dataset"
     for filename in sorted(os.listdir(foldername)):
-        if filename == "eil51.tsp":
+        if filename == "burma14.tsp":
             Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
             Result: List[int] = nearest_neighbour.nearestNeighbour(graph=Graph)
             print(Result)
