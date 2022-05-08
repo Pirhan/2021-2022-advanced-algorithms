@@ -41,62 +41,29 @@ def triangular_inequality(
 
 
 def selection(
-    graph: CompleteGraph, partial_circuit: List[Tuple[int, int]], not_in_path: List[int]
+    graph: CompleteGraph, partial_circuit: List[int], not_in_path: List[int]
 ) -> Tuple[
-    int, Tuple[int, int]
-]:  # first element = vertex which connection have the best triangular_inequality, second element(the tuple) = edge that will be replaced by the new pair of edges
+    int, int
+]:  # first element = vertex which connection have the best triangular_inequality, second element the first  node which compose the edge that must be replaced
     minimum_node: int = -1
     minimum: float = float("+Infinity")
-    edge_to_be_replaced: Tuple[int, int] = (-1, -1)
-    for current_edge in partial_circuit:
+    index_first_node_edge_to_be_replaced: int = -1
+    for first_end_edge in partial_circuit[:-1]:  # upto the last but one
+        second_end_edge: int = partial_circuit[partial_circuit.index(first_end_edge) + 1]
         for node_not_in_path in not_in_path:
             current_triangular_inequality: float = triangular_inequality(
                 graph=graph,
-                first_node_in_edge=current_edge[0],
+                first_node_in_edge=first_end_edge,
                 intermediate_node=node_not_in_path,
-                second_node_in_edge=current_edge[1],
+                second_node_in_edge=second_end_edge,
             )
             if current_triangular_inequality < minimum:
                 minimum = current_triangular_inequality
                 minimum_node = node_not_in_path
-                edge_to_be_replaced = current_edge
-    return (minimum_node, edge_to_be_replaced)
-
-
-def shift_current_circuit(
-    current_circuit: List[Tuple[int, int]], index_start_shift: int
-) -> None:  # done wit side effects
-    # extend current_circuit with the last element of the current_circuit (ie [a,b,c] -> [a,b,c,c]
-    current_circuit += [current_circuit[(len(current_circuit)) - 1]]
-    #  start the shifting from index_start_shift
-    index: int = index_start_shift
-    while index < (
-        len(current_circuit) - 2
-    ):  # iterate (ie shift) up until the last but one element
-        current_circuit[index + 1] = current_circuit[index]
-        index += 1
-
-
-def add_to_circuit(
-    current_circuit: List[Tuple[int, int]],
-    node_to_add: int,
-    edge_to_be_replaced: Tuple[int, int],
-) -> None:  # done with side effect
-    index_edge_to_replace: int = current_circuit.index(edge_to_be_replaced)
-    new_edge_left: Tuple[int, int] = (
-        edge_to_be_replaced[0],
-        node_to_add,
-    )  # from previous edge first node to new node
-    current_circuit[index_edge_to_replace] = new_edge_left
-    #  in order to insert the second edge we must
-    #  move up all the previous edges
-    #  insert the new_edge_right in the first position
-    new_edge_right: Tuple[int, int] = (node_to_add, edge_to_be_replaced[1])
-    #  index_edge_to_replace + 1 is the position where the new_edge_right must be put after the new_edge_left (minus error of course :) )
-    shift_current_circuit(
-        current_circuit=current_circuit, index_start_shift=(index_edge_to_replace + 1)
-    )
-    current_circuit[index_edge_to_replace + 1] = new_edge_right
+                index_first_node_edge_to_be_replaced = partial_circuit.index(
+                    first_end_edge
+                )
+    return (minimum_node, index_first_node_edge_to_be_replaced)
 
 
 def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
@@ -118,28 +85,31 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     #  initialization
     all_nodes: List[int] = list(graph.getNodes())  # must be indexable
     initial_pick: int = all_nodes[0]  # convention: start from 0
-    final_path: List[int] = [initial_pick]
+    path: List[int] = [initial_pick]
     not_in_path: List[int] = all_nodes[
         1:
     ]  # all other nodes still does not belong to path
     nearest_neighbour: int = first_circuit(
         graph=graph, not_in_path=not_in_path, current_pick=initial_pick
     )
+    # also second end of first partial circuit now belongs to the path
+    not_in_path.remove(nearest_neighbour)
+    path += [nearest_neighbour]
+
     #  nearest_neighbour with smaller weight
-    partial_circuit: List[Tuple[int, int]] = [(initial_pick, nearest_neighbour)]
-    #  build the first part of the partial_circuit
+    #  partial_circuit: List[Tuple[int, int]] = [(initial_pick, nearest_neighbour)]
+    #  no need of explicit partial_circuit
+    #  we will do with final path
+    #  ie let [1,2,3] a partial circuit
+    #  then the list of edges will be (1,2),(2,3)
+    #  ie generate an edge with (i, i + 1) for i < len(partial_circuit) - 2
     while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
-        new_node, edge_to_be_replaced = selection(
-            graph=graph, partial_circuit=partial_circuit, not_in_path=not_in_path
+        new_node, index_first_node_edge_to_be_replaced = selection(
+            graph=graph, partial_circuit=path, not_in_path=not_in_path
         )
-        add_to_circuit(
-            current_circuit=partial_circuit,
-            node_to_add=new_node,
-            edge_to_be_replaced=edge_to_be_replaced,
-        )
+        path[
+            index_first_node_edge_to_be_replaced:index_first_node_edge_to_be_replaced
+        ] = [new_node]  # insert new node in between
         not_in_path.remove(new_node)
-        final_path += [new_node]
-    final_path += [initial_pick]  # add the initial node to close the cycle
-    #print("pre ordered path", final_path)
-    final_path.sort()
-    return getTotalWeight(graph, final_path)
+    path += [initial_pick]  # add the initial node to close the cycle
+    # return getTotalWeight(graph, path)
