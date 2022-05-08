@@ -21,7 +21,6 @@ def getTotalWeight(Graph: CompleteGraph, cycle: List):  # type: ignore
     total_weight: float = 0
 
     node1 = cycle[0]
-    total_weight
     for node2 in cycle[1:]:
         total_weight += Graph.getDistance(node1, node2)
         node1 = node2
