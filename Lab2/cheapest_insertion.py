@@ -6,16 +6,11 @@ from typing import List, Tuple
 def first_circuit(
     graph: CompleteGraph, not_in_path: List[int], current_pick: int
 ) -> int:  # compute the first partial_circuit, used for initialization, only the minimal distance vertex required here since we can build the the first partial circuit with just that
-    minimum_node: int = -1
-    minimum: float = float("+Infinity")
+    node_distance_collector: List[Tuple[int, float]] = []
+
     for node in not_in_path:
-        if node != current_pick:  # maybe useless?
-            current_distance: float = graph.getDistance(current_pick, node)
-            if current_distance < minimum:
-                minimum = current_distance
-                minimum_node = node
-    #  we care of the minimum node only, weight is unneded
-    return minimum_node
+        node_distance_collector += [(node, graph.getDistance(current_pick, node))]
+    return min(node_distance_collector, key=lambda node_distance: node_distance[1])[0]
 
 
 def triangular_inequality(
