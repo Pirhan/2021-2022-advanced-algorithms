@@ -47,9 +47,11 @@ def selection(
 ]:  # first element = vertex which connection have the best triangular_inequality, second element the first  node which compose the edge that must be replaced
     minimum_node: int = -1
     minimum: float = float("+Infinity")
-    index_first_node_edge_to_be_replaced: int = -1
+    index_insertion: int = -1
     for first_end_edge in partial_circuit[:-1]:  # upto the last but one
-        second_end_edge: int = partial_circuit[partial_circuit.index(first_end_edge) + 1]
+        second_end_edge: int = partial_circuit[
+            partial_circuit.index(first_end_edge) + 1
+        ]
         for node_not_in_path in not_in_path:
             current_triangular_inequality: float = triangular_inequality(
                 graph=graph,
@@ -60,10 +62,8 @@ def selection(
             if current_triangular_inequality < minimum:
                 minimum = current_triangular_inequality
                 minimum_node = node_not_in_path
-                index_first_node_edge_to_be_replaced = partial_circuit.index(
-                    first_end_edge
-                )
-    return (minimum_node, index_first_node_edge_to_be_replaced)
+                index_insertion = partial_circuit.index(second_end_edge)
+    return (minimum_node, index_insertion)
 
 
 def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
@@ -95,6 +95,7 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     # also second end of first partial circuit now belongs to the path
     not_in_path.remove(nearest_neighbour)
     path += [nearest_neighbour]
+    print("path", path)
 
     #  nearest_neighbour with smaller weight
     #  partial_circuit: List[Tuple[int, int]] = [(initial_pick, nearest_neighbour)]
@@ -104,12 +105,16 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     #  then the list of edges will be (1,2),(2,3)
     #  ie generate an edge with (i, i + 1) for i < len(partial_circuit) - 2
     while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
-        new_node, index_first_node_edge_to_be_replaced = selection(
+        new_node, index_insertion = selection(
             graph=graph, partial_circuit=path, not_in_path=not_in_path
         )
         path[
-            index_first_node_edge_to_be_replaced:index_first_node_edge_to_be_replaced
-        ] = [new_node]  # insert new node in between
+            index_insertion:index_insertion] = [
+            new_node
+        ]  # insert new node in between
         not_in_path.remove(new_node)
     path += [initial_pick]  # add the initial node to close the cycle
+    print("path", path)
+    path.sort()
+    return path
     # return getTotalWeight(graph, path)
