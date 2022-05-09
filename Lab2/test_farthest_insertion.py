@@ -7,6 +7,8 @@ def main():
     foldername: str = "tsp_dataset"
     for filename in os.listdir(foldername):
 
+        #  this requires to me more then 15 minutes if the
+        # dsj1000 is used (using pypy, python not tested)
         if filename != "burma14.tsp":
             continue
         Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
