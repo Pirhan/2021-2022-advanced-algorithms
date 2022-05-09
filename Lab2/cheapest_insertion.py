@@ -62,7 +62,11 @@ def selection(
             if current_triangular_inequality < minimum:
                 minimum = current_triangular_inequality
                 minimum_node = node_not_in_path
-                index_insertion = partial_circuit.index(second_end_edge)
+                index_insertion = partial_circuit.index(
+                    second_end_edge, 1
+                )  # avoid to look for the first element of the list otherwise the index function will refer to the 0th-element which is wrong since this element is by convention the beginning of the cycle
+                # example let v = [1,..n,1] a path
+                # if the next insertion happens between  the last (ie=1) and last but one element, the index function by default returns the first occurrence of 1 and not the correct one (ie the second)
     return (minimum_node, index_insertion)
 
 
@@ -96,13 +100,20 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     )
     # also second end of first partial circuit now belongs to the path
     not_in_path.remove(nearest_neighbour)
-    path += [nearest_neighbour]
+    path += [nearest_neighbour]  # builds the first circuit
+    new_node, index_insertion = selection(
+        graph=graph, partial_circuit=path, not_in_path=not_in_path
+    )
+    path[index_insertion:index_insertion] = [new_node]  # insert new node in between
+    not_in_path.remove(new_node)
+    # first circuit build outside the loop
+    # i assume that "partial circuit" is sequence of nodes [a,..,a] where the first element and last coincide (ie it is a loop)
+    path += [initial_pick]
     while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
         new_node, index_insertion = selection(
             graph=graph, partial_circuit=path, not_in_path=not_in_path
         )
         path[index_insertion:index_insertion] = [new_node]  # insert new node in between
         not_in_path.remove(new_node)
-    path += [initial_pick]  # add the initial node to close the cycle
     # return path
     return getTotalWeight(graph, path)
