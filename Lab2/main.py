@@ -10,6 +10,7 @@ from data_structures.Complete_graphs import *  # type: ignore
 from nearest_neighbour import nearestNeighbour
 from Two_approximate import TwoApproximate
 from cheapest_insertion import cheapest_insertion
+from farthest_insertion import farthest_insertion
 
 Optimal_solutions: Dict[str, float] = {
     "burma14.tsp": 3323,
@@ -121,6 +122,7 @@ def main():
         CompGraphs, optimal_sol, nearestNeighbour, "RESULTS/NEAREST_NEIGHBOUR.csv"
     )
     functionExecution(CompGraphs, optimal_sol, cheapest_insertion, "RESULTS/CHEAPEST_INSERTION.csv")
+    functionExecution(CompGraphs, optimal_sol, farthest_insertion, "RESULTS/FARTHEST_INSERTION.csv")
     # ....TODO Add the other function
 
 
