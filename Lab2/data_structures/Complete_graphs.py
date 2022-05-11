@@ -7,14 +7,14 @@ class CompleteGraph:
     def __init__(self) -> None:
         self.nodes: Dict[int, Tuple[float, float]] = {}  # key = index; value = (x,y)
         self.dimension: int = 0
-        self.Distances: np.matrix = None
+        self.Distances: np.matrix = None # type: ignore
 
     def add_node(self, index: int, value1: float, value2: float):
         self.nodes[index] = (value1, value2)
 
     def getCoordinates(self, index: int) -> tuple:
 
-        (x, y) = self.nodes.get(index)
+        (x, y) = self.nodes.get(index) # type: ignore
         return x, y
 
     def getNodes(self) -> KeysView[int]:
@@ -45,7 +45,7 @@ class CompleteGraph:
                 )  # child class function
 
     @staticmethod
-    def initialize_from_file(filename: str) -> None:
+    def initialize_from_file(filename: str) -> CompleteGraph:
         """Builds the graph from the filename"""
         with open(file=filename) as file:
             lines: List[str] = file.readlines()  # all lines of the file
@@ -67,7 +67,7 @@ class CompleteGraph:
             if graph_type == "EUC_2D":
                 Comp_graph = Graph_EUC()
             if graph_type == "GEO":
-                Comp_graph = Graph_GEO()
+                Comp_graph = Graph_GEO() # type: ignore
 
             Comp_graph.dimension = graph_dimension
             for line in lines[start + 1 : end]:
@@ -80,9 +80,9 @@ class CompleteGraph:
 
             n_nodes = len(Comp_graph.getNodes())
 
-            Comp_graph.Distances = np.zeros(
+            Comp_graph.Distances = np.zeros( # type: ignore
                 (n_nodes, n_nodes)
-            )  # Inizialization of Distances matrix
+            )  # Inizialization of Distances matrix 
             Comp_graph.toMatrix()  # Filling np.matrix
 
             file.close()
@@ -101,9 +101,9 @@ class Graph_EUC(CompleteGraph):
         return math.sqrt((n1_x - n2_x) ** 2 + (n1_y - n2_y) ** 2)
 
     def computeDistanceLineToPoint(self, node1, node2, target_node) -> float:
-        (x_node1, y_node1) = self.nodes.get(node1)
-        (x_node2, y_node2) = self.nodes.get(node2)
-        (x_target_node, y_target_node) = self.nodes.get(target_node)
+        (x_node1, y_node1) = self.nodes.get(node1)  # type: ignore
+        (x_node2, y_node2) = self.nodes.get(node2)  # type: ignore
+        (x_target_node, y_target_node) = self.nodes.get(target_node)    # type: ignore
         
         current_distance = abs(
             ((x_node2 - x_node1) * (y_node1 - y_target_node))
@@ -121,12 +121,12 @@ class Graph_GEO(CompleteGraph):
 
     def getLatLong(self, index: int) -> Tuple[float, float]:
 
-        (latitude, longitude) = self.nodes.get(index)
+        (latitude, longitude) = self.nodes.get(index)   # type: ignore
         return latitude, longitude
 
     def getLatLongInRadiant(self, index: int) -> Tuple[float, float]:
 
-        (latitude, longitude) = self.nodes.get(index)
+        (latitude, longitude) = self.nodes.get(index)   # type: ignore
         return Graph_GEO.toRadiant(latitude), Graph_GEO.toRadiant(longitude)
 
     def computeDistance(self, node_x: int, node_y: int) -> int:
