@@ -9,7 +9,7 @@ def main():
 
         #  this requires to me more then 15 minutes if the
         # dsj1000 is used (using pypy, python not tested)
-        if filename != "gr229.tsp":
+        if filename != "burma14.tsp":
             continue
         Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         Result = farthest_insertion(Graph)
