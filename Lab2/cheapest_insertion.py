@@ -3,9 +3,9 @@ from data_structures.Complete_graphs import *  # type: ignore
 from typing import List, Tuple
 
 
-def first_circuit(
+def compute_nearest_neighbour(
     graph: CompleteGraph, not_in_path: List[int], current_pick: int
-) -> int:  # compute the first partial_circuit, used for initialization, only the minimal distance vertex required here since we can build the the first partial circuit with just that
+) -> int:  # compute the nearest_neighbour, which will be used for initialization of the first circuit, only the minimal distance vertex required here and nothing more
     node_distance_collector: List[Tuple[int, float]] = []
 
     for node in not_in_path:
@@ -81,10 +81,6 @@ def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
     return total_weight
 
 
-# still working on it WORK IN PROGRESS
-# no guarantee!!
-
-
 def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     #  initialization
     all_nodes: List[int] = list(
@@ -95,12 +91,12 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     not_in_path: List[int] = all_nodes[
         1:
     ]  # all other nodes still does not belong to path
-    nearest_neighbour: int = first_circuit(
+    nearest_neighbour: int = compute_nearest_neighbour(
         graph=graph, not_in_path=not_in_path, current_pick=initial_pick
     )
     # also second end of first partial circuit now belongs to the path
     not_in_path.remove(nearest_neighbour)
-    path += [nearest_neighbour]  # builds the first circuit
+    path += [nearest_neighbour]  # builds the first part of the circuit
     new_node, index_insertion = selection(
         graph=graph, partial_circuit=path, not_in_path=not_in_path
     )
@@ -108,7 +104,11 @@ def cheapest_insertion(graph: CompleteGraph) -> List[int]:
     not_in_path.remove(new_node)
     # first circuit build outside the loop
     # i assume that "partial circuit" is sequence of nodes [a,..,a] where the first element and last coincide (ie it is a loop)
-    path += [initial_pick]
+    path += [initial_pick]  # close the first circuit
+    #  note that this is slightly different from the suggestion provided by the lab slides
+    #  because, since we are in a graph (and not in a multigraph),
+    #  multiple edges are technically not allowed
+    #  so an initial partial circuit requires at least three nodes and not just two
     while len(not_in_path) > 0:  # continue to iterate until no more nodes must be added
         new_node, index_insertion = selection(
             graph=graph, partial_circuit=path, not_in_path=not_in_path

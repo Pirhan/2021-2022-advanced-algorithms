@@ -10,7 +10,7 @@ def main():
     for filename in sorted(os.listdir(foldername)):
         if filename == "burma14.tsp":
             Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
-            Result: List[int] = nearest_neighbour.nearestNeighbour(graph=Graph)
+            Result = nearest_neighbour.nearestNeighbour(graph=Graph)
             print(Result)
 
 
