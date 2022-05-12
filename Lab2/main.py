@@ -2,7 +2,7 @@ import gc
 import os
 from time import perf_counter_ns
 from typing import Dict, List
-
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd  # type: ignore
 
@@ -108,15 +108,38 @@ def functionExecution(
         Error_calculated.append((Output[index] - optimalError) / optimalError)
     print_to_file(Output, Times, Error_calculated, FilePath)
 
+    graph_sizes = sorted([graph.dimension for graph in CompGraphs])
+    pyplot(graph_sizes, sorted(Times), Function.__name__)
+   
+
+def pyplot(graphs_sizes, times_Function, Function):
+    ################## pyplot ##################
+    if Function == "cheapest_insertion": 
+        C = int(times_Function[-1]/graphs_sizes[-1]**2 * math.log2(graphs_sizes[-1]))
+        reference = [n ** 2 * math.log2(n) *  C for n in graphs_sizes]
+    else:    
+        C = int(times_Function[-1]/graphs_sizes[-1]**2)
+        reference = [n ** 2 *  C for n in graphs_sizes]
+    plt.plot(graphs_sizes, reference)
+    plt.plot(graphs_sizes, times_Function)
+    plt.title(Function)
+    plt.legend(["Reference", Function])
+    plt.ylabel('run time (ns)')
+    plt.xlabel('size')
+    plt.savefig('RESULTS/PLOTS/' + Function + '.png')
+    plt.close()
+
 
 def main():
+
     CompGraphs: List[float] = []
     foldername = "tsp_dataset"
     optimal_sol = []
-    for filename in os.listdir(foldername):  # [:3]
+    for filename in os.listdir(foldername):  
         optimal_sol.append(Optimal_solutions.get(filename))  # Possible None
         CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         CompGraphs.append(CompGraph)  # we don't need to understand the graph type
+    
 
     functionExecution(CompGraphs, optimal_sol, TwoApproximate, "RESULTS/TWOAPPROX.csv")
     functionExecution(
@@ -127,6 +150,7 @@ def main():
     functionExecution(CompGraphs, optimal_sol, farthest_ins_variant, "RESULTS/FARTHEST_INSERTION_VARIANT.csv")
     # ....TODO Add the other function
 
+    
 
 if __name__ == "__main__":
     main()

@@ -10,12 +10,12 @@ def main():
 
         #  this requires to me more then 15 minutes if the
         # dsj1000 is used (using pypy, python not tested)
-        if filename != "burma14.tsp":
+        if filename != "berlin52.tsp":
             continue
         Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         Result = farthest_insertion(Graph)
         Result1 = f_i_variant(Graph)
-        print("Slide version: ", Result, "/tVariant: ", Result1)
+        print("Slide version: ", Result, "\tVariant: ", Result1)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 from data_structures.Complete_graphs import * # type: ignore
 import os
 import geopy.distance  # type: ignore
-from Two_approximate import *
+from two_approximate import *
 
 
 def main():
@@ -9,7 +9,7 @@ def main():
     foldername: str = "tsp_dataset"
     for filename in os.listdir(foldername):
         
-        if filename != "ch150.tsp": continue
+        if filename != "berlin52.tsp": continue
         Graph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
         Result = TwoApproximate(Graph)
         print(Result)

@@ -57,7 +57,7 @@ def getTotalWeight(Graph: CompleteGraph, cycle: List[int]):  # type: ignore
 def TwoApproximate(Graph):
     # Getting the MST
     Result = Efficient_Kruskal(Graph)
-
+   
     # List containing the final set of nodes
     Cycle: List[int] = []
 

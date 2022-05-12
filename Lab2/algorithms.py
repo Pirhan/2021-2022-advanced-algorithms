@@ -1,9 +1,10 @@
 from data_structures.graph import Graph
 from heapq import heappush
 from heapq import heappop
+from data_structures.Complete_graphs import *
 
 
-def Prim_Heap(G: Graph):
+def Prim_Heap(G: CompleteGraph):
     """
     This is a function that implements the Prim's algorithm,
     which allows to achieve the time complexity of O(M * log(N)).
@@ -12,7 +13,7 @@ def Prim_Heap(G: Graph):
     total_weight = 0  # The weight of the MST obtained
 
     Q = []  # This is the list uset to build the heap
-
+    not_in_path = list(G.getNodes())
     visited = []  # Contains all the visited nodes
     heappush(
         Q, [0, 1]
@@ -30,7 +31,7 @@ def Prim_Heap(G: Graph):
             continue
 
         visited.append(node)  # Node non visited. Adding it to the final MST
-
+        not_in_path.remove(node)
         total_weight += weight  # Adding the edge's weight to the final MST weight
 
         for v in G.getAdjacentNodes(node):  # for each v adiacent to node
@@ -41,5 +42,5 @@ def Prim_Heap(G: Graph):
                 heappush(
                     Q, [weight, v]
                 )  # Adding a new [w,v] to Q if v in not visited yet
-
+    print(visited)
     return total_weight
