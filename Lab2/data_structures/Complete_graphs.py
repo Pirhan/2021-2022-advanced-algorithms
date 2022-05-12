@@ -54,7 +54,7 @@ class CompleteGraph:
                 )  # child class function
 
     @staticmethod
-    def initialize_from_file(filename: str) -> CompleteGraph:
+    def initialize_from_file(filename: str):
         """Builds the graph from the filename"""
         with open(file=filename) as file:
             lines: List[str] = file.readlines()  # all lines of the file
@@ -108,7 +108,7 @@ class CompleteGraph:
 class Graph_EUC(CompleteGraph):
     def computeDistance(self, index_n1: int, index_n2: int) -> float:
         # Computes the distance between n1 and n2
-        
+
         n1_x, n1_y = self.getCoordinates(index_n1)
         n2_x, n2_y = self.getCoordinates(index_n2)
 

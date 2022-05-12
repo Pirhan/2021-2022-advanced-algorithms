@@ -32,7 +32,6 @@ def getTotalWeight(Graph: CompleteGraph, cycle: List):  # type: ignore
     node1 = cycle[0]
     for node2 in cycle[1:]:
         total_weight += Graph.getDistance(node1, node2)
-        print(Graph.getDistance(node1, node2))
         node1 = node2
 
     return total_weight
@@ -47,7 +46,7 @@ def nearestNeighbour(graph: CompleteGraph) -> List[int]:  # type: ignore
     not_in_path: List[int] = all_nodes[1:]
     final_path: List[int] = [current_pick]
     while (
-        len(not_in_path) > 1
+        len(not_in_path) > 0
     ):  # inside this loop, end when there is only one element not in path, will be added outside the cycle
         smallest_neighbour: int = computeSmallestNeighbour(
             graph=graph, not_in_path=not_in_path, current_pick=current_pick
@@ -59,6 +58,6 @@ def nearestNeighbour(graph: CompleteGraph) -> List[int]:  # type: ignore
 
         current_pick = smallest_neighbour  # update the current_pick to reflect the path after the update
         # add the remaining node not in the path and initial node to close the cycle
-    final_path += [not_in_path[0], all_nodes[0]]
-    print(final_path)
+    final_path.append(all_nodes[0])
+    #print(final_path)
     return getTotalWeight(graph, final_path)  # ordered by insertion

@@ -8,9 +8,10 @@ import pandas as pd  # type: ignore
 
 from data_structures.Complete_graphs import *  # type: ignore
 from nearest_neighbour import nearestNeighbour
-from Two_approximate import TwoApproximate
+from two_approximate import TwoApproximate
 from cheapest_insertion import cheapest_insertion
 from farthest_insertion import farthest_insertion
+from farthest_insertion_variant import farthest_insertion as farthest_ins_variant
 
 Optimal_solutions: Dict[str, float] = {
     "burma14.tsp": 3323,
@@ -33,7 +34,7 @@ def measureTime(Graphs, Function, Weights, Time):
     print(Function)
     temp_time = 0  # List of times
     iterations = 1  # Iterations
-    current: int = 1  # Progress bas's counter
+    current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
     end_time = 0
     for c_graph in Graphs:
@@ -83,7 +84,7 @@ def print_to_file(
     saving_data_nearest_neighbour.append(("Solution", "Run times", "Error"))
     for i in range(len(Output_nearest_neighbour)):
         saving_data_nearest_neighbour.append(
-            (
+            (   
                 Output_nearest_neighbour[i],
                 Times_nearest_neighbour[i],
                 Error_calculated_nearest_neighbour[i],
@@ -115,7 +116,7 @@ def main():
     for filename in os.listdir(foldername):  # [:3]
         optimal_sol.append(Optimal_solutions.get(filename))  # Possible None
         CompGraph = CompleteGraph.initialize_from_file(foldername + "/" + filename)
-        CompGraphs.append(CompGraph)  # we don't need to understand the type of graph
+        CompGraphs.append(CompGraph)  # we don't need to understand the graph type
 
     functionExecution(CompGraphs, optimal_sol, TwoApproximate, "RESULTS/TWOAPPROX.csv")
     functionExecution(
@@ -123,6 +124,7 @@ def main():
     )
     functionExecution(CompGraphs, optimal_sol, cheapest_insertion, "RESULTS/CHEAPEST_INSERTION.csv")
     functionExecution(CompGraphs, optimal_sol, farthest_insertion, "RESULTS/FARTHEST_INSERTION.csv")
+    functionExecution(CompGraphs, optimal_sol, farthest_ins_variant, "RESULTS/FARTHEST_INSERTION_VARIANT.csv")
     # ....TODO Add the other function
 
 

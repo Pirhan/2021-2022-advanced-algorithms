@@ -161,5 +161,5 @@ def farthest_insertion(graph: CompleteGraph):  # type: ignore
     for (n1, n2) in final_path:
         total_weight += graph.getDistance(n1, n2)
 
-    print(obtainingPath(final_path, graph))  # FIXME Comment or delete
+    #print(obtainingPath(final_path, graph))  # FIXME Comment or delete
     return total_weight
