@@ -114,12 +114,9 @@ def functionExecution(
 
 def pyplot(graphs_sizes, times_Function, Function):
     ################## pyplot ##################
-    if Function == "cheapest_insertion": 
-        C = int(times_Function[-1]/graphs_sizes[-1]**2 * math.log2(graphs_sizes[-1]))
-        reference = [n ** 2 * math.log2(n) *  C for n in graphs_sizes]
-    else:    
-        C = int(times_Function[-1]/graphs_sizes[-1]**2)
-        reference = [n ** 2 *  C for n in graphs_sizes]
+       
+    C = int(times_Function[-1]/graphs_sizes[-1]**2)
+    reference = [n ** 2 *  C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, times_Function)
     plt.title(Function)
@@ -148,7 +145,7 @@ def main():
     functionExecution(CompGraphs, optimal_sol, cheapest_insertion, "RESULTS/CHEAPEST_INSERTION.csv")
     functionExecution(CompGraphs, optimal_sol, farthest_insertion, "RESULTS/FARTHEST_INSERTION.csv")
     functionExecution(CompGraphs, optimal_sol, farthest_ins_variant, "RESULTS/FARTHEST_INSERTION_VARIANT.csv")
-    # ....TODO Add the other function
+    
 
     
 
