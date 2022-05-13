@@ -11,7 +11,7 @@ from nearest_neighbour import nearestNeighbour
 from two_approximate import TwoApproximate
 from cheapest_insertion import cheapest_insertion
 from farthest_insertion import farthest_insertion
-from farthest_insertion_variant import farthest_insertion as farthest_ins_variant
+from farthest_insertion_variant import farthest_insertion_variant
 
 Optimal_solutions: Dict[str, float] = {
     "burma14.tsp": 3323,
@@ -33,7 +33,7 @@ Optimal_solutions: Dict[str, float] = {
 def measureTime(Graphs, Function, Weights, Time):
     print(Function)
     temp_time = 0  # List of times
-    iterations = 1  # Iterations
+    iterations = 10  # Iterations
     current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
     end_time = 0
@@ -115,7 +115,7 @@ def functionExecution(
 def pyplot(graphs_sizes, times_Function, Function):
     ################## pyplot ##################
        
-    C = int(times_Function[-1]/graphs_sizes[-1]**2)
+    C = int(times_Function[-1]/graphs_sizes[-1]**2) # Takes the last elements as reference
     reference = [n ** 2 *  C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, times_Function)
@@ -144,7 +144,7 @@ def main():
     )
     functionExecution(CompGraphs, optimal_sol, cheapest_insertion, "RESULTS/CHEAPEST_INSERTION.csv")
     functionExecution(CompGraphs, optimal_sol, farthest_insertion, "RESULTS/FARTHEST_INSERTION.csv")
-    functionExecution(CompGraphs, optimal_sol, farthest_ins_variant, "RESULTS/FARTHEST_INSERTION_VARIANT.csv")
+    functionExecution(CompGraphs, optimal_sol, farthest_insertion_variant, "RESULTS/FARTHEST_INSERTION_VARIANT.csv")
     
 
     

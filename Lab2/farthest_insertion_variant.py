@@ -114,7 +114,7 @@ def obtainingPath(path: List[Tuple[int, int]], graph: Complete_graphs):  # type:
     return Cycle + [new_graph.getNodes()[0]]
 
 
-def farthest_insertion(graph: CompleteGraph):  # type: ignore
+def farthest_insertion_variant(graph: CompleteGraph):  # type: ignore
 
     final_path: List[Tuple[int, int]] = []  # Will contain the final path
 
