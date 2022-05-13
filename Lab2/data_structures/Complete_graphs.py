@@ -167,25 +167,6 @@ class Graph_GEO(CompleteGraph):
 
     # Returns a Dict contianing the distance between all nodes
 
-    def getDistance_2(self, node_x: int, node_y: int) -> float:
-        """Solution from https://stackoverflow.com/questions/19412462/getting-distance-between-two-points-based-on-latitude-longitude/43211266#43211266"""
-        # approximate radius of earth in km
-        approximate_radius_earth: float = 6373.0
-
-        lat1, lon1 = self.getLatLong(node_x)
-        lat2, lon2 = self.getLatLong(node_y)
-        dlon: float = lon2 - lon1
-        dlat: float = lat2 - lat1
-
-        versine: float = (
-            math.sin(dlat / 2) ** 2
-            + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
-        )  # half of versine of an angle
-        haversine_distance: float = 2 * math.atan2(
-            math.sqrt(versine), math.sqrt(1 - versine)
-        )  # haversine distance, computes the versine of an angle, required for computing the haversine distance
-
-        return approximate_radius_earth * haversine_distance
 
     def computeDistanceLineToPoint(self, node1, node2, target_node) -> float:
         # https://www.movable-type.co.uk/scripts/latlong.html
