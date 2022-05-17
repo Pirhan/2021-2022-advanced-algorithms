@@ -10,10 +10,10 @@ In this assignment you are asked to compare the performance of two algorithms fo
 
 The dataset contains 56 graphs, ranging in size from 10 to 500 vertices, generated randomly with stanford-algs' TestCaseGenerator. Each file describes an undirected graph with positive integer weights using the following format:
 
-[number_of_nodes] [number_of_edges] 
-[one_node_edge_1] [other_node_edge_1] [weight_edge_1] 
-[one_node_edge_2] [other_node_edge_2] [weight_edge_2] 
-[one_node_edge_3] [other_node_edge_3] [weight_edge_3] 
+> [number_of_nodes] [number_of_edges] 
+> [one_node_edge_1] [other_node_edge_1] [weight_edge_1] 
+> [one_node_edge_2] [other_node_edge_2] [weight_edge_2] 
+> [one_node_edge_3] [other_node_edge_3] [weight_edge_3] 
 
 For example, a row "2 3 8874" indicates that there is an edge connecting vertex 2 to vertex 3 with weight 8874. Weights are positive but not necessarily distinct.
 
