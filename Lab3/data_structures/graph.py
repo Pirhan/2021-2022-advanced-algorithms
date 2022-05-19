@@ -19,7 +19,7 @@ class Graph:
         # Returns the som of the matrix row weights 
         return sum(getRowEdges(node))
 
-    def getNodes(self)->Set[int]:
+    def getNodes(self)->List[int]:
         return list(self.nodes)
 
     @staticmethod

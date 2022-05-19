@@ -11,9 +11,7 @@ def Karger(G: Graph, k : int)-> float:
             minimumDistance = t
     return int(minimumDistance)
 
-def Random_Select(G : Graph):
-    
-    def comulative_weights(G : Graph):
+def comulative_weights(G : Graph):
         Comulative : List[int] 
         n_nodes = len(G.getNodes())
 
@@ -21,30 +19,38 @@ def Random_Select(G : Graph):
             Comulative.append(G.getRowWeight(k))
         return Comulative
 
-    def binarySearch(G : Graph, r : int, Comulative: List[int], current : int= 0):
-        n_nodes = len(G.getNodes()) - 1
-        
-        while current <= (n_nodes): 
-    
-            mid = current + (n_nodes - current) // 2
-    
-            # Check if x is present at mid
-            if (Comulative[mid] <= r) and (r < Comulative[middle + 1]):
+def binarySearch(G : Graph, r : int, Comulative: List[int]):
+        low = 0
+        hight = len(G.getNodes()) - 1
+
+        # Repeat until the pointers low and high meet each other
+        while low <= high:
+
+            mid = low + (high - low)//2
+
+            if array[mid] == r:
                 return mid
-    
-            # If x is greater, ignore left half
-            elif arr[mid] < x:
-                current = mid + 1
-    
-            # If x is smaller, ignore right half
+
+            elif array[mid] < r:
+                low = mid + 1
+
             else:
-                n_nodes = mid - 1
+                high = mid - 1
+
+        return None 
+
+
+
+def Random_Select(G : Graph)->int:
     
-        # If we reach here, then the element
-        # was not present
-        return None
-
-
+    Comulative : List[int] = comulative_weights(G)
     r = np.random.randint(comulative_weights(G)[len(G.getNodes()) - 1])
-    # TODO - Continue
+    
+    edge_found_index = binarySearch(G, r, Comulative)   # This is the edge fouded, achived as just an index
+    
+    if edge_found_index is None: assert(True)
+
+    return edge_found_index
+
+
 
