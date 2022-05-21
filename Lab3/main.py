@@ -115,7 +115,7 @@ def main():
         Graphs.append(G)  # we don't need to understand the graph type
     
 
-    functionExecution(Graphs, Karger, "RESULTS/KARGER.csv")
+    functionExecution(Graphs[:1], Karger, "RESULTS/KARGER.csv")
     
     
 

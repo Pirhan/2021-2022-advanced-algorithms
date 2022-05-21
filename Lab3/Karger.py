@@ -7,10 +7,10 @@ from data_structures.graph import Graph
 
 
 def Random_Select(C: List[float]):
-    print(C[-1])
+
     r = np.random.randint(C[- 1])
     
-    edge_found_index = binarySearch(r, C)   # This is the edge fouded, achived as just an index
+    edge_found_index = binarySearch(r, C)   # This is the edge founded, achived as just an index
     
     if edge_found_index is None: assert(False)
 
@@ -42,13 +42,15 @@ def Edge_Select(G) -> Tuple[int,int]:
         
         # Supposing that k can not be more than n_nodes
         for i in range (n_nodes):
-            Comulative.append(sum(D[:i+1])) # Starting from 0
+            Comulative.append(sum(D[:i])) # Starting from 0
         return Comulative
     
     (D,W) = G
     C_D = comulative_weights(D)
+    print("C_D: \t", C_D[-1])
     u = Random_Select(C_D)
     C_W = comulative_weights(W[u-1])     # To check 
+    print("C_W: \t", C_W[-1])
     v = Random_Select(C_W)
 
     return (u,v)
