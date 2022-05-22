@@ -42,7 +42,7 @@ def Edge_Select(G) -> Tuple[int,int]:
         
         # Supposing that k can not be more than n_nodes
         for i in range (n_nodes):
-            Comulative.append(sum(D[:i])) # Starting from 0
+            Comulative.append(sum(D[:i+1])) # Starting from 0
         return Comulative
     
     (D,W) = G
@@ -57,7 +57,7 @@ def Edge_Select(G) -> Tuple[int,int]:
 
 def Contract_Edge(G, u : int, v: int):
     (D,W) = G
-    D[u -1] += D[v-1] - (2 * W[u-1,v-1])
+    D[u -1] += D[v-1] - (2 * W[u-1,v-1])    # This is the only way to obtain a negative value
     D[v-1] = 0
     W[u-1, v-1] = 0
     W[v-1, u-1] = 0

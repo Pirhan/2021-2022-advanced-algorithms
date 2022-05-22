@@ -13,7 +13,7 @@ from Karger import Karger
 def measureTime(Graphs, Function, Weights, Time):
     print(Function)
     temp_time = 0  # List of times
-    iterations = 10  # Iterations
+    iterations = 1  # Iterations
     current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
     end_time = 0
