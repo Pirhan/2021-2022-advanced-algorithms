@@ -13,6 +13,7 @@ class Graph:
         self.nodes.add(node2)
         
         self.W[node1-1, node2-1] = weight
+        self.W[node2-1, node1-1] = weight
     
     def getEdgesList(self):
         return self.edges
