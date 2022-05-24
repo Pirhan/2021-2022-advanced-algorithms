@@ -5,6 +5,9 @@ from typing import Tuple, List
 #  using the heapq library, which is a minheap
 #  -> need to convert the weights (from positive to negative)
 #  to make the minheap a maxheap
+#  this property is an invariant of the underlying
+#  heap (ie all weights must be negative in the heap
+#  positive "to the user"
 class maxHeap:
     def __init__(self) -> None:
         #  keep it simple, provide only this as
@@ -30,25 +33,40 @@ class maxHeap:
     # component only
     def push(self, vertex: int, weight: int) -> None:
         weightNegative: int = weight * (-1)
-        heappush(self.heap, [weightNegative, vertex])
+        heappush(self.heap, (weightNegative, vertex))
 
     def remove(self, vertex: int, weight: int) -> None:
-        heap_as_list: List[Tuple[int, int]] = list(self.heap)
-        #  for some reason the list remove does not work
-        # so the following solution
-        self.heap = [item for item in heap_as_list if item[0] != weight and item[1] != vertex]
+        index: int = 0
+        #  recall that the vertex is in the position 1 of the tuple
+        while index < len(self.heap) and self.heap[index][1] != vertex:
+            index += 1
+        #  trick to remove an arbitrary element
+        #  from the heap without requiring
+        #  an explicit remove
+        # (which for some reason cannot make it working
+        self.heap[index] = self.heap[-1]
+        #  recall that pop remove the last element
+        #  of the list considered
+        self.heap.pop()
+        #  since we are tampering with the underlying
+        #  data structure, a re-heapification is required
+        # also it removes duplicates which allows us to remove the duplicate inserted by
+        #  self.heap[index] = self.heap[-1]
+        #  completing the removal
         heapify(self.heap)
 
     # see newkey is passed as positive
     # transparent from the user
     def increaseKey(self, vertex: int, newkey: int) -> None:
-        keyNegative: int = (-1) * newkey
-        weight_node_to_update: int = self.find_from_vertex(vertex=vertex)[0]
+        #  since it's recorded as negative value
+        #  we convert it to positive in order to
+        #  make the sum weight_node_to_update += newkey  correct (recall that all newkey are positive)
+        weight_node_to_update: int = self.find_from_vertex(vertex=vertex)[0] * (-1)
         self.remove(vertex=vertex, weight=weight_node_to_update)
-        print("new key negative", keyNegative)
-        print("current key", weight_node_to_update)
-        weight_node_to_update -= keyNegative
+        weight_node_to_update += newkey
         # replace with the new element
+        # recall that self.push take care of
+        # converting from positive to negative the weight passed
         self.push(vertex=vertex, weight=weight_node_to_update)
 
     # returns the pair vertex, weight
