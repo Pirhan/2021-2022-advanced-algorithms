@@ -55,22 +55,22 @@ class maxHeap:
         #  completing the removal
         heapify(self.heap)
 
-    # see newkey is passed as positive
+    # weightToAdd is passed as positive
     # transparent from the user
-    def increaseKey(self, vertex: int, newkey: int) -> None:
-        #  since it's recorded as negative value
+    def increaseKey(self, vertex: int, weightToAdd: int) -> None:
+        #  since weight it's recorded as negative value
         #  we convert it to positive in order to
-        #  make the sum weight_node_to_update += newkey  correct (recall that all newkey are positive)
-        weight_node_to_update: int = self.find_from_vertex(vertex=vertex)[0] * (-1)
-        self.remove(vertex=vertex, weight=weight_node_to_update)
-        weight_node_to_update += newkey
+        #  make the sum weight += weightToAdd  correct (recall that all weightToAdd are positive)
+        weight: int = self.findFromVertex(vertex=vertex)[0] * (-1)
+        self.remove(vertex=vertex, weight=weight)
+        weight += weightToAdd
         # replace with the new element
         # recall that self.push take care of
         # converting from positive to negative the weight passed
-        self.push(vertex=vertex, weight=weight_node_to_update)
+        self.push(vertex=vertex, weight=weight)
 
     # returns the pair vertex, weight
-    def find_from_vertex(self, vertex: int) -> Tuple[int, int]:
+    def findFromVertex(self, vertex: int) -> Tuple[int, int]:
         heapAsList: List[Tuple[int, int]] = list(self.heap)
         #  recall that vertex is in the second position of the tuple(ie index 1) not the first
         item = [item for item in heapAsList if item[1] == vertex]
@@ -82,8 +82,8 @@ class maxHeap:
 
     #  required for for all cycle inside
     #  stMinimumCut
-    def find_vertex(self, vertex: int) -> bool:
-        item: Tuple[int, int] = self.find_from_vertex(vertex=vertex)
+    def findVertex(self, vertex: int) -> bool:
+        item: Tuple[int, int] = self.findFromVertex(vertex=vertex)
         if len(item) > 0:
             return True
         else:
