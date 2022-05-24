@@ -9,11 +9,15 @@ from typing import Tuple, List
 #  heap (ie all weights must be negative in the heap
 #  positive "to the user"
 class maxHeap:
-    def __init__(self) -> None:
-        #  keep it simple, provide only this as
-        #  initializer, and add element only
-        #  with the push
-        self.heap: List[Tuple[int, int]] = []
+    # element is a list of (vertex, weight)
+    # where weight is positive -> convert it
+    # also the order must be (weight, vertex)
+    def __init__(self, elements: List[Tuple[int, int]] = []) -> None:
+        if len(elements) == 0:
+            self.heap: List[Tuple[int, int]] = []
+        else:
+            self.heap = [(item[1] * -1, item[0]) for item in elements]
+            heapify(self.heap)
 
     # order of return is weight, vertex
     def pop(self) -> Tuple[int, int]:
@@ -43,7 +47,7 @@ class maxHeap:
         #  trick to remove an arbitrary element
         #  from the heap without requiring
         #  an explicit remove
-        # (which for some reason cannot make it working
+        # (which for some reason i cannot make it work)
         self.heap[index] = self.heap[-1]
         #  recall that pop remove the last element
         #  of the list considered
@@ -62,6 +66,8 @@ class maxHeap:
         #  we convert it to positive in order to
         #  make the sum weight += weightToAdd  correct (recall that all weightToAdd are positive)
         weight: int = self.findFromVertex(vertex=vertex)[0] * (-1)
+        # remove the previous pair(weight, vertex)
+        # to make room for the new updated weight tuple
         self.remove(vertex=vertex, weight=weight)
         weight += weightToAdd
         # replace with the new element
@@ -88,6 +94,10 @@ class maxHeap:
             return True
         else:
             return False
+
+    #  requried for loop in stMinimumCut
+    def isEmpty(self) -> bool:
+        return len(self.heap) == 0
 
     #  only for testing purpose
     def all(self) -> List[Tuple[int, int]]:
