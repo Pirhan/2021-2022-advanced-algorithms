@@ -1,5 +1,4 @@
 from typing import Tuple, List, Optional
-# from heapq import heappop, heappush, nlargest
 from data_structures import graph
 
 
@@ -31,5 +30,4 @@ def stMinimumCut(graph) -> Tuple[List[int], int, int, int]:
             if adjacent in priorityQueue:
                 newKey = adjacent[key] + weight(u, adjacent)
                 IncreaseKey(priorityQueue, adjacent, newKey)
-    return None  
-
+    return None
