@@ -18,8 +18,12 @@ class Graph:
         self.W[node2 - 1, node1 - 1] = weight
 
     #  get weight of a pair of nodes, required by stoer wagner
+    #  node index start from 1 and not 0
     def getWeight(self, node1: int, node2: int) -> int:
-        return self.W[node1 - 1, node2 - 1]
+        if node1 in self.nodes and node2 in self.nodes:
+            return self.W[node1 - 1, node2 - 1]
+        else:
+            return 0
 
     def cutWeight(self, cut1: List[int]) -> int:
         # returns the weight of the cut
@@ -39,10 +43,15 @@ class Graph:
         partialSum: int = 0
         #  also check if node exists(required in stoerWagner when computing stMinimumCut for smaller graph
         for weightsInCut in [
-            weight for node, weight in enumerate(self.getW()) if (node + 1) in cut1
-        ]:
+            weight
+            for node, weight in enumerate(self.getW())
+            if (node + 1) in self.nodes and (node + 1) in cut1
+        ]:  # compute weight of all nodes in cut;
+            # sanity check: compute the cut only of nodes which are still in the graph
             for weightInCut in [
-                (node, weight) for node, weight in enumerate(weightsInCut) if node + 1 not in cut1 and node + 1 in self.nodes and weight > 0
+                (node, weight)
+                for node, weight in enumerate(weightsInCut)
+                if node + 1 not in cut1 and node + 1 in self.nodes and weight > 0
             ]:
                 partialSum += weightInCut[1]
         return partialSum
@@ -52,6 +61,9 @@ class Graph:
         # it will contain only the weights
         # associate for each weight of a node it's index
         # return only nodes where the weight is greater then 0 for the moment try to see if this is enough
+        # if node does not belong anymore to the graph return the empty list
+        if node not in self.nodes:
+            return []
         rowEdges: List[int] = self.getRowEdges(node=node)
         return [
             vertex + 1
@@ -68,6 +80,8 @@ class Graph:
         # node passed are 1-start nodes (ie node start from 1)
         # node 1,2,3 .. etc
         # remove from node only for the moment try to see if this is enough
+        if len(toRemove) < 0:
+            return
         self.nodes = set([x for x in self.nodes if x not in toRemove])
         # remove edges where nodes are involved
         # self.edges = set(
