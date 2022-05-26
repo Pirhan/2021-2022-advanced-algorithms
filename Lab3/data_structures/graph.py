@@ -1,6 +1,6 @@
 # from typing import *
 from typing import List, Set, Tuple
-import numpy as np
+import numpy as np  # type:ignore
 
 
 class Graph:
@@ -34,21 +34,30 @@ class Graph:
         # return the sum of this partial sum
         # nodesInCut contains only the list of nodes weight of the first cut
         # sum(singleElement for singleElement in container if singleElement not in container)
+        # ind is the vertex index
+        # index in W are 0 start based, while in cut are 1-start based
         partialSum: int = 0
-        for nodesInCut in [x for ind, x in enumerate(self.getW()) if (ind + 1) in cut1]:
-            for nodeInCut in [
-                x for ind, x in enumerate(nodesInCut) if (ind + 1) not in cut1
+        #  also check if node exists(required in stoerWagner when computing stMinimumCut for smaller graph
+        for weightsInCut in [
+            weight for node, weight in enumerate(self.getW()) if (node + 1) in cut1
+        ]:
+            for weightInCut in [
+                (node, weight) for node, weight in enumerate(weightsInCut) if node + 1 not in cut1 and node + 1 in self.nodes and weight > 0
             ]:
-                partialSum += nodeInCut
+                partialSum += weightInCut[1]
         return partialSum
 
     def adjacentNodes(self, node: int) -> List[int]:
         # get the row of nodes adjacent to node
         # it will contain only the weights
         # associate for each weight of a node it's index
-        # return only nodes where the weight is greater then 0
+        # return only nodes where the weight is greater then 0 for the moment try to see if this is enough
         rowEdges: List[int] = self.getRowEdges(node=node)
-        return [vertex + 1 for vertex, weight in enumerate(rowEdges) if weight > 0]
+        return [
+            vertex + 1
+            for vertex, weight in enumerate(rowEdges)
+            if weight > 0 and (vertex + 1) in self.nodes
+        ]
         # adds one just because vertex index seem to start from 1 instead of 0
 
     def removeNodes(self, nodes: List[int]) -> None:
@@ -56,23 +65,23 @@ class Graph:
         # the graph anymore
         # required by GlobalMiniumCut when computing
         # the second cut
-        # remove from node
+        # remove from node only for the moment try to see if this is enough
         self.nodes = set([x for x in self.nodes if x + 1 not in nodes])
         # remove edges where nodes are involved
-        self.edges = set(
-            [x for x in self.edges if not (x[0] + 1 in nodes or x[1] + 1 in nodes)]
-        )
+        # self.edges = set(
+        #    [x for x in self.edges if not (x[0] + 1 in nodes or x[1] + 1 in nodes)]
+        # )
         # remove from weight matrix
         # for each node which contains a node in nodes
         # must set it's weight to zero
         # remove from weight nodes
-        index: int = 0
-        while index < len(self.D) - 1:
-            if index + 1 in nodes:
-                self.D[index] = 0.0
-            index += 1
+        # index: int = 0
+        # while index < len(self.D) - 1:
+        #    if index + 1 in nodes:
+        #        self.D[index] = 0.0
+        #    index += 1
 
-        pass
+        # pass
 
     def getEdgesList(self):
         return self.edges
