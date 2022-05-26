@@ -37,11 +37,9 @@ class Graph:
         # compute the sum of the weight only for those vertex which does not belong to cut1
         # return the sum of this partial sum
         # nodesInCut contains only the list of nodes weight of the first cut
-        # sum(singleElement for singleElement in container if singleElement not in container)
-        # ind is the vertex index
         # index in W are 0 start based, while in cut are 1-start based
         partialSum: int = 0
-        #  also check if node exists(required in stoerWagner when computing stMinimumCut for smaller graph
+        #  also check if node exists(required in stoerWagner when computing stMinimumCut for smaller graph)
         for weightsInCut in [
             weight
             for node, weight in enumerate(self.getW())
