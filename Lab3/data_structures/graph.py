@@ -60,13 +60,15 @@ class Graph:
         ]
         # adds one just because vertex index seem to start from 1 instead of 0
 
-    def removeNodes(self, nodes: List[int]) -> None:
+    def removeNodes(self, toRemove: List[int]) -> None:
         # remove nodes which does not belong to
         # the graph anymore
         # required by GlobalMiniumCut when computing
         # the second cut
+        # node passed are 1-start nodes (ie node start from 1)
+        # node 1,2,3 .. etc
         # remove from node only for the moment try to see if this is enough
-        self.nodes = set([x for x in self.nodes if x + 1 not in nodes])
+        self.nodes = set([x for x in self.nodes if x not in toRemove])
         # remove edges where nodes are involved
         # self.edges = set(
         #    [x for x in self.edges if not (x[0] + 1 in nodes or x[1] + 1 in nodes)]
