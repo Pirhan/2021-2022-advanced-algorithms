@@ -113,7 +113,7 @@ def main():
         #  if filename != "input_random_01_10.txt": continue
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)  # we don't need to understand the graph type
-        counter += 1
+        # counter += 1
     functionExecution(Graphs, Karger, "RESULTS/KARGER.csv")
 
 
