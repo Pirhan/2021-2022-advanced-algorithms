@@ -1,21 +1,24 @@
 # from typing import *
-from typing import List, Set, Tuple
+from typing import List, Set, Tuple, Dict
 import numpy as np  # type:ignore
 
 
 class Graph:
     def __init__(self, n) -> None:
         self.nodes: Set[int] = set()
-        self.edges: Set[Tuple[int, int]] = set()
         self.W: np.matrix = np.zeros((n, n))
         self.D: List[float] = []
+        self.edges: Dict[Tuple[int, int], float] = {}
+        self.dimension = n
 
     def addEdge(self, node1: int, node2: int, weight: int) -> None:
         self.nodes.add(node1)
         self.nodes.add(node2)
-
         self.W[node1 - 1, node2 - 1] = weight
         self.W[node2 - 1, node1 - 1] = weight
+
+    def getW(self):
+        return self.W
 
     #  get weight of a pair of nodes, required by stoer wagner
     #  node index start from 1 and not 0
@@ -114,14 +117,11 @@ class Graph:
         # Returns the som of the matrix row weights
         return sum(self.getRowEdges(node))
 
+    def getEdges(self):
+        return self.edges
+
     def getNodes(self) -> List[int]:
         return list(self.nodes)
-
-    def getW(self):
-        return self.W
-
-    def getD(self):
-        return self.D
 
     @staticmethod
     def initialize_from_file(filename: str):

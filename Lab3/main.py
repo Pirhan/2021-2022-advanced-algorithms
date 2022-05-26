@@ -7,7 +7,7 @@ import pandas as pd  # type: ignore
 
 from data_structures.graph import *
 
-from Karger import Karger
+from Karger_and_Stein import Karger
 
 
 def measureTime(Graphs, Function, Weights, Time):
@@ -67,14 +67,10 @@ def print_to_file(
     )
     for i in range(len(Output_nearest_neighbour)):
         saving_data_nearest_neighbour.append(
-            (
-                Output_nearest_neighbour[i],
-                Times[i],
-                Times_Minimum_Cut[i],
-            )
+            (Output_nearest_neighbour[i], Times[i], Times_Minimum_Cut[i])
         )
 
-    mat = np.matrix(saving_data_nearest_neighbour)
+        mat = np.matrix(saving_data_nearest_neighbour)
     df = pd.DataFrame(data=mat.astype(str))
     df.to_csv(Path_File, sep="\t", header=False, index=False)
 
@@ -94,9 +90,8 @@ def functionExecution(Graphs, Function, FilePath: str) -> None:
 
 def pyplot(graphs_sizes, times_Function, Function):
     ################## pyplot ##################
-
     C = int(
-        times_Function[-1] / graphs_sizes[-1] ** 2 * math.log2(n) ** 3
+        times_Function[-1] / graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3
     )  # Takes the last elements as reference
     reference = [n ** 2 * math.log2(n) ** 3 * C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
@@ -114,16 +109,12 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    counter: int = 0
     for filename in sorted(os.listdir(foldername)):
-        print("filename", filename)
-        if counter == 1:
-            break
+        #  if filename != "input_random_01_10.txt": continue
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)  # we don't need to understand the graph type
         counter += 1
-
-    functionExecution(Graphs[:1], Karger, "RESULTS/KARGER.csv")
+    functionExecution(Graphs, Karger, "RESULTS/KARGER.csv")
 
 
 if __name__ == "__main__":
