@@ -7,7 +7,7 @@ import pandas as pd  # type: ignore
 
 from data_structures.graph import *
 
-from Karger import Karger
+from Karger_and_Stein import Karger
 
 
 def measureTime(Graphs, Function, Weights, Time):
@@ -93,7 +93,7 @@ def functionExecution(
 def pyplot(graphs_sizes, times_Function, Function):
     ################## pyplot ##################
        
-    C = int(times_Function[-1]/graphs_sizes[-1]**2* math.log2(n)**3) # Takes the last elements as reference
+    C = int(times_Function[-1]/graphs_sizes[-1]**2* math.log2(graphs_sizes[-1])**3) # Takes the last elements as reference
     reference = [n**2 * math.log2(n)**3 *  C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, times_Function)
@@ -110,14 +110,13 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in os.listdir(foldername):  
+    for filename in sorted(os.listdir(foldername)):  
+        #if filename != "input_random_01_10.txt": continue
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)  # we don't need to understand the graph type
     
 
-    functionExecution(Graphs[:1], Karger, "RESULTS/KARGER.csv")
-    
-    
+    functionExecution(Graphs, Karger, "RESULTS/KARGER.csv")
 
 if __name__ == "__main__":
     main()
