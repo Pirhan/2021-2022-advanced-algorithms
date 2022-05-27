@@ -14,6 +14,7 @@ class Graph:
     def addEdge(self, node1: int, node2: int, weight: int) -> None:
         self.nodes.add(node1)
         self.nodes.add(node2)
+        self.edges[(node1, node2)] = weight
         self.W[node1 - 1, node2 - 1] = weight
         self.W[node2 - 1, node1 - 1] = weight
 

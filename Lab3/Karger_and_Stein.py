@@ -7,7 +7,7 @@ import copy
 def Karger(G: Graph, k : int)-> float:
     n_nodes = len(G.getNodes())
     # Creating W
-    W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Starting from 0 
+    W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Strarting from 0 
     for edge in G.getEdges().items():
         ((node1, node2),weight) = edge
         W[node1, node2] = weight
@@ -18,7 +18,7 @@ def Karger(G: Graph, k : int)-> float:
     # Nodes are starting from 1
     # W is a matrix and we are accessing to the column relative to u
     D = [0] + [sum(W[u]) for u in sorted(list(G.getNodes()))] 
-            
+
     minimumDistance = float("+Infinity")  # Useful for the comparison
     for _ in range(k):
         G = copy.deepcopy((D,W))    # Passing a copy and not a reference  
@@ -28,26 +28,24 @@ def Karger(G: Graph, k : int)-> float:
     return minimumDistance
 
 def Random_Select(C: List[float]):
-    
-    r = np.random.randint(0, C[-1]) # Pick the last edge value
-    edge_found_index = BS(r, C)   # This is the edge founded, achived as just an index
 
-    if edge_found_index is None: 
-        print(C,"\t", r)
-        assert(False)
-   
+
+    r = np.random.randint(0, C[-1]) # Pick the last edge value
+    edge_found_index = binarySearch_2(r, C)   # This is the edge founded, achived as just an index
+
+    if edge_found_index is None: assert(False)
+
 
     return edge_found_index
 
 def binarySearch(r : int, C: List[float]):
         low = 0
-        high =  len(C) - 1
-        C = [int(x) for x in C]
-        
+        high = len(C)
+
         # Repeat until the pointers low and high meet each other
         while low <= high:
 
-            mid = (high + low) // 2  
+            mid = low + (high - low)//2
 
             if C[mid-1] <= r and C[mid] > r:
                 return mid
@@ -58,12 +56,14 @@ def binarySearch(r : int, C: List[float]):
 
         return None 
 
-def BS(r: int, C: List[float]):
-
-    for i in range(1, len(C)):
-        #print(i)
-        if C[i-1] <= r and C[i] > r: return i
-    return None 
+def binarySearch_2(r : int, C: List[float]):
+    # Non binary search but returns the index
+    start = C[0]
+    for index, c in enumerate(C[1:]):
+        if r >= start and r < c:
+            return index + 1
+        start = c
+    return None
 
 
 def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
@@ -72,14 +72,12 @@ def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
 
     # Creating the comulative weight on D
     C_D = [sum(D[:i]) for i in range(1, len(D)+1)] 
-    if sum(C_D) == 0: print("Error in C_D: ", C_D)
     u = Random_Select(C_D)
 
     # Creating the comulative weights on W
-    C_W = [sum((W[u])[:i]) for i in range(1, len(D)+1)] 
-    if sum(C_W) == 0: print("Error in C_W: ", C_W) 
+    C_W = [sum((W[u])[:i]) for i in range(1, len(D)+1)]  
     v = Random_Select(C_W)
-  
+
     return (u,v)
 
 def Contract_Edge(G: Tuple[List[float], np.matrix], u : int, v: int):
@@ -92,7 +90,7 @@ def Contract_Edge(G: Tuple[List[float], np.matrix], u : int, v: int):
     V = [D.index(n) for n in D if n != u or n != v] 
 
     for w in V[1:]: # V[0] is 0. It is an additional element that should be neglected
-    
+
         W[u, w] += W[v, w]
         W[w, u] += W[w, v]
         W[v, w] = W[w, v] = 0
@@ -103,8 +101,8 @@ def Contract(G:Tuple[List[float], np.matrix], k):
     V = [n for n in D if n != 0]   # len(V) corresponds to the number of vertices remaning in D
 
     for _ in range(1, len(V) - k + 1): # Strating form 1. Adding 1 to the upper range
-        
-        (u,v) = Edge_Select(copy.deepcopy((D,W)))
+
+        (u,v) = Edge_Select((D,W))
         Contract_Edge((D,W), u, v)
 
     return (D,W)
@@ -125,12 +123,14 @@ def Recursive_Contract(G:Graph):
 
         # Returning the value which corresponds to the only value different form 0 in the matrix
         return np.max(W_1)  
-            
+
     t = math.ceil(len(V)/math.sqrt(2)+1)
     list_w = []
     for _ in range(2):
         newG = Contract(G, t)
         list_w.append(Recursive_Contract(newG))
     return min(list_w)
+
+
 
     
