@@ -7,7 +7,7 @@ import copy
 def Karger(G: Graph, k : int)-> float:
     n_nodes = len(G.getNodes())
     # Creating W
-    W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Strarting from 0 
+    W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Starting from 0 
     for edge in G.getEdges().items():
         ((node1, node2),weight) = edge
         W[node1, node2] = weight
@@ -29,23 +29,25 @@ def Karger(G: Graph, k : int)-> float:
 
 def Random_Select(C: List[float]):
     
+    r = np.random.randint(0, C[-1]) # Pick the last edge value
+    edge_found_index = BS(r, C)   # This is the edge founded, achived as just an index
 
-    r = np.random.randint(0, C[len(C)-1]) # Pick the last edge value
-    edge_found_index = binarySearch(r, C)   # This is the edge founded, achived as just an index
-
-    if edge_found_index is None: assert(False)
+    if edge_found_index is None: 
+        print(C,"\t", r)
+        assert(False)
    
 
     return edge_found_index
 
 def binarySearch(r : int, C: List[float]):
         low = 0
-        high = len(C)
+        high =  len(C) - 1
+        C = [int(x) for x in C]
         
         # Repeat until the pointers low and high meet each other
         while low <= high:
 
-            mid = low + (high - low)//2
+            mid = (high + low) // 2  
 
             if C[mid-1] <= r and C[mid] > r:
                 return mid
@@ -56,16 +58,26 @@ def binarySearch(r : int, C: List[float]):
 
         return None 
 
+def BS(r: int, C: List[float]):
+
+    for i in range(1, len(C)):
+        #print(i)
+        if C[i-1] <= r and C[i] > r: return i
+    return None 
+
+
 def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
 
     (D,W) = G
 
     # Creating the comulative weight on D
     C_D = [sum(D[:i]) for i in range(1, len(D)+1)] 
+    if sum(C_D) == 0: print("Error in C_D: ", C_D)
     u = Random_Select(C_D)
 
     # Creating the comulative weights on W
-    C_W = [sum((W[u])[:i]) for i in range(1, len(D)+1)]  
+    C_W = [sum((W[u])[:i]) for i in range(1, len(D)+1)] 
+    if sum(C_W) == 0: print("Error in C_W: ", C_W) 
     v = Random_Select(C_W)
   
     return (u,v)
@@ -92,7 +104,7 @@ def Contract(G:Tuple[List[float], np.matrix], k):
 
     for _ in range(1, len(V) - k + 1): # Strating form 1. Adding 1 to the upper range
         
-        (u,v) = Edge_Select((D,W))
+        (u,v) = Edge_Select(copy.deepcopy((D,W)))
         Contract_Edge((D,W), u, v)
 
     return (D,W)
