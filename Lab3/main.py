@@ -27,7 +27,7 @@ def measureTime(Graphs, Function, Weights, Time):
 
             start_time = perf_counter_ns()
 
-            Result = Function(graph, 1)  # Function call FIXME setting k
+            Result = Function(graph, 5)  # Function call FIXME setting k
 
             end_time = perf_counter_ns()
 

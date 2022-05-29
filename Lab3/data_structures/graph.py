@@ -1,6 +1,7 @@
 # from typing import *
 from typing import List, Set, Tuple, Dict
 import numpy as np  # type:ignore
+import copy
 
 
 class Graph:
@@ -18,7 +19,7 @@ class Graph:
         return self.W
 
     def getD_W(self):
-        return self.D, self.W#(self.D[:], np.matrix(self.W))
+        return copy.deepcopy((self.D, self.W))
 
     #  get weight of a pair of nodes, required by stoer wagner
     #  node index start from 1 and not 0
@@ -30,7 +31,7 @@ class Graph:
 
     def set_D_W(self):
         # Builds the weights matrix and build the comulative weight list
-        n_nodes = len(self.getNodes())
+        n_nodes = self.dimension
         # Creating W
         W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Strarting from 0 
         for edge in self.getEdges().items():

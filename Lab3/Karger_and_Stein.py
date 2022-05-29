@@ -5,12 +5,11 @@ from data_structures.graph import Graph
 
 
 def Karger(G: Graph, k : int)-> float:
-    (D,W) = G.getD_W()
 
     minimumDistance = float("+Infinity")  # Useful for the comparison
     for _ in range(k):
-        G = copy.deepcopy((D,W))    # Passing a copy and not a reference  
-        t = Recursive_Contract(G)   # Passing a copy of the object G instead of its reference
+        # Passing a copy and not a reference  
+        t = Recursive_Contract(G.getD_W())   # Passing a copy of the object G instead of its reference
         if t < minimumDistance :
             minimumDistance = t
     return minimumDistance
@@ -18,6 +17,7 @@ def Karger(G: Graph, k : int)-> float:
 def Random_Select(C: List[float]):
 
         if C[-1] == 0: print("Error in",C)
+        
         r = np.random.randint(0, C[-1]-1) # Pick the last edge value
 
         edge_found_index = binarySearch(r, C)   # This is the edge founded, achived as just an index
@@ -80,15 +80,17 @@ def Contract_Edge(G: Tuple[List[float], np.matrix], u : int, v: int):
 
 
 def Contract(G:Tuple[List[float], np.matrix], k:int):
-    (D,W) = G
-    V = [n for n in D if n != 0]   # len(V) corresponds to the number of vertices remaning in D
+    (D_,W_) = G
+  
+
+    V = [n for n in D_ if n != 0]   # len(V) corresponds to the number of vertices remaning in D
 
     for _ in range(len(V) - k): # Strating form 1. Adding 1 to the upper range
 
-        (u,v) = Edge_Select((D,W))
-        Contract_Edge((D,W), u, v)
+        (u,v) = Edge_Select((D_,W_))
+        Contract_Edge((D_,W_), u, v)
 
-    return (D,W)
+    return (D_,W_)
 
 
 def Recursive_Contract(G:Graph):
@@ -109,14 +111,14 @@ def Recursive_Contract(G:Graph):
         return np.max(W_1)
 
     t = math.ceil((len(V)/math.sqrt(2))+1)
-    (D_i,W_i) = Contract(G, t)
     
-    output_1 = Recursive_Contract((D_i,W_i))
-
-    # Passing a deepcopy. copy.deepcopy() costs too much
-    output_2 = Recursive_Contract((D_i[:],np.matrix(W_i)))
-
-    return min(output_1, output_2)
+    outputs : List[float] = []
+    G_i = Contract(G, t)
+    for _ in range(2):
+        (D_i,W_i) = G_i
+        outputs.append(Recursive_Contract((D_i[:], W_i.copy())))
+    
+    return min(outputs)
 
 
 
