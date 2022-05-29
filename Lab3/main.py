@@ -91,7 +91,7 @@ def functionExecution(Graphs, Function, FilePath: str) -> None:
 def pyplot(graphs_sizes, times_Function, Function):
     ################## pyplot ##################
     C = int(
-        times_Function[-1] / graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3
+        times_Function[-1] / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
     )  # Takes the last elements as reference
     reference = [n ** 2 * math.log2(n) ** 3 * C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
@@ -109,7 +109,7 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername)):
+    for filename in sorted(os.listdir(foldername))[:40]:
         #  if filename != "input_random_01_10.txt": continue
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)  # we don't need to understand the graph type

@@ -6,8 +6,6 @@ import numpy as np  # type:ignore
 class Graph:
     def __init__(self, n) -> None:
         self.nodes: Set[int] = set()
-        self.W: np.matrix = np.zeros((n, n))
-        self.D: List[float] = []
         self.edges: Dict[Tuple[int, int], float] = {}
         self.dimension = n
 
@@ -15,19 +13,38 @@ class Graph:
         self.nodes.add(node1)
         self.nodes.add(node2)
         self.edges[(node1, node2)] = weight
-        self.W[node1 - 1, node2 - 1] = weight
-        self.W[node2 - 1, node1 - 1] = weight
 
     def getW(self):
         return self.W
+
+    def getD_W(self):
+        return self.D, self.W#(self.D[:], np.matrix(self.W))
 
     #  get weight of a pair of nodes, required by stoer wagner
     #  node index start from 1 and not 0
     def getWeight(self, node1: int, node2: int) -> int:
         if node1 in self.nodes and node2 in self.nodes:
-            return self.W[node1 - 1, node2 - 1]
+            return self.W[node1 , node2 ]
         else:
             return 0
+
+    def set_D_W(self):
+        # Builds the weights matrix and build the comulative weight list
+        n_nodes = len(self.getNodes())
+        # Creating W
+        W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Strarting from 0 
+        for edge in self.getEdges().items():
+            ((node1, node2),weight) = edge
+            W[node1, node2] = weight
+            W[node2, node1] = weight
+
+        self.W = W       
+        # Creating D
+        D : List[float] = []
+        # Nodes are starting from 1
+        # W is a matrix and we are accessing to the column relative to u
+        self.D = [0] + [sum(W[u]) for u in sorted(list(self.getNodes()))] 
+
 
     def cutWeight(self, cut1: List[int]) -> int:
         # returns the weight of the cut
@@ -47,13 +64,13 @@ class Graph:
         for weightsInCut in [
             weight
             for node, weight in enumerate(self.getW())
-            if (node + 1) in self.nodes and (node + 1) in cut1
+            if (node) in self.nodes and (node) in cut1
         ]:  # compute weight of all nodes in cut;
             # sanity check: compute the cut only of nodes which are still in the graph
             for weightInCut in [
                 (node, weight)
                 for node, weight in enumerate(weightsInCut)
-                if node + 1 not in cut1 and node + 1 in self.nodes and weight > 0
+                if node  not in cut1 and node  in self.nodes and weight > 0
             ]:
                 partialSum += weightInCut[1]
         return partialSum
@@ -68,9 +85,9 @@ class Graph:
             return []
         rowEdges: List[int] = self.getRowEdges(node=node)
         return [
-            vertex + 1
+            vertex 
             for vertex, weight in enumerate(rowEdges)
-            if weight > 0 and (vertex + 1) in self.nodes
+            if weight > 0 and (vertex ) in self.nodes
         ]
         # adds one just because vertex index seem to start from 1 instead of 0
 
@@ -104,19 +121,19 @@ class Graph:
     def getEdgesList(self):
         return self.edges
 
-    def setWeightedDegree(self):
+    """ def setWeightedDegree(self):
         D: List[float] = []
         for node in self.getNodes():
             D.append(self.getRowWeight(node))
-        self.D = D
+        self.D = D """
 
-    def getRowEdges(self, node: int) -> List[int]:  # int:
+    """ def getRowEdges(self, node: int) -> List[int]:  # int:
         # Returns the array corresponding to the matrix row
         return self.W[node - 1]
 
     def getRowWeight(self, node: int) -> int:
-        # Returns the som of the matrix row weights
-        return sum(self.getRowEdges(node))
+        # Returns the sum of the matrix row weights
+        return sum(self.getRowEdges(node)) """
 
     def getEdges(self):
         return self.edges
@@ -145,6 +162,6 @@ class Graph:
 
                 graph.addEdge(node_1, node_2, weight)
 
-            graph.setWeightedDegree()
+            graph.set_D_W()
             file.close()
         return graph
