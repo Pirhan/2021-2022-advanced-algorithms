@@ -10,7 +10,7 @@ from data_structures.graph import *
 from Karger_and_Stein import Karger
 
 
-def measureTime(Graphs, Function, Weights, Time):
+def measureTime(Graphs, Function, Weights, Time, Discovery_time):
     print(Function)
     temp_time = 0  # List of times
     iterations = 1  # Iterations
@@ -18,19 +18,20 @@ def measureTime(Graphs, Function, Weights, Time):
     start_time_bar = perf_counter_ns()
     end_time = 0
     for graph in Graphs:
-        Result = []
+        Results = []
         temp_time = []
-
+        discovered_times = []
         gc.disable()
 
         for _ in range(iterations):
 
             start_time = perf_counter_ns()
 
-            Result = Function(graph, 5)  # Function call FIXME setting k
+            Result, D_time = Function(graph, 5)  # Function call FIXME setting k
 
             end_time = perf_counter_ns()
-
+            Results.append(Result)
+            discovered_times.append(D_time - start_time)
             temp_time.append(end_time - start_time)
 
             # Prints a progress bar for the specific function
@@ -41,7 +42,9 @@ def measureTime(Graphs, Function, Weights, Time):
 
         gc.enable()
         Time.append(sum(temp_time) / iterations)
-        Weights.append(Result)
+        Weights.append(min(Results))
+        #print(len(Weights), len(Discovery_time))
+        Discovery_time.append(discovered_times[Results.index(min(Results))])
     print("\n")
     return Time, Weights
 
@@ -56,21 +59,21 @@ def progress_bar(progress: int, total: int, current_time) -> None:
 
 
 def print_to_file(
-    Output_nearest_neighbour,
+    Output,
     Times,
-    Times_Minimum_Cut,
+    Discovery_Minimum_Cut,
     Path_File,
 ):
-    saving_data_nearest_neighbour = []
-    saving_data_nearest_neighbour.append(
+    saving_data = []
+    saving_data.append(
         ("Solution", "Run times", "Run times minimim cut")
     )
-    for i in range(len(Output_nearest_neighbour)):
-        saving_data_nearest_neighbour.append(
-            (Output_nearest_neighbour[i], Times[i], Times_Minimum_Cut[i])
+    for i in range(len(Output)):
+        saving_data.append(
+            (Output[i], Times[i], Discovery_Minimum_Cut[i])
         )
 
-        mat = np.matrix(saving_data_nearest_neighbour)
+        mat = np.matrix(saving_data)
     df = pd.DataFrame(data=mat.astype(str))
     df.to_csv(Path_File, sep="\t", header=False, index=False)
 
@@ -78,10 +81,11 @@ def print_to_file(
 def functionExecution(Graphs, Function, FilePath: str) -> None:
     Output: List[int] = []
     Times: List[float] = []
-    measureTime(Graphs, Function, Output, Times)
+    Discovery : List[float] = []
+    measureTime(Graphs, Function, Output, Times, Discovery)
 
     print_to_file(
-        Output, Times, Times, FilePath
+        Output, Times, Discovery, FilePath
     )  # FIXME The second Times needs to be releated to the minimum cut search
 
     graph_sizes = sorted([graph.dimension for graph in Graphs])
@@ -109,7 +113,7 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername))[:40]:
+    for filename in sorted(os.listdir(foldername))[:10]:
         #  if filename != "input_random_01_10.txt": continue
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)  # we don't need to understand the graph type
