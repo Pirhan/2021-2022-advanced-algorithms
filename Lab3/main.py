@@ -10,7 +10,7 @@ from data_structures.graph import *
 from Karger_and_Stein import Karger
 
 
-def measureTime(Graphs, Function, Weights, Time, Discovery_time):
+def measureTime(Graphs : List[Graph], Function, Weights, Time, Discovery_time):
     print(Function)
     temp_time = 0  # List of times
     iterations = 1  # Iterations
@@ -26,8 +26,13 @@ def measureTime(Graphs, Function, Weights, Time, Discovery_time):
         for _ in range(iterations):
 
             start_time = perf_counter_ns()
-
-            Result, D_time = Function(graph, 5)  # Function call FIXME setting k
+            
+            if Function.__name__=="Karger":
+                # This will give us a probability of 1-1/n for Karger and Stain
+                n = len(graph.getEdgesList())
+                Result, D_time = Function(graph, int(n * math.log(n)/(n - 1)))  
+            else:
+                Result, D_time = Function(graph)
 
             end_time = perf_counter_ns()
             Results.append(Result)
@@ -113,13 +118,14 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername))[:10]:
-        #  if filename != "input_random_01_10.txt": continue
-        G = Graph.initialize_from_file(foldername + "/" + filename)
-        Graphs.append(G)  # we don't need to understand the graph type
-        # counter += 1
-    functionExecution(Graphs, Karger, "RESULTS/KARGER.csv")
+    for filename in sorted(os.listdir(foldername)): # Use [:x] to set a limit 
 
+        G = Graph.initialize_from_file(foldername + "/" + filename)
+        Graphs.append(G)  
+        
+
+    functionExecution(Graphs, Karger, "RESULTS/KARGER_STEIN.csv")
+    #functionExecution(Graph, function_name, "RESULTS/STOER_WAGNER")
 
 if __name__ == "__main__":
     main()
