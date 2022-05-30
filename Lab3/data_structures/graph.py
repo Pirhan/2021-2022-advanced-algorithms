@@ -25,7 +25,7 @@ class Graph:
     #  node index start from 1 and not 0
     def getWeight(self, node1: int, node2: int) -> int:
         if node1 in self.nodes and node2 in self.nodes:
-            return self.W[node1 , node2 ]
+            return self.W[node1, node2]
         else:
             return 0
 
@@ -33,19 +33,18 @@ class Graph:
         # Builds the weights matrix and build the comulative weight list
         n_nodes = self.dimension
         # Creating W
-        W : np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))    # Strarting from 0 
+        W: np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))  # Strarting from 0
         for edge in self.getEdges().items():
-            ((node1, node2),weight) = edge
+            ((node1, node2), weight) = edge
             W[node1, node2] = weight
             W[node2, node1] = weight
 
-        self.W = W       
+        self.W = W
         # Creating D
-        D : List[float] = []
+        D: List[float] = []
         # Nodes are starting from 1
         # W is a matrix and we are accessing to the column relative to u
-        self.D = [0] + [sum(W[u]) for u in sorted(list(self.getNodes()))] 
-
+        self.D = [0] + [sum(W[u]) for u in sorted(list(self.getNodes()))]
 
     def cutWeight(self, cut1: List[int]) -> int:
         # returns the weight of the cut
@@ -71,7 +70,7 @@ class Graph:
             for weightInCut in [
                 (node, weight)
                 for node, weight in enumerate(weightsInCut)
-                if node  not in cut1 and node  in self.nodes and weight > 0
+                if node not in cut1 and node in self.nodes and weight > 0
             ]:
                 partialSum += weightInCut[1]
         return partialSum
@@ -84,11 +83,11 @@ class Graph:
         # if node does not belong anymore to the graph return the empty list
         if node not in self.nodes:
             return []
-        rowEdges: List[int] = self.getRowEdges(node=node)
+        rowEdges: List[int] = self.getD_W()[1][node]  # should be equivalent to self.getRowEdges(node=node)
         return [
-            vertex 
+            vertex
             for vertex, weight in enumerate(rowEdges)
-            if weight > 0 and (vertex ) in self.nodes
+            if weight > 0 and (vertex) in self.nodes
         ]
         # adds one just because vertex index seem to start from 1 instead of 0
 

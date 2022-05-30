@@ -15,6 +15,7 @@ def globalMinimumCut(graph: Graph) -> Tuple[List[int], List[int]]:
         secondCut: Tuple[List[int], List[int]] = globalMinimumCut(
             graph=graph
         )  # graph minus nodeFirstPartition and nodeSecondPartition
+
         if graph.cutWeight(firstCut) <= graph.cutWeight(secondCut):
             return firstCut
         else:
@@ -29,19 +30,26 @@ def stMinimumCut(graph: Graph) -> Tuple[Tuple[List[int], List[int]], int, int]:
     s: Optional[int] = None
     t: Optional[int] = None
     while not priorityQueue.isEmpty():
+        print("START PHASE")
         u: int = priorityQueue.pop()[
             0
         ]  # recall that the node in the priorityQueue is provided as the first node also u is the node with maximum weight
         s = t
         t = u
+        print("u", u, "s", s, "t", t)
         for adjacent in graph.adjacentNodes(node=u):
+            print("adjacent to u", adjacent)
             if priorityQueue.findVertex(node=adjacent):
                 weightUV: int = graph.getWeight(node1=u, node2=adjacent)
+                print("weightUV", weightUV)
                 priorityQueue.increaseKey(node=adjacent, weightToAdd=weightUV)
+                print("priorityQueue after update", priorityQueue.all())
+        print("END PHASE")
 
     firstPartition: List[int] = graph.getNodes()
     #  if for some reason s and t are underfined
     #  raise some error
     assert s is not None and t is not None
+    print("s", s, "t", t)
     firstPartition.remove(t)
     return ((firstPartition, [t]), s, t)
