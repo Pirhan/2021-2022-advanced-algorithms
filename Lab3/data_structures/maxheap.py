@@ -7,27 +7,21 @@ from typing import Tuple, List, Optional
 #  to make the minheap a maxheap
 #  this property is an invariant of the underlying
 #  heap (ie all weights must be negative in the heap
-#  positive "to the user"
+#  positive "to the user")
 class maxHeap:
-    # element is a list of (node, weight)
-    # where weight is positive -> convert it
     # also the order must be (weight, node)
-    def __init__(self, elements: List[Tuple[int, int]] = []) -> None:
-        if len(elements) == 0:
-            self.heap: List[Tuple[int, int]] = []
-        else:
-            self.heap = [(item[1] * -1, item[0]) for item in elements]
-            heapify(self.heap)
+    def __init__(self) -> None:
+        self.heap: List[Tuple[int, List[int]]] = []
 
-    # order of return is weight, node
-    def pop(self) -> Tuple[int, int]:
+    # order of return is node weight
+    def pop(self) -> Tuple[List[int], int]:
         # required to provide the tuple as
         # node, weight instead as
         # weight, node (as stored)
         # remember that weight are stored
         # negatively -> a (-1) multiplication
         # is required to make them positive
-        res: Tuple[int, int] = heappop(self.heap)
+        res: Tuple[int, List[int]] = heappop(self.heap)
         return (res[1], (-1) * res[0])
 
     # in the algorithms the push is done
@@ -35,14 +29,14 @@ class maxHeap:
     # under the hood the order is reversed
     # since the heap orders tuples on the first
     # component only
-    def push(self, node: int, weight: int) -> None:
+    def push(self, node: List[int], weight: int) -> None:
         weightNegative: int = weight * (-1)
         heappush(self.heap, (weightNegative, node))
 
-    def remove(self, node: int, weight: int) -> None:
+    def remove(self, node: List[int], weight: int) -> None:
         index: int = 0
         #  recall that the node is in the position 1 of the tuple
-        while index < len(self.heap) and self.heap[index][1] != node:
+        while index < len(self.heap) and node != self.heap[index][1]:
             index += 1
         #  trick to remove an arbitrary element
         #  from the heap without requiring
@@ -61,11 +55,11 @@ class maxHeap:
 
     # weightToAdd is passed as positive
     # transparent from the user
-    def increaseKey(self, node: int, weightToAdd: int) -> None:
+    def increaseKey(self, node: List[int], weightToAdd: int) -> None:
         #  since weight it's recorded as negative value
         #  we convert it to positive in order to
         #  make the sum weight += weightToAdd  correct (recall that all weightToAdd are positive)
-        weightNode: Optional[Tuple[int, int]] = self.findFromVertex(node=node)
+        weightNode: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
         if weightNode is None:
             return
         else:
@@ -80,31 +74,29 @@ class maxHeap:
             self.push(node=node, weight=weight)
 
     # returns the pair node, weight
-    def findFromVertex(self, node: int) -> Optional[Tuple[int, int]]:
-        heapAsList: List[Tuple[int, int]] = list(self.heap)
+    def findFromVertex(self, node: List[int]) -> Optional[Tuple[int, List[int]]]:
+        heapAsList: List[Tuple[int, List[int]]] = list(self.heap)
         #  recall that node is in the second position of the tuple(ie index 1) not the first
-        item = [item for item in heapAsList if item[1] == node]
-        if len(item) > 0:
-            return item[
-                0
-            ]  # just return the first in case there are multiple occurrence of same node
-        else:
+        # return only the first
+        result: List[Tuple[int, List[int]]] = [item for item in heapAsList if item[1] == node]
+        if len(result) == 0:
             return None
+        return result[0]
 
-    # should not happen btw
+        # should not happen btw
 
     #  required for for all cycle inside
     #  stMinimumCut
-    def findVertex(self, node: int) -> bool:
-        item: Optional[Tuple[int, int]] = self.findFromVertex(node=node)
+    def findVertex(self, node: List[int]) -> bool:
+        item: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
         if item is None:
             return False
         return True
 
-    #  requried for loop in stMinimumCut
+    #  required for loop in stMinimumCut
     def isEmpty(self) -> bool:
         return len(self.heap) == 0
 
     #  only for testing purpose
-    def all(self) -> List[Tuple[int, int]]:
+    def all(self) -> List[Tuple[int, List[int]]]:
         return self.heap
