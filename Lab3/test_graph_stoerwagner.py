@@ -27,7 +27,7 @@ def testGetWeightAfterRemove(graph: Graph):
 
 
 def testCutWeightUtil(graph: Graph, cut: List[int], assertValue: int):
-    weight: int = graph.cutWeight(cut1=cut)
+    weight: int = graph.cutWeight(cut1=cut, nodes=graph.getNodes())
     print("cut weight", weight)
     assert weight == assertValue
 

@@ -58,21 +58,11 @@ class Graph:
         # compute the sum of the weight only for those vertex which does not belong to cut1
         # return the sum of this partial sum
         # nodesInCut contains only the list of nodes weight of the first cut
-        # index in W are 0 start based, while in cut are 1-start based
         partialSum: int = 0
         #  also check if node exists(required in stoerWagner when computing stMinimumCut for smaller graph)
-        for weightsInCut in [
-            weight
-            for node, weight in enumerate(self.getW())
-            if (node) in self.nodes and (node) in cut1
-        ]:  # compute weight of all nodes in cut;
-            # sanity check: compute the cut only of nodes which are still in the graph
-            for weightInCut in [
-                (node, weight)
-                for node, weight in enumerate(weightsInCut)
-                if node not in cut1 and node in self.nodes and weight > 0
-            ]:
-                partialSum += weightInCut[1]
+        for nodeInCut1 in cut1[0]:  # type: ignore
+            for nodeInCut2 in cut1[1]:  # type: ignore
+                partialSum += self.getWeight(nodeInCut1, nodeInCut2)
         return partialSum
 
     def adjacentNodes(self, node: int) -> List[int]:
@@ -83,7 +73,9 @@ class Graph:
         # if node does not belong anymore to the graph return the empty list
         if node not in self.nodes:
             return []
-        rowEdges: List[int] = self.getD_W()[1][node]  # should be equivalent to self.getRowEdges(node=node)
+        rowEdges: List[int] = self.getD_W()[1][
+            node
+        ]  # should be equivalent to self.getRowEdges(node=node)
         return [
             vertex
             for vertex, weight in enumerate(rowEdges)
@@ -102,21 +94,6 @@ class Graph:
         if len(toRemove) < 0:
             return
         self.nodes = set([x for x in self.nodes if x not in toRemove])
-        # remove edges where nodes are involved
-        # self.edges = set(
-        #    [x for x in self.edges if not (x[0] + 1 in nodes or x[1] + 1 in nodes)]
-        # )
-        # remove from weight matrix
-        # for each node which contains a node in nodes
-        # must set it's weight to zero
-        # remove from weight nodes
-        # index: int = 0
-        # while index < len(self.D) - 1:
-        #    if index + 1 in nodes:
-        #        self.D[index] = 0.0
-        #    index += 1
-
-        # pass
 
     def getEdgesList(self):
         return self.edges

@@ -95,9 +95,7 @@ class maxHeap:
         heapAsList: List[Tuple[int, List[int]]] = list(self.heap)
         #  recall that node is in the second position of the tuple(ie index 1) not the first
         # return only the first
-        result: List[Tuple[int, List[int]]] = [
-            item for item in heapAsList if node in item[1]
-        ]
+        result: List[Tuple[int, List[int]]] = [item for item in heapAsList if node in item[1]]
         if len(result) == 0:
             return None
         return result[0]
@@ -107,14 +105,18 @@ class maxHeap:
         heapAsList: List[Tuple[int, List[int]]] = list(self.heap)
         #  recall that node is in the second position of the tuple(ie index 1) not the first
         # return only the first
-        result: List[Tuple[int, List[int]]] = [
-            item for item in heapAsList if item[1] == node
-        ]
+        result: List[Tuple[int, List[int]]] = [item for item in heapAsList if item[1] == node]
         if len(result) == 0:
             return None
         return result[0]
 
-        # should not happen btw
+    # should not happen btw
+
+    def findVertex(self, node: int) -> bool:
+        item: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
+        if item is None:
+            return False
+        return True
 
     #  required for for all cycle inside
     #  stMinimumCut
@@ -127,6 +129,13 @@ class maxHeap:
     #  required for loop in stMinimumCut
     def isEmpty(self) -> bool:
         return len(self.heap) == 0
+
+    # avoid to do the for loops inside the
+    # while stMinimumCut if the number of remaining element inside the priority queue is less or equal of one since it's pointless
+    # to update keys when the number of element
+    # which needs to be picked is one
+    def moreThenOneElement(self) -> bool:
+        return len(self.heap) > 1
 
     #  only for testing purpose
     def all(self) -> List[Tuple[int, List[int]]]:
