@@ -55,11 +55,29 @@ class maxHeap:
 
     # weightToAdd is passed as positive
     # transparent from the user
-    def increaseKey(self, node: List[int], weightToAdd: int) -> None:
+    # node is a node adjacent to
+    def increaseKey(self, node: int, weightToAdd: int) -> None:
+        weightNode: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
+        if weightNode is None:
+            return
+        else:
+            weight: int = weightNode[0] * (-1)
+            # remove the previous pair(weight, node)
+            # to make room for the new updated weight tuple
+            self.remove(node=weightNode[1], weight=weight)
+            weight += weightToAdd
+            # replace with the new element
+            # recall that self.push take care of
+            # converting from positive to negative the weight passed
+            self.push(node=weightNode[1], weight=weight)
+
+    # weightToAdd is passed as positive
+    # transparent from the user
+    def increaseKeyFromNodes(self, node: List[int], weightToAdd: int) -> None:
         #  since weight it's recorded as negative value
         #  we convert it to positive in order to
         #  make the sum weight += weightToAdd  correct (recall that all weightToAdd are positive)
-        weightNode: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
+        weightNode: Optional[Tuple[int, List[int]]] = self.findFromVertices(node=node)
         if weightNode is None:
             return
         else:
@@ -73,12 +91,25 @@ class maxHeap:
             # converting from positive to negative the weight passed
             self.push(node=node, weight=weight)
 
-    # returns the pair node, weight
-    def findFromVertex(self, node: List[int]) -> Optional[Tuple[int, List[int]]]:
+    def findFromVertex(self, node: int) -> Optional[Tuple[int, List[int]]]:
         heapAsList: List[Tuple[int, List[int]]] = list(self.heap)
         #  recall that node is in the second position of the tuple(ie index 1) not the first
         # return only the first
-        result: List[Tuple[int, List[int]]] = [item for item in heapAsList if item[1] == node]
+        result: List[Tuple[int, List[int]]] = [
+            item for item in heapAsList if node in item[1]
+        ]
+        if len(result) == 0:
+            return None
+        return result[0]
+
+    # returns the pair node, weight
+    def findFromVertices(self, node: List[int]) -> Optional[Tuple[int, List[int]]]:
+        heapAsList: List[Tuple[int, List[int]]] = list(self.heap)
+        #  recall that node is in the second position of the tuple(ie index 1) not the first
+        # return only the first
+        result: List[Tuple[int, List[int]]] = [
+            item for item in heapAsList if item[1] == node
+        ]
         if len(result) == 0:
             return None
         return result[0]
@@ -87,8 +118,8 @@ class maxHeap:
 
     #  required for for all cycle inside
     #  stMinimumCut
-    def findVertex(self, node: List[int]) -> bool:
-        item: Optional[Tuple[int, List[int]]] = self.findFromVertex(node=node)
+    def findVertices(self, node: List[int]) -> bool:
+        item: Optional[Tuple[int, List[int]]] = self.findFromVertices(node=node)
         if item is None:
             return False
         return True
