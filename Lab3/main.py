@@ -33,7 +33,7 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
             if Function.__name__ == "Karger":
                 # This will give us a probability of 1-1/n for Karger and Stain
                 n = len(graph.getEdgesList())
-                Result, D_time = Function(graph, int(n * math.log(n) / (n - 1)))
+                Result, D_time = Function(graph, int(math.log2(n)**2))
             else:
                 Result, D_time = Function(graph)
 
@@ -92,16 +92,23 @@ def functionExecution(Graphs, Function, FilePath: str) -> None:
         Output, Times, Discovery, FilePath
     )  # FIXME The second Times needs to be releated to the minimum cut search
 
-    graph_sizes = sorted([graph.dimension for graph in Graphs])
-    pyplot(graph_sizes, sorted(Times), Function.__name__)
+    graph_sizes = [graph.dimension for graph in Graphs]
+    graph_edge_sized = [len(list(G.getEdges().keys())) for G in Graphs]
+    pyplot(graph_sizes,graph_edge_sized, sorted(Times), Function.__name__)
 
 
-def pyplot(graphs_sizes, times_Function, Function):
+def pyplot(graphs_sizes, graph_edge_sized, times_Function, Function):
     ################## pyplot ##################
-    C = int(
-        times_Function[-1] / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
-    )  # Takes the last elements as reference
-    reference = [n ** 2 * math.log2(n) ** 3 * C for n in graphs_sizes]
+    if Function == "stoerWagner":
+        C = int(
+        times_Function[-1] / (graph_edge_sized[-1] * graphs_sizes[-1] + (graphs_sizes[-1] ** 2) * math.log2(graphs_sizes[-1]))
+        )  # Takes the last elements as reference
+        reference = [(graph_edge_sized[i] * n + (n ** 2) * math.log2(n )) * C for i, n in enumerate(graphs_sizes)]
+    else:
+        C = int(
+            times_Function[-1] / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
+        )  # Takes the last elements as reference
+        reference = [n ** 2 * math.log2(n) ** 3 * C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, times_Function)
     plt.title(Function)
@@ -114,7 +121,7 @@ def pyplot(graphs_sizes, times_Function, Function):
 
 def main():
 
-    Graphs: List[float] = []
+    Graphs: List[Graph] = []
     foldername = "dataset"
     optimal_sol = []
     for filename in sorted(os.listdir(foldername)):  # Use [:x] to set a limit
