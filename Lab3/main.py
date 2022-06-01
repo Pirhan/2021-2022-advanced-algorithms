@@ -1,16 +1,19 @@
-import gc, os, math
+import gc
+import os
+import math
 from time import perf_counter_ns
-from typing import Dict, List
-import matplotlib.pyplot as plt
-import numpy as np
+from typing import List  # Dict unused
+import matplotlib.pyplot as plt  # type: ignore
+import numpy as np  # type: ignore
 import pandas as pd  # type: ignore
 
-from data_structures.graph import *
+from data_structures.graph import *  # type: ignore
 
 from Karger_and_Stein import Karger
+from stoerWagner import stoerWagner
 
 
-def measureTime(Graphs : List[Graph], Function, Weights, Time, Discovery_time):
+def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
     print(Function)
     temp_time = 0  # List of times
     iterations = 1  # Iterations
@@ -26,11 +29,11 @@ def measureTime(Graphs : List[Graph], Function, Weights, Time, Discovery_time):
         for _ in range(iterations):
 
             start_time = perf_counter_ns()
-            
-            if Function.__name__=="Karger":
+
+            if Function.__name__ == "Karger":
                 # This will give us a probability of 1-1/n for Karger and Stain
                 n = len(graph.getEdgesList())
-                Result, D_time = Function(graph, int(n * math.log(n)/(n - 1)))  
+                Result, D_time = Function(graph, int(n * math.log(n) / (n - 1)))
             else:
                 Result, D_time = Function(graph)
 
@@ -48,7 +51,7 @@ def measureTime(Graphs : List[Graph], Function, Weights, Time, Discovery_time):
         gc.enable()
         Time.append(sum(temp_time) / iterations)
         Weights.append(min(Results))
-        #print(len(Weights), len(Discovery_time))
+        # print(len(Weights), len(Discovery_time))
         Discovery_time.append(discovered_times[Results.index(min(Results))])
     print("\n")
     return Time, Weights
@@ -70,13 +73,9 @@ def print_to_file(
     Path_File,
 ):
     saving_data = []
-    saving_data.append(
-        ("Solution", "Run times", "Run times minimim cut")
-    )
+    saving_data.append(("Solution", "Run times", "Run times minimim cut"))
     for i in range(len(Output)):
-        saving_data.append(
-            (Output[i], Times[i], Discovery_Minimum_Cut[i])
-        )
+        saving_data.append((Output[i], Times[i], Discovery_Minimum_Cut[i]))
 
         mat = np.matrix(saving_data)
     df = pd.DataFrame(data=mat.astype(str))
@@ -86,7 +85,7 @@ def print_to_file(
 def functionExecution(Graphs, Function, FilePath: str) -> None:
     Output: List[int] = []
     Times: List[float] = []
-    Discovery : List[float] = []
+    Discovery: List[float] = []
     measureTime(Graphs, Function, Output, Times, Discovery)
 
     print_to_file(
@@ -118,14 +117,14 @@ def main():
     Graphs: List[float] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername)): # Use [:x] to set a limit 
+    for filename in sorted(os.listdir(foldername)):  # Use [:x] to set a limit
 
         G = Graph.initialize_from_file(foldername + "/" + filename)
-        Graphs.append(G)  
-        
+        Graphs.append(G)
 
     functionExecution(Graphs, Karger, "RESULTS/KARGER_STEIN.csv")
-    #functionExecution(Graph, function_name, "RESULTS/STOER_WAGNER")
+    functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
+
 
 if __name__ == "__main__":
     main()
