@@ -14,8 +14,20 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
     minimumDistance = float("+Infinity")  # Useful for the comparison
     discovery_time = 0
     # Setting k = n
-    if k == 0: k = G.dimension  
-    for _ in range(k):
+    if k == 0: k = int(math.log2(G.dimension)**2)  
+    starting_time = perf_counter_ns()
+    iterations = 0
+    for i in range(k):
+
+        # Setting a timeout 
+        current_time = perf_counter_ns()
+        # Computing how many minutes have passed.
+        toMinute = (current_time-starting_time) / (60 * 10**9) 
+        # If requires more than 15 minutes breaks the iterations
+        if toMinute >= 15: 
+            iterations = i 
+            break
+
         # Passing a copy and not a reference
         (D, W) = G.getD_W()
         # W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
@@ -28,7 +40,9 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
             # Taking the current time, which corresponds to the time
             # when the minimum cut was found
             discovery_time = perf_counter_ns()
-    return minimumDistance, discovery_time
+        iterations = i + 1
+        
+    return minimumDistance, discovery_time, (iterations, k)
 
 
 def Random_Select(C: List[float]):
@@ -69,7 +83,7 @@ def binarySearch(r: int, C: List[float]):
     return None
 
 
-def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
+def Edge_Select(G: Tuple[List[float], List[List[float]]]) -> Tuple:
 
     (D, W) = G
 
@@ -84,7 +98,7 @@ def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
     return (u, v)
 
 
-def Contract_Edge(G: Tuple[List[float], np.matrix], u: int, v: int):
+def Contract_Edge(G: Tuple[List[float], List[List[float]]], u: int, v: int):
     (D, W) = G
 
     D[u] += D[v] - 2 * W[u][v]
@@ -92,23 +106,23 @@ def Contract_Edge(G: Tuple[List[float], np.matrix], u: int, v: int):
     W[u][v] = W[v][u] = 0
 
     # Picking the vertices in D different from u and v positive
-    V = [D.index(n) for n in D if n != u or n != v or n != 0]
-
+    V = [index for index, n in enumerate(D) if n != u or n != v or n != 0]
     for w in V:  # V[0] is 0. It is an additional element that should be neglected
 
         W[u][w] += W[v][w]
         W[w][u] += W[w][v]
         W[v][w] = W[w][v] = 0
 
-    return (D, W)
+    #return (D, W)
 
 
-def Contract(G: Tuple[List[float], np.matrix], k: int):
+def Contract(G: Tuple[List[float], List[List[float]]], k: int):
     (D_, W_) = G
 
-    D, W = D_, W_
+    D = D_.copy()
+    W = [array.copy() for array in W_]
     # len(V) corresponds to the number of vertices remaning in D
-    V = [n for n in D_ if n != 0]
+    V = [n for n in D if n != 0]
 
     for _ in range(len(V) - k):  # Strating form 1. Adding 1 to the upper range
 
@@ -118,13 +132,13 @@ def Contract(G: Tuple[List[float], np.matrix], k: int):
     return (D, W)
 
 
-def Recursive_Contract(G: Graph):
+def Recursive_Contract(G: Tuple[List[float], List[List[float]]]):
     (D, W) = G
     V = [n for n in D if n != 0]  # Number of vertices remaning in D
     if len(V) <= 6:
 
         # Contracting G to 2 vertices
-        (D_1, W_1) = Contract(G, 2)
+        (_, W_1) = Contract(G, 2)
 
         # The matrix now contains only two value different from 0
         #
@@ -133,11 +147,8 @@ def Recursive_Contract(G: Graph):
     Results: List[int] = []
     t = math.ceil((len(V) / math.sqrt(2)) + 1)
 
-    (D,W) = Contract(G, t)
-
     for _ in range(2):
-        D_i = D.copy()
-        W_i = [array.copy() for array in W]
-        Results.append(Recursive_Contract((D_i,W_i)))
+        G_i = Contract(G, t)
+        Results.append(Recursive_Contract(G_i))
 
     return min(Results)

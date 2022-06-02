@@ -30,7 +30,7 @@ def mergeNodes(
     return nodes
 
 
-def stoerWagner(graph: Graph) -> Tuple[int, int]:
+def stoerWagner(graph: Graph) -> Tuple[int, int, int]:
     nodes: List[List[int]] = [[item] for item in graph.getNodes()]
     # vertex can be merged together so i use a list
     # of int instead of simple int to do that
@@ -40,7 +40,7 @@ def stoerWagner(graph: Graph) -> Tuple[int, int]:
     )
     discovery_time = perf_counter_ns()
     minimumCutWeight: int = graph.cutWeight(cut1=flatten(toFlatten=minimumCut))
-    return minimumCutWeight, discovery_time
+    return minimumCutWeight, discovery_time, None 
 
 
 #  nodes, edges and weight function are inside the graph already, no need to pass them as parameters

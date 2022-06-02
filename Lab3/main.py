@@ -1,11 +1,13 @@
 import gc
 import os
 import math
+import sys
 from time import perf_counter_ns
 from typing import List  # Dict unused
 import matplotlib.pyplot as plt  # type: ignore
 import numpy as np  # type: ignore
 import pandas as pd  # type: ignore
+from multiprocessing import Process # type: ignore
 
 from data_structures.graph import *  # type: ignore
 
@@ -14,7 +16,8 @@ from stoerWagner import stoerWagner
 
 
 def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
-    print(Function)
+    if sys.argv[1] != "-p": print(Function)
+    K : List[Tuple[int,int]] = []
     temp_time = 0  # List of times
     if Function.__name__ == "stoerWagner":
         iterations = 10
@@ -32,16 +35,16 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
 
             start_time = perf_counter_ns()
 
-            Result, D_time = Function(graph)
+            Result, D_time, k_iterations = Function(graph)
 
             end_time = perf_counter_ns()
             Results.append(Result)
             discovered_times.append(D_time - start_time)
             temp_time.append(end_time - start_time)
-
+            K.append(k_iterations)
             # Prints a progress bar for the specific function
             progress_bar(
-                current, (len(Graphs) * iterations), perf_counter_ns() - start_time_bar
+                current, (len(Graphs) * iterations), perf_counter_ns() - start_time_bar, Function.__name__
             )
             current += 1
 
@@ -51,16 +54,20 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
         # print(len(Weights), len(Discovery_time))
         Discovery_time.append(discovered_times[Results.index(min(Results))])
     print("\n")
+    print(K)
+    print("\n")
     return Time, Weights
 
 
-def progress_bar(progress: int, total: int, current_time) -> None:
-    # Progress bar
-
-    percent = 100 * (progress / float(total))  # Obtaining the percent
-    bar = "█" * int(percent) + "_" * (100 - int(percent))  # Building the bar
-    current_time = current_time / 10 ** 6  # Conversion to ms
-    print(f"\r|{bar}|{percent:.2f}% - {current_time:.2f} ms", end="\r")
+def progress_bar(progress: int, total: int, current_time, name) -> None:
+    if sys.argv[1] == "-p":
+        current_time = current_time / 10 ** 6  # Conversion to ms
+        print(f"Function {name}: {progress}/{total} - {current_time}")
+    else: 
+        percent = 100 * (progress / float(total))  # Obtaining the percent
+        bar = "█" * int(percent) + "_" * (100 - int(percent))  # Building the bar
+        current_time = current_time / 10 ** 6  # Conversion to ms
+        print(f"\r|{bar}|{percent:.2f}% - {current_time:.2f} ms", end="\r")
 
 
 def print_to_file(
@@ -126,9 +133,19 @@ def main():
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)
 
-    functionExecution(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
-    functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
-
+    if sys.argv[1]=="-p":
+        p1 = Process(target=functionExecution, args = (Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")) 
+        
+        p2 = Process(target=functionExecution, args = (Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv"))
+        
+        processes = [p1,p2]
+        for process in processes:
+            process.start()
+        for process in processes:
+            process.join()
+    else:
+        functionExecution(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
+        functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
 
 if __name__ == "__main__":
     main()
