@@ -9,14 +9,16 @@ import pandas as pd  # type: ignore
 
 from data_structures.graph import *  # type: ignore
 
-from Karger_and_Stein import Karger
+from Karger_and_Stein import Karger_and_Stein
 from stoerWagner import stoerWagner
 
 
 def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
     print(Function)
     temp_time = 0  # List of times
-    iterations = 1  # Iterations
+    if Function.__name__ == "stoerWagner":
+        iterations = 10
+    else: iterations = 1  # Iterations
     current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
     end_time = 0
@@ -30,12 +32,7 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
 
             start_time = perf_counter_ns()
 
-            if Function.__name__ == "Karger":
-                # This will give us a probability of 1-1/n for Karger and Stain
-                n = len(graph.getEdgesList())
-                Result, D_time = Function(graph, int(math.log2(n)**2))
-            else:
-                Result, D_time = Function(graph)
+            Result, D_time = Function(graph)
 
             end_time = perf_counter_ns()
             Results.append(Result)
@@ -101,9 +98,9 @@ def pyplot(graphs_sizes, graph_edge_sized, times_Function, Function):
     ################## pyplot ##################
     if Function == "stoerWagner":
         C = int(
-        times_Function[-1] / (graph_edge_sized[-1] * graphs_sizes[-1] + (graphs_sizes[-1] ** 2) * math.log2(graphs_sizes[-1]))
+        times_Function[-1] / (graph_edge_sized[-1] * graphs_sizes[-1] + graphs_sizes[-1]**2 * math.log2(graphs_sizes[-1]))
         )  # Takes the last elements as reference
-        reference = [(graph_edge_sized[i] * n + (n ** 2) * math.log2(n )) * C for i, n in enumerate(graphs_sizes)]
+        reference = [(graph_edge_sized[i] * n + n**2 * math.log2(n )) * C for i, n in enumerate(graphs_sizes)]
     else:
         C = int(
             times_Function[-1] / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
@@ -129,7 +126,7 @@ def main():
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)
 
-    functionExecution(Graphs, Karger, "RESULTS/KARGER_STEIN.csv")
+    functionExecution(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
     functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
 
 

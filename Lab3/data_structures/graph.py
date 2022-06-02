@@ -25,7 +25,7 @@ class Graph:
     #  node index start from 1 and not 0
     def getWeight(self, node1: int, node2: int) -> int:
         if node1 in self.nodes and node2 in self.nodes:
-            return self.W[node1, node2]
+            return self.W[node1][node2]
         else:
             return 0
 
@@ -33,15 +33,14 @@ class Graph:
         # Builds the weights matrix and build the comulative weight list
         n_nodes = self.dimension
         # Creating W
-        W: np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))  # Strarting from 0
+        W_: np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))  # Strarting from 0
+        W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
         for edge in self.getEdges().items():
             ((node1, node2), weight) = edge
-            W[node1, node2] = weight
-            W[node2, node1] = weight
+            W[node1][node2] = weight
+            W[node2][node1] = weight
 
         self.W = W
-        # Creating D
-        D: List[float] = []
         # Nodes are starting from 1
         # W is a matrix and we are accessing to the column relative to u
         self.D = [0] + [sum(W[u]) for u in sorted(list(self.getNodes()))]
@@ -94,23 +93,6 @@ class Graph:
         if len(toRemove) < 0:
             return
         self.nodes = set([x for x in self.nodes if x not in toRemove])
-
-    def getEdgesList(self):
-        return self.edges
-
-    """ def setWeightedDegree(self):
-        D: List[float] = []
-        for node in self.getNodes():
-            D.append(self.getRowWeight(node))
-        self.D = D """
-
-    """ def getRowEdges(self, node: int) -> List[int]:  # int:
-        # Returns the array corresponding to the matrix row
-        return self.W[node - 1]
-
-    def getRowWeight(self, node: int) -> int:
-        # Returns the sum of the matrix row weights
-        return sum(self.getRowEdges(node)) """
 
     def getEdges(self):
         return self.edges

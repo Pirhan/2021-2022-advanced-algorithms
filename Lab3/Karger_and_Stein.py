@@ -1,21 +1,32 @@
 import math
 import numpy as np
+import marshal
 from typing import List, Tuple
-from data_structures.graph import Graph # type:ignore
+from data_structures.graph import Graph  # type:ignore
 from time import perf_counter_ns
 
 
-def Karger(G: Graph, k: int) -> float:
+def Karger_and_Stein(G: Graph, k: int = 0) -> float:
+    # This is the main function of the alghoritm and calls
+    # Recursive_Contract which returns the minumum cut found.
+    # main sets k which is equal to log(n) ^ 2
 
     minimumDistance = float("+Infinity")  # Useful for the comparison
     discovery_time = 0
+    # Setting k = n
+    if k == 0: k = G.dimension  
     for _ in range(k):
         # Passing a copy and not a reference
-        t = Recursive_Contract(
-            G.getD_W()
-        )  # Passing a copy of the object G instead of its reference
+        (D, W) = G.getD_W()
+        # W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
+
+        # Passing a copy of the object G instead of its reference
+        t = Recursive_Contract((D, W))
         if t < minimumDistance:
             minimumDistance = t
+
+            # Taking the current time, which corresponds to the time
+            # when the minimum cut was found
             discovery_time = perf_counter_ns()
     return minimumDistance, discovery_time
 
@@ -25,7 +36,8 @@ def Random_Select(C: List[float]):
     if C[-1] == 0:
         print("Error in", C)
 
-    r = np.random.randint(0, int(C[-1]) - 1)  # Pick the last edge value
+    # np.random.randint: 0 is included and C[-1] is excluded
+    r = np.random.randint(0, int(C[-1])-1)  # Pick the last edge value
 
     edge_found_index = binarySearch(
         r, C
@@ -74,33 +86,36 @@ def Edge_Select(G: Tuple[List[float], np.matrix]) -> Tuple:
 
 def Contract_Edge(G: Tuple[List[float], np.matrix], u: int, v: int):
     (D, W) = G
-    D[u] += D[v] - 2 * W[u, v]
+
+    D[u] += D[v] - 2 * W[u][v]
     D[v] = 0
-    W[u, v] = W[v, u] = 0
+    W[u][v] = W[v][u] = 0
 
     # Picking the vertices in D different from u and v positive
     V = [D.index(n) for n in D if n != u or n != v or n != 0]
 
     for w in V:  # V[0] is 0. It is an additional element that should be neglected
 
-        W[u, w] += W[v, w]
-        W[w, u] += W[w, v]
-        W[v, w] = W[w, v] = 0
+        W[u][w] += W[v][w]
+        W[w][u] += W[w][v]
+        W[v][w] = W[w][v] = 0
+
+    return (D, W)
 
 
 def Contract(G: Tuple[List[float], np.matrix], k: int):
     (D_, W_) = G
 
-    V = [
-        n for n in D_ if n != 0
-    ]  # len(V) corresponds to the number of vertices remaning in D
+    D, W = D_, W_
+    # len(V) corresponds to the number of vertices remaning in D
+    V = [n for n in D_ if n != 0]
 
     for _ in range(len(V) - k):  # Strating form 1. Adding 1 to the upper range
 
-        (u, v) = Edge_Select((D_, W_))
-        Contract_Edge((D_, W_), u, v)
+        (u, v) = Edge_Select((D, W))
+        Contract_Edge((D, W), u, v)
 
-    return (D_, W_)
+    return (D, W)
 
 
 def Recursive_Contract(G: Graph):
@@ -111,24 +126,18 @@ def Recursive_Contract(G: Graph):
         # Contracting G to 2 vertices
         (D_1, W_1) = Contract(G, 2)
 
-        # Check if there are only two occurrences other than 0.
-        # This means that in the matrix there is the same repeated value
-        # for the pair of vertices associated with it (W [a, b] = W [b, a] = value).
-        positions = np.where(W_1 != 0)
-        if len(positions) != 2:
-            assert False
+        # The matrix now contains only two value different from 0
+        #
+        return max(max(W_1))
 
-        # Returning the value which corresponds to the only value different form 0 in the matrix
-        return np.max(W_1)
-
+    Results: List[int] = []
     t = math.ceil((len(V) / math.sqrt(2)) + 1)
 
-    outputs: List[float] = []
-    G_i = Contract(G, t)
+    (D,W) = Contract(G, t)
+
     for _ in range(2):
-        (D_i, W_i) = G_i
+        D_i = D.copy()
+        W_i = [array.copy() for array in W]
+        Results.append(Recursive_Contract((D_i,W_i)))
 
-        # This speeds up the execution instead calling copy.deepcopy, much slower
-        outputs.append(Recursive_Contract((D_i[:], W_i.copy())))
-
-    return min(outputs)
+    return min(Results)
