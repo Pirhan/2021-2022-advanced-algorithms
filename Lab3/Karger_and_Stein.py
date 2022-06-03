@@ -1,11 +1,11 @@
 import math
-import numpy as np
+import numpy as np  # type:ignore
 from typing import List, Tuple
 from data_structures.graph import Graph  # type:ignore
 from time import perf_counter_ns
 
 
-def Karger_and_Stein(G: Graph, k: int = 0) -> float:
+def Karger_and_Stein(G: Graph, k: int = 0) -> Tuple[float, int]:
     # This is the main function of the alghoritm and calls
     # Recursive_Contract which returns the minumum cut found.
     # main sets k which is equal to log(n) ^ 2
@@ -13,7 +13,8 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
     minimumDistance = float("+Infinity")  # Useful for the comparison
     discovery_time = 0
     # Setting k = n
-    if k == 0: k = int(math.log2(G.dimension)**2)  
+    if k == 0:
+        k = int(math.log2(G.dimension) ** 2)
     for _ in range(k):
 
         # Passing a copy and not a reference
@@ -29,8 +30,8 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
             # when the minimum cut was found
             discovery_time = perf_counter_ns()
 
-        
     return minimumDistance, discovery_time
+
 
 def Random_Select(C: List[float]):
 
@@ -38,7 +39,7 @@ def Random_Select(C: List[float]):
         print("Error in", C)
 
     # np.random.randint: 0 is included and C[-1] is excluded
-    r = np.random.randint(0, int(C[-1])-1)  # Pick the last edge value
+    r = np.random.randint(0, int(C[-1]) - 1)  # Pick the last edge value
 
     edge_found_index = binarySearch(
         r, C
@@ -70,16 +71,48 @@ def binarySearch(r: int, C: List[float]):
     return None
 
 
+#  for the two function below
+#  instead of computing all the time the
+#  sum backwards we exploit the following fact
+#  the current element of the Cumulative is the
+#  current element of W[u] or D plus the previous element computed in
+#  the cumulative weight function
+def computeCD(D) -> List[float]:
+    index = 1
+    CD: List[float] = [D[0]]
+    for element in D[1:]:
+        CD.append(element + CD[index - 1])
+        index += 1
+    return CD
+
+
+def computeC_W(W, D, u) -> List[float]:
+    index = 1
+    C_W: List[float] = [0.0]
+    while index < len(D):
+        C_W.append(W[u][index] + C_W[index - 1])
+        index += 1
+    return C_W
+
+
 def Edge_Select(G: Tuple[List[float], List[List[float]]]) -> Tuple:
 
     (D, W) = G
 
     # Creating the comulative weight on D
-    C_D = [sum(D[:i]) for i in range(1, len(D) + 1)]
+    #  C_D = [sum(D[:i]) for i in range(1, len(D) + 1)]  # first version
+    C_D = computeCD(D)
+    #  print("D", D)
+    #  print("C_D", C_D)
+    #  print("C_D1", C_D1)
     u = Random_Select(C_D)
 
     # Creating the comulative weights on W
-    C_W = [sum((W[u])[:i]) for i in range(1, len(D) + 1)]
+    #  C_W = [sum((W[u])[:i]) for i in range(1, len(D) + 1)]  # previous version
+    C_W = computeC_W(W, D, u)
+    #  print("W[u]", W[u])
+    #  print("C_W", C_W)
+    #  print("CW_1", C_W1)
     v = Random_Select(C_W)
 
     return (u, v)
@@ -100,7 +133,7 @@ def Contract_Edge(G: Tuple[List[float], List[List[float]]], u: int, v: int):
         W[w][u] += W[w][v]
         W[v][w] = W[w][v] = 0
 
-    #return (D, W)
+    # return (D, W)
 
 
 def Contract(G: Tuple[List[float], List[List[float]]], k: int):
@@ -137,7 +170,7 @@ def Recursive_Contract(G: Tuple[List[float], List[List[float]]]):
     for _ in range(2):
         D = D_.copy()
         W = [array.copy() for array in W_]
-        
-        Results.append(Recursive_Contract((D,W)))
+
+        Results.append(Recursive_Contract((D, W)))
 
     return min(Results)
