@@ -125,13 +125,13 @@ def main():
     Graphs: List[Graph] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername))[:10]:  # Use [:x] to set a limit
+    for filename in sorted(os.listdir(foldername)):  # Use [:x] to set a limit
 
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)
 
     if sys.argv[1]=="-p":
-        p1 = Process(target=functionExecution, args = (Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")) 
+        p1 = Process(target=functionExecution, args = (Graphs[:32], Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")) 
         
         p2 = Process(target=functionExecution, args = (Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv"))
         
@@ -141,7 +141,7 @@ def main():
         for process in processes:
             process.join()
     else:
-        functionExecution(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
+        functionExecution(Graphs[:32], Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
         functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
 
 if __name__ == "__main__":

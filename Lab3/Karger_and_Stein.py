@@ -1,6 +1,5 @@
 import math
 import numpy as np
-import marshal
 from typing import List, Tuple
 from data_structures.graph import Graph  # type:ignore
 from time import perf_counter_ns
@@ -15,8 +14,7 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
     discovery_time = 0
     # Setting k = n
     if k == 0: k = int(math.log2(G.dimension)**2)  
-    starting_time = perf_counter_ns()
-    for i in range(k):
+    for _ in range(k):
 
         # Passing a copy and not a reference
         (D, W) = G.getD_W()
