@@ -30,7 +30,7 @@ def mergeNodes(
     return nodes
 
 
-def stoerWagner(graph: Graph) -> Tuple[int, int, int]:
+def stoerWagner(graph: Graph) -> Tuple[int, int]:
     nodes: List[List[int]] = [[item] for item in graph.getNodes()]
     # vertex can be merged together so i use a list
     # of int instead of simple int to do that
@@ -111,6 +111,6 @@ def stMinimumCut(
 
     #  since t and s are Optional -> they could be None
     #  if they were None there is some problem in the algorithm implementation
-    if t is not None and s is not None:
-        return ((minusT(nodes=nodes, t=t), [t]), s, t)
-    raise BaseException()
+    #  if t is not None and s is not None:
+    return ((minusT(nodes=nodes, t=t), [t]), s, t)  # type: ignore
+    # raise BaseException()
