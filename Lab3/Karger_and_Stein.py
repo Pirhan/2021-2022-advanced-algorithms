@@ -16,17 +16,7 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
     # Setting k = n
     if k == 0: k = int(math.log2(G.dimension)**2)  
     starting_time = perf_counter_ns()
-    iterations = 0
     for i in range(k):
-
-        # Setting a timeout 
-        current_time = perf_counter_ns()
-        # Computing how many minutes have passed.
-        toMinute = (current_time-starting_time) / (60 * 10**9) 
-        # If requires more than 15 minutes breaks the iterations
-        if toMinute >= 15: 
-            iterations = i 
-            break
 
         # Passing a copy and not a reference
         (D, W) = G.getD_W()
@@ -40,10 +30,9 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> float:
             # Taking the current time, which corresponds to the time
             # when the minimum cut was found
             discovery_time = perf_counter_ns()
-        iterations = i + 1
-        
-    return minimumDistance, discovery_time, (iterations, k)
 
+        
+    return minimumDistance, discovery_time
 
 def Random_Select(C: List[float]):
 
@@ -146,9 +135,11 @@ def Recursive_Contract(G: Tuple[List[float], List[List[float]]]):
 
     Results: List[int] = []
     t = math.ceil((len(V) / math.sqrt(2)) + 1)
-
+    (D_, W_) = Contract(G, t)
     for _ in range(2):
-        G_i = Contract(G, t)
-        Results.append(Recursive_Contract(G_i))
+        D = D_.copy()
+        W = [array.copy() for array in W_]
+        
+        Results.append(Recursive_Contract((D,W)))
 
     return min(Results)

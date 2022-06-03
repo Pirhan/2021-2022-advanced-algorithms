@@ -40,7 +40,7 @@ def stoerWagner(graph: Graph) -> Tuple[int, int, int]:
     )
     discovery_time = perf_counter_ns()
     minimumCutWeight: int = graph.cutWeight(cut1=flatten(toFlatten=minimumCut))
-    return minimumCutWeight, discovery_time, None 
+    return minimumCutWeight, discovery_time
 
 
 #  nodes, edges and weight function are inside the graph already, no need to pass them as parameters

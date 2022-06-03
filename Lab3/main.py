@@ -20,7 +20,7 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
     K : List[Tuple[int,int]] = []
     temp_time = 0  # List of times
     if Function.__name__ == "stoerWagner":
-        iterations = 10
+        iterations = 5
     else: iterations = 1  # Iterations
     current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
@@ -35,13 +35,12 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
 
             start_time = perf_counter_ns()
 
-            Result, D_time, k_iterations = Function(graph)
+            Result, D_time = Function(graph)
 
             end_time = perf_counter_ns()
             Results.append(Result)
             discovered_times.append(D_time - start_time)
             temp_time.append(end_time - start_time)
-            K.append(k_iterations)
             # Prints a progress bar for the specific function
             progress_bar(
                 current, (len(Graphs) * iterations), perf_counter_ns() - start_time_bar, Function.__name__
@@ -53,9 +52,7 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
         Weights.append(min(Results))
         # print(len(Weights), len(Discovery_time))
         Discovery_time.append(discovered_times[Results.index(min(Results))])
-    print("\n")
-    print(K)
-    print("\n")
+
     return Time, Weights
 
 
@@ -128,7 +125,7 @@ def main():
     Graphs: List[Graph] = []
     foldername = "dataset"
     optimal_sol = []
-    for filename in sorted(os.listdir(foldername)):  # Use [:x] to set a limit
+    for filename in sorted(os.listdir(foldername))[:10]:  # Use [:x] to set a limit
 
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)
