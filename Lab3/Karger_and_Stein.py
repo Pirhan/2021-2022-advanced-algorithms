@@ -12,14 +12,20 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> Tuple[float, int]:
 
     minimumDistance = float("+Infinity")  # Useful for the comparison
     discovery_time = 0
+    starting_time = perf_counter_ns()
     # Setting k = n
     if k == 0:
         k = int(math.log2(G.dimension) ** 2)
-    for _ in range(k):
+
+    for i in range(k):
+
+        # Stop iterations if the 15 minute timeout is exceeded
+        """if ((perf_counter_ns() - starting_time)/(60 * 10**9)) > 15:
+        print(i)
+        break"""
 
         # Passing a copy and not a reference
         (D, W) = G.getD_W()
-        # W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
 
         # Passing a copy of the object G instead of its reference
         t = Recursive_Contract((D, W))

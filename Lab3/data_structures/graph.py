@@ -19,7 +19,9 @@ class Graph:
         return self.W
 
     def getD_W(self):
-        return copy.deepcopy((self.D, self.W))
+        D_ = self.D.copy()
+        W_ = [array.copy() for array in self.W]
+        return (D_,W_)
 
     #  get weight of a pair of nodes, required by stoer wagner
     #  node index start from 1 and not 0
@@ -34,7 +36,8 @@ class Graph:
         n_nodes = self.dimension
         # Creating W
         W_: np.matrix = np.zeros((n_nodes + 1, n_nodes + 1))  # Strarting from 0
-        W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
+        W = W_.tolist()
+        #W = [list(W_[i])[:] for i in range(len(list(W_[0])))]
         for edge in self.getEdges().items():
             ((node1, node2), weight) = edge
             W[node1][node2] = weight

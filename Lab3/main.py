@@ -7,7 +7,7 @@ from typing import List  # Dict unused
 import matplotlib.pyplot as plt  # type: ignore
 import numpy as np  # type: ignore
 import pandas as pd  # type: ignore
-from multiprocessing import Process # type: ignore
+from multiprocessing import Process  # type: ignore
 
 from data_structures.graph import *  # type: ignore
 
@@ -16,12 +16,18 @@ from stoerWagner import stoerWagner
 
 
 def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
-    if sys.argv[1] != "-p": print(Function)
-    K : List[Tuple[int,int]] = []
+    # Prints the function name
+    if Proc:
+        print(Function)
+
+    K: List[Tuple[int, int]] = []
     temp_time = 0  # List of times
+
     if Function.__name__ == "stoerWagner":
-        iterations = 5
-    else: iterations = 1  # Iterations
+        iterations = 3
+    else:
+        iterations = 1  # Iterations
+
     current: int = 1  # Progress bar's counter
     start_time_bar = perf_counter_ns()
     end_time = 0
@@ -43,27 +49,30 @@ def measureTime(Graphs: List[Graph], Function, Weights, Time, Discovery_time):
             temp_time.append(end_time - start_time)
             # Prints a progress bar for the specific function
             progress_bar(
-                current, (len(Graphs) * iterations), perf_counter_ns() - start_time_bar, Function.__name__
+                current,
+                (len(Graphs) * iterations),
+                perf_counter_ns() - start_time_bar,
+                Function.__name__,
             )
             current += 1
 
         gc.enable()
         Time.append(sum(temp_time) / iterations)
         Weights.append(min(Results))
-        # print(len(Weights), len(Discovery_time))
-        Discovery_time.append(discovered_times[Results.index(min(Results))])
 
+        Discovery_time.append(discovered_times[Results.index(min(Results))])
+    print("\n")
     return Time, Weights
 
 
 def progress_bar(progress: int, total: int, current_time, name) -> None:
-    if sys.argv[1] == "-p":
-        current_time = current_time / 10 ** 6  # Conversion to ms
+    if Proc:
+        current_time = current_time / 10**6  # Conversion to ms
         print(f"Function {name}: {progress}/{total} - {current_time}")
-    else: 
+    else:
         percent = 100 * (progress / float(total))  # Obtaining the percent
         bar = "█" * int(percent) + "_" * (100 - int(percent))  # Building the bar
-        current_time = current_time / 10 ** 6  # Conversion to ms
+        current_time = current_time / 10**6  # Conversion to ms
         print(f"\r|{bar}|{percent:.2f}% - {current_time:.2f} ms", end="\r")
 
 
@@ -89,27 +98,33 @@ def functionExecution(Graphs, Function, FilePath: str) -> None:
     Discovery: List[float] = []
     measureTime(Graphs, Function, Output, Times, Discovery)
 
-    print_to_file(
-        Output, Times, Discovery, FilePath
-    )  # FIXME The second Times needs to be releated to the minimum cut search
+    print_to_file(Output, Times, Discovery, FilePath)
 
     graph_sizes = [graph.dimension for graph in Graphs]
     graph_edge_sized = [len(list(G.getEdges().keys())) for G in Graphs]
-    pyplot(graph_sizes,graph_edge_sized, sorted(Times), Function.__name__)
+    pyplot(graph_sizes, graph_edge_sized, sorted(Times), Function.__name__)
 
 
 def pyplot(graphs_sizes, graph_edge_sized, times_Function, Function):
     ################## pyplot ##################
     if Function == "stoerWagner":
         C = int(
-        times_Function[-1] / (graph_edge_sized[-1] * graphs_sizes[-1] + graphs_sizes[-1]**2 * math.log2(graphs_sizes[-1]))
+            times_Function[-1]
+            / (
+                graph_edge_sized[-1] * graphs_sizes[-1]
+                + graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1])
+            )
         )  # Takes the last elements as reference
-        reference = [(graph_edge_sized[i] * n + n**2 * math.log2(n )) * C for i, n in enumerate(graphs_sizes)]
+        reference = [
+            (graph_edge_sized[i] * n + n**2 * math.log2(n)) * C
+            for i, n in enumerate(graphs_sizes)
+        ]
     else:
         C = int(
-            times_Function[-1] / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
+            times_Function[-1]
+            / (graphs_sizes[-1] ** 2 * math.log2(graphs_sizes[-1]) ** 3)
         )  # Takes the last elements as reference
-        reference = [n ** 2 * math.log2(n) ** 3 * C for n in graphs_sizes]
+        reference = [n**2 * math.log2(n) ** 3 * C for n in graphs_sizes]
     plt.plot(graphs_sizes, reference)
     plt.plot(graphs_sizes, times_Function)
     plt.title(Function)
@@ -121,28 +136,39 @@ def pyplot(graphs_sizes, graph_edge_sized, times_Function, Function):
 
 
 def main():
-
+    global Proc
+    Proc = False
+    print(sys.argv)
+    if sys.argv[1] == "-p":
+        Proc = True
     Graphs: List[Graph] = []
     foldername = "dataset"
-    optimal_sol = []
+    
     for filename in sorted(os.listdir(foldername)):  # Use [:x] to set a limit
 
         G = Graph.initialize_from_file(foldername + "/" + filename)
         Graphs.append(G)
 
-    if sys.argv[1]=="-p":
-        p1 = Process(target=functionExecution, args = (Graphs[:32], Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")) 
-        
-        p2 = Process(target=functionExecution, args = (Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv"))
-        
-        processes = [p1,p2]
+    if Proc:
+        P1 = Process(
+            target=functionExecution,
+            args=(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv"),
+        )
+
+        P2 = Process(
+            target=functionExecution,
+            args=(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv"),
+        )
+
+        processes = [P1, P2]
         for process in processes:
             process.start()
         for process in processes:
             process.join()
     else:
-        functionExecution(Graphs[:32], Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
+        functionExecution(Graphs, Karger_and_Stein, "RESULTS/KARGER_STEIN.csv")
         functionExecution(Graphs, stoerWagner, "RESULTS/STOER_WAGNER.csv")
+
 
 if __name__ == "__main__":
     main()
