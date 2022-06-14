@@ -17,12 +17,11 @@ def Karger_and_Stein(G: Graph, k: int = 0) -> Tuple[float, int]:
     if k == 0:
         k = int(math.log2(G.dimension) ** 2)
 
-    for i in range(k):
+    for _ in range(k):
 
         # Stop iterations if the 15 minute timeout is exceeded
         """if ((perf_counter_ns() - starting_time)/(60 * 10**9)) > 15:
-        print(i)
-        break"""
+            break"""
 
         # Passing a copy and not a reference
         (D, W) = G.getD_W()
